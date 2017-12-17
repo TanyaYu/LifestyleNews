@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lifestyle News</string>
+    <string name="recent_caption">Recent ❯</string>
+    <string name="favorite_caption">Favorite ❯</string>
+    <string name="recent_title">Recent</string>
+    <string name="favorite_title">Favorite</string>
+    <string name="up">Up</string>
+    <string name="source_published_on_date">%1$s on %2$s</string>
+</resources>

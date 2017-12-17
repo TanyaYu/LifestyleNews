@@ -1,0 +1,25 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryText</item>
+        <item name="android:textColorPrimaryInverse">@color/colorPrimaryTextInverse</item>
+        <item name="android:textColorSecondary">@color/colorSecondaryText</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+    </style>
+
+    <style name="SectionCaption">
+        <item name="android:textSize">@dimen/list_type_caption_text_size</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColor">@color/colorPrimaryTextInverse</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryTextInverse</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="article_item_height">100sp</dimen>
+    <dimen name="article_item_vertical_margin">5dp</dimen>
+    <dimen name="article_item_horisontal_margin">2.5dp</dimen>
+    <dimen name="article_item_inner_padding">3dp</dimen>
+    <dimen name="article_item_title_text_size">18sp</dimen>
+
+    <dimen name="list_type_caption_text_size">20sp</dimen>
+    <dimen name="list_type_caption_top_margin">5dp</dimen>
+</resources>
