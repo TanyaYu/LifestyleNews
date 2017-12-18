@@ -127,8 +127,8 @@ public class Article implements Parcelable {
         parcel.writeStringArray(strings);
 
         long[] longs = new long[2];
-        longs[0] = published.getTime();
-        longs[1] = addedToFavored.getTime();
+        longs[0] = published == null ? 0 : published.getTime();
+        longs[1] = addedToFavored == null ? 0 : addedToFavored.getTime();
         parcel.writeLongArray(longs);
     }
 
@@ -157,7 +157,19 @@ public class Article implements Parcelable {
 
         long[] longs = new long[2];
         parcel.readLongArray(longs);
-        published = new Date(longs[0]);
-        addedToFavored = new Date(longs[1]);
+        if(longs[0] > 0) published = new Date(longs[0]);
+        if(longs[1] > 0) addedToFavored = new Date(longs[1]);
+    }
+
+    @Override
+    public String toString() {
+        return getTitle();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Article)
+            return ((Article) obj).getId() == getId();
+        return super.equals(obj);
     }
 }

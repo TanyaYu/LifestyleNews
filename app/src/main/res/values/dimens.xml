@@ -8,4 +8,6 @@
 
     <dimen name="list_type_caption_text_size">20sp</dimen>
     <dimen name="list_type_caption_top_margin">5dp</dimen>
+    <dimen name="fab_margin">24dp</dimen>
+    <dimen name="article_detail_image_height">304dp</dimen>
 </resources>

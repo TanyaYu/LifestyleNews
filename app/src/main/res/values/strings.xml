@@ -6,4 +6,7 @@
     <string name="favorite_title">Favorite</string>
     <string name="up">Up</string>
     <string name="source_published_on_date">%1$s on %2$s</string>
+    <string name="action_share">Share</string>
+    <string name="action_add_to_favorite">Add to favorite</string>
+    <string name="action_remove_from_favorite">Remove from favorite</string>
 </resources>

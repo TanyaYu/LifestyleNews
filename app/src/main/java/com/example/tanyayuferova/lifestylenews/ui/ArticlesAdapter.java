@@ -24,7 +24,14 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
     private List<Article> data;
     private OnClickArticleHandler clickHandler;
 
+    public ArticlesAdapter() {
+    }
+
     public ArticlesAdapter(OnClickArticleHandler clickHandler) {
+        this.clickHandler = clickHandler;
+    }
+
+    public void setClickHandler(OnClickArticleHandler clickHandler) {
         this.clickHandler = clickHandler;
     }
 
@@ -68,5 +75,9 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
     public void setData(List<Article> data) {
         this.data = data;
         notifyDataSetChanged();
+    }
+
+    public List<Article> getData() {
+        return data;
     }
 }

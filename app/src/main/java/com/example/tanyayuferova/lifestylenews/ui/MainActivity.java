@@ -2,6 +2,7 @@ package com.example.tanyayuferova.lifestylenews.ui;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Parcelable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +15,11 @@ import android.view.View;
 import com.example.tanyayuferova.lifestylenews.R;
 import com.example.tanyayuferova.lifestylenews.entity.Article;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<List<Article>>,
-        ArticlesAdapter.OnClickArticleHandler {
+        implements LoaderManager.LoaderCallbacks<List<Article>> {
 
     private RecyclerView recentRV;
     private RecyclerView favoriteRV;
@@ -46,18 +47,30 @@ public class MainActivity extends AppCompatActivity
         columns = getResources().getInteger(R.integer.articles_list_columns);
         maxArticles = columns * getResources().getInteger(R.integer.articles_list_rows);
 
-        initRecyclerView(recentRV, recentAdapter = new ArticlesAdapter(this));
-        initRecyclerView(favoriteRV, favoriteAdapter = new ArticlesAdapter(this));
+        initRecyclerView(recentRV, recentAdapter = createNewAdapter());
+        initRecyclerView(favoriteRV, favoriteAdapter = createNewAdapter());
 
         getSupportLoaderManager().initLoader(RECENT_ARTICLES_LOADER_ID, null, MainActivity.this);
         getSupportLoaderManager().initLoader(FAVORITE_ARTICLES_LOADER_ID, null, MainActivity.this);
     }
 
-    private void initRecyclerView(RecyclerView recyclerView, ArticlesAdapter adapter) {
+    protected void initRecyclerView(RecyclerView recyclerView, ArticlesAdapter adapter) {
         GridLayoutManager layoutManager = new GridLayoutManager(this, columns);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+    }
+
+    protected ArticlesAdapter createNewAdapter() {
+        final ArticlesAdapter adapter = new ArticlesAdapter();
+        adapter.setClickHandler(new ArticlesAdapter.OnClickArticleHandler() {
+            @Override
+            public void onClickArticle(Article article) {
+                List<Article> data = adapter.getData();
+                startArticleDetailsActivity(data, data.indexOf(article));
+            }
+        });
+        return adapter;
     }
 
     @Override
@@ -114,8 +127,10 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    @Override
-    public void onClickArticle(Article article) {
-
+    protected void startArticleDetailsActivity(List<Article> articles, int selectedIndex) {
+        Intent intent = new Intent(this, ArticleDetailsActivity.class);
+        intent.putParcelableArrayListExtra(ArticleDetailsActivity.EXTRA_ARTICLES, new ArrayList<Parcelable>(articles));
+        intent.putExtra(ArticleDetailsActivity.EXTRA_SELECTED_INDEX, selectedIndex);
+        startActivity(intent);
     }
 }
