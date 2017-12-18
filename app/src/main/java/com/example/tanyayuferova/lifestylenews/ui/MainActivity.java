@@ -2,107 +2,37 @@ package com.example.tanyayuferova.lifestylenews.ui;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Parcelable;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.tanyayuferova.lifestylenews.R;
-import com.example.tanyayuferova.lifestylenews.entity.Article;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<List<Article>> {
-
-    private RecyclerView recentRV;
-    private RecyclerView favoriteRV;
     private Toolbar toolbar;
-    private ArticlesAdapter recentAdapter;
-    private ArticlesAdapter favoriteAdapter;
 
-    private int columns;
-    private int maxArticles;
-
-    private static final int RECENT_ARTICLES_LOADER_ID = 11;
-    private static final int FAVORITE_ARTICLES_LOADER_ID = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recentRV = findViewById(R.id.rv_recent);
-        favoriteRV = findViewById(R.id.rv_favorite);
         toolbar = findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
 
-        columns = getResources().getInteger(R.integer.articles_list_columns);
-        maxArticles = columns * getResources().getInteger(R.integer.articles_list_rows);
+        int maxArticles = getResources().getInteger(R.integer.articles_list_columns) * getResources().getInteger(R.integer.articles_list_rows);
 
-        initRecyclerView(recentRV, recentAdapter = createNewAdapter());
-        initRecyclerView(favoriteRV, favoriteAdapter = createNewAdapter());
+        if(getSupportFragmentManager().findFragmentById(R.id.fragment_recent_list) == null)
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_recent_list, ArticlesListFragment.newInstance(null, maxArticles))
+                    .commit();
 
-        getSupportLoaderManager().initLoader(RECENT_ARTICLES_LOADER_ID, null, MainActivity.this);
-        getSupportLoaderManager().initLoader(FAVORITE_ARTICLES_LOADER_ID, null, MainActivity.this);
-    }
-
-    protected void initRecyclerView(RecyclerView recyclerView, ArticlesAdapter adapter) {
-        GridLayoutManager layoutManager = new GridLayoutManager(this, columns);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
-    }
-
-    protected ArticlesAdapter createNewAdapter() {
-        final ArticlesAdapter adapter = new ArticlesAdapter();
-        adapter.setClickHandler(new ArticlesAdapter.OnClickArticleHandler() {
-            @Override
-            public void onClickArticle(Article article) {
-                List<Article> data = adapter.getData();
-                startArticleDetailsActivity(data, data.indexOf(article));
-            }
-        });
-        return adapter;
-    }
-
-    @Override
-    public Loader<List<Article>> onCreateLoader(int id, Bundle args) {
-        switch (id) {
-            case RECENT_ARTICLES_LOADER_ID:
-                return new ArticlesAsyncTaskLoader(this, null, maxArticles);
-
-            case FAVORITE_ARTICLES_LOADER_ID:
-                return new ArticlesAsyncTaskLoader(this, null, maxArticles);
-
-            default:
-                throw new RuntimeException("Loader Not Implemented: " + id);
-        }
-    }
-
-    @Override
-    public void onLoadFinished(Loader<List<Article>> loader, List<Article> data) {
-        switch (loader.getId()) {
-            case RECENT_ARTICLES_LOADER_ID:
-                recentAdapter.setData(data);
-                break;
-
-            case FAVORITE_ARTICLES_LOADER_ID:
-                favoriteAdapter.setData(data);
-                break;
-        }
-    }
-
-    @Override
-    public void onLoaderReset(Loader<List<Article>> loader) {
-
+        if(getSupportFragmentManager().findFragmentById(R.id.fragment_favorite_list) == null)
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_favorite_list, ArticlesListFragment.newInstance(null, maxArticles))
+                    .commit();
     }
 
     public void onCaptionClick(View view) {
@@ -124,13 +54,6 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, ArticlesListActivity.class);
         intent.setData(uri);
         intent.putExtra(ArticlesListActivity.EXTRA_LIST_TITLE, title);
-        startActivity(intent);
-    }
-
-    protected void startArticleDetailsActivity(List<Article> articles, int selectedIndex) {
-        Intent intent = new Intent(this, ArticleDetailsActivity.class);
-        intent.putParcelableArrayListExtra(ArticleDetailsActivity.EXTRA_ARTICLES, new ArrayList<Parcelable>(articles));
-        intent.putExtra(ArticleDetailsActivity.EXTRA_SELECTED_INDEX, selectedIndex);
         startActivity(intent);
     }
 }
