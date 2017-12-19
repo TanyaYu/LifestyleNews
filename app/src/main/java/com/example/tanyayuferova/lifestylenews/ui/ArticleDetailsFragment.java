@@ -3,6 +3,7 @@ package com.example.tanyayuferova.lifestylenews.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class ArticleDetailsFragment extends Fragment {
         Article article = getArguments().getParcelable(ARGUMENT_ARTICLE);
 
         binding = FragmentArticleDetailsBinding.inflate(inflater, container, false);
+        binding.tvSource.setMovementMethod(LinkMovementMethod.getInstance());
         binding.setArticle(article);
         return binding.getRoot();
     }

@@ -9,4 +9,5 @@
     <string name="action_share">Share</string>
     <string name="action_add_to_favorite">Add to favorite</string>
     <string name="action_remove_from_favorite">Remove from favorite</string>
+    <string name="read_more_at_source"><Data><![CDATA[ Read more at <a href="%2$s">%1$s</a> ]]></Data></string>
 </resources>
