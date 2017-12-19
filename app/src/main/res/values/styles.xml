@@ -11,15 +11,18 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
+    <style name="AppTheme.TranparentStausBar" parent="AppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
     <style name="SectionCaption">
-        <item name="android:textSize">@dimen/list_type_caption_text_size</item>
-        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/activity_main_list_type_caption_text_size</item>
     </style>
 
     <style name="ToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="android:textColor">@color/colorPrimaryTextInverse</item>
         <item name="android:textColorPrimary">@color/colorPrimaryTextInverse</item>
-        <item name="android:elevation">4dp</item>
+        <item name="android:elevation">@dimen/toolbar_elevation</item>
     </style>
 
 </resources>

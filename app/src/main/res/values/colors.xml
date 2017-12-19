@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimaryLight">#999999</color>
     <color name="colorPrimaryTextInverse">#ffffff</color>
+    <color name="colorSecondaryTextInverse">#eeee</color>
     <color name="colorPrimaryText">#000000</color>
     <color name="colorSecondaryText">#888888</color>
 </resources>

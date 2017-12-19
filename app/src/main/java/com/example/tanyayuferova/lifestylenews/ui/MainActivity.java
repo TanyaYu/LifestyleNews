@@ -35,24 +35,17 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
     }
 
-    public void onCaptionClick(View view) {
-        int viewId = view.getId();
-        Uri uri = null;
-        String title = null;
+    public void onFavoriteClick(View view) {
+        startArticlesListActivity(null, getString(R.string.favorite_title));
+    }
 
-        switch (viewId) {
-            case R.id.tv_recent_caption:
-                uri = null;
-                title = getString(R.string.recent_title);
-                break;
-            case R.id.tv_favorite_caption:
-                uri = null;
-                title = getString(R.string.favorite_title);
-                break;
-        }
+    public void onRecentClick(View view) {
+        startArticlesListActivity(null, getString(R.string.recent_title));
+    }
 
+    protected void startArticlesListActivity(Uri data, String title) {
         Intent intent = new Intent(this, ArticlesListActivity.class);
-        intent.setData(uri);
+        intent.setData(data);
         intent.putExtra(ArticlesListActivity.EXTRA_LIST_TITLE, title);
         startActivity(intent);
     }

@@ -18,4 +18,11 @@ public class DateConverter {
         //TODO Locale locale = context.getResources().getConfiguration().locale;
         return DateFormat.getDateInstance(DateFormat.LONG, locale).format(date);
     }
+
+    @BindingConversion
+    public static String convertDateToShortDateFormat(Date date) {
+        Locale locale = Locale.getDefault();
+        //TODO Locale locale = context.getResources().getConfiguration().locale;
+        return DateFormat.getDateInstance(DateFormat.SHORT, locale).format(date);
+    }
 }

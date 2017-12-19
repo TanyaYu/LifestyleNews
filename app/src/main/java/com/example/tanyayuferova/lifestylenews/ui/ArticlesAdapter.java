@@ -1,6 +1,7 @@
 package com.example.tanyayuferova.lifestylenews.ui;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
         public void bind(Article item) {
             binding.setArticle(item);
             binding.getRoot().setOnClickListener(this);
+            binding.tvSourcePublishedOnDate.setMovementMethod(LinkMovementMethod.getInstance());
         }
 
         @Override
