@@ -1,26 +1,25 @@
 package com.example.tanyayuferova.lifestylenews.ui;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.tanyayuferova.lifestylenews.R;
+import com.example.tanyayuferova.lifestylenews.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar);
 
         int maxArticles = getResources().getInteger(R.integer.articles_list_columns) * getResources().getInteger(R.integer.articles_list_rows);
 
