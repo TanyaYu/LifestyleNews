@@ -5,10 +5,13 @@
     <dimen name="fab_press_translation_z">6dp</dimen>
 
     <dimen name="article_item_height">100sp</dimen>
+    <item name="article_item_image_fraction" format="float" type="fraction">0.4</item>
     <dimen name="article_item_horizontal_margin">8dp</dimen>
     <dimen name="article_item_vertical_margin">4dp</dimen>
     <dimen name="article_item_inner_padding">10dp</dimen>
     <dimen name="article_item_title_text_size">16sp</dimen>
+    <item name="article_item_title_line_spacing_multiplier" format="float" type="fraction">0.9</item>
+    <item name="article_item_title_max_lines" format="integer" type="fraction">4</item>
 
     <dimen name="activity_main_list_type_caption_text_size">18sp</dimen>
     <dimen name="activity_main_list_type_caption_top_margin">5dp</dimen>
@@ -19,11 +22,13 @@
     <dimen name="fragment_article_details_description_padding_left">15dp</dimen>
     <dimen name="fragment_article_details_description_padding_top">25dp</dimen>
     <dimen name="fragment_article_details_description_padding_bottom">70dp</dimen>
-    <dimen name="fragment_article_details_description_text_size">16sp</dimen>
+    <item name="fragment_article_details_description_line_spacing_multiplier" format="float" type="fraction">1.25</item>
+    <dimen name="fragment_article_details_description_text_size">18sp</dimen>
     <dimen name="fragment_article_details_author_margin_left">58dp</dimen>
     <dimen name="fragment_article_details_author_margin_right">74dp</dimen>
     <dimen name="fragment_article_details_toolbar_margin_bottom">16sp</dimen>
     <dimen name="fragment_article_details_toolbar_margin_top">34sp</dimen>
-    <dimen name="fragment_article_details_title_padding_right">6dp</dimen>
-    <dimen name="fragment_article_details_title_text_size">22sp</dimen>
+    <dimen name="fragment_article_details_title_padding_right">4dp</dimen>
+    <dimen name="fragment_article_details_title_text_size">24sp</dimen>
+    <item name="fragment_article_details_title_line_spacing_multiplier" format="float" type="fraction">0.9</item>
 </resources>

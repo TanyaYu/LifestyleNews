@@ -1,4 +1,4 @@
-package com.example.tanyayuferova.lifestylenews.ui;
+package com.example.tanyayuferova.lifestylenews.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.text.method.LinkMovementMethod;
@@ -19,7 +19,7 @@ import java.util.List;
 public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ArticlesAdapterViewHolder>  {
 
     public interface OnClickArticleHandler {
-        void onClickArticle(Article article);
+        void onClickArticle(View view, Article article);
     }
 
     private List<Article> data;
@@ -52,7 +52,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
 
         @Override
         public void onClick(View v) {
-            clickHandler.onClickArticle(binding.getArticle());
+            clickHandler.onClickArticle(binding.getRoot(), binding.getArticle());
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.tanyayuferova.lifestylenews.ui;
+package com.example.tanyayuferova.lifestylenews.sync;
 
 import android.content.Context;
 import android.net.Uri;

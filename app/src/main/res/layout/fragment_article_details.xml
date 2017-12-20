@@ -37,6 +37,7 @@
                     android:paddingTop="@dimen/fragment_article_details_description_padding_top"
                     android:text='@{article.description}'
                     android:textSize="@dimen/fragment_article_details_description_text_size"
+                    android:lineSpacingMultiplier="@fraction/fragment_article_details_description_line_spacing_multiplier"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_title"
@@ -80,6 +81,7 @@
                     app:error="@{@drawable/ic_no_image}"
                     app:imageUrl="@{article.urlToImage}"
                     app:layout_collapseMode="parallax"
+                    android:transitionName='@{@string/transition_image_name + article.id}'
                     tools:src="@drawable/ic_no_image" />
 
                 <View
@@ -118,7 +120,7 @@
                         android:textSize="@dimen/fragment_article_details_title_text_size"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:lineSpacingMultiplier="0.9"
+                        android:lineSpacingMultiplier="@fraction/fragment_article_details_title_line_spacing_multiplier"
                         android:paddingRight="@dimen/fragment_article_details_title_padding_right"
                         android:text="@{article.title}"
                         android:textStyle="bold"
@@ -139,7 +141,8 @@
             android:scaleType="center"
             app:fabSize="normal"
             app:pressedTranslationZ="@dimen/fab_press_translation_z"
-            app:srcCompat="@drawable/ic_share" />
+            app:srcCompat="@drawable/ic_share"
+            app:layout_behavior="com.example.tanyayuferova.lifestylenews.ui.behavior.ScrollAwareFABBehavior"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_add_to_favorite"

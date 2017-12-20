@@ -12,4 +12,5 @@
     <string name="read_more_at_source"><Data><![CDATA[ Read more at <a href="%2$s">%1$s</a> ]]></Data></string>
     <string name="source_published_on_date"><Data><![CDATA[ <a href="%2$s">%1$s</a> on %3$s ]]></Data></string>
     <string name="error_loading_data">Can\'t find any article...</string>
+    <string name="transition_image_name" translatable="false">transition_image_</string>
 </resources>

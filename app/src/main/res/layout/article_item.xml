@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.40" />
+                app:layout_constraintGuide_percent="@fraction/article_item_image_fraction" />
 
             <ImageView
                 android:id="@+id/iv_image"
@@ -43,6 +43,7 @@
                 android:scaleType="centerCrop"
                 app:error="@{@drawable/ic_no_image}"
                 app:imageUrl="@{article.urlToImage}"
+                android:transitionName='@{@string/transition_image_name + article.id}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/guide_image"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,14 +54,14 @@
                 android:id="@+id/tv_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:maxLines="4"
+                android:maxLines="@fraction/article_item_title_max_lines"
                 android:padding="@dimen/article_item_inner_padding"
                 android:text="@{article.title}"
                 android:textSize="@dimen/article_item_title_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/guide_image"
                 app:layout_constraintTop_toTopOf="parent"
-                android:lineSpacingMultiplier="0.9"
+                android:lineSpacingMultiplier="@fraction/article_item_title_line_spacing_multiplier"
                 tools:text="Blind-Assistance 'App Be My Eyes' Is Now on Android " />
 
             <TextView

@@ -1,4 +1,4 @@
-package com.example.tanyayuferova.lifestylenews.ui;
+package com.example.tanyayuferova.lifestylenews.ui.activity;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.tanyayuferova.lifestylenews.R;
 import com.example.tanyayuferova.lifestylenews.databinding.ActivityMainBinding;
+import com.example.tanyayuferova.lifestylenews.ui.fragment.ArticlesListFragment;
 
 public class MainActivity extends AppCompatActivity {
 

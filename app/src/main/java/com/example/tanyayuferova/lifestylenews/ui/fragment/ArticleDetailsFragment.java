@@ -1,4 +1,4 @@
-package com.example.tanyayuferova.lifestylenews.ui;
+package com.example.tanyayuferova.lifestylenews.ui.fragment;
 
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;

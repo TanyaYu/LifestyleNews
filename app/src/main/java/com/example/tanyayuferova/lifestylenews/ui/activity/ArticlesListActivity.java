@@ -1,4 +1,4 @@
-package com.example.tanyayuferova.lifestylenews.ui;
+package com.example.tanyayuferova.lifestylenews.ui.activity;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.tanyayuferova.lifestylenews.R;
 import com.example.tanyayuferova.lifestylenews.databinding.ActivityArticlesListBinding;
+import com.example.tanyayuferova.lifestylenews.ui.fragment.ArticlesListFragment;
 
 public class ArticlesListActivity extends AppCompatActivity
 implements ArticlesListFragment.LoaderCallback {

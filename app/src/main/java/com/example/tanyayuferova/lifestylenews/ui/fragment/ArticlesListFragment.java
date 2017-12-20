@@ -1,10 +1,11 @@
-package com.example.tanyayuferova.lifestylenews.ui;
+package com.example.tanyayuferova.lifestylenews.ui.fragment;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -16,6 +17,9 @@ import android.view.ViewGroup;
 import com.example.tanyayuferova.lifestylenews.R;
 import com.example.tanyayuferova.lifestylenews.databinding.FragmentArticlesListBinding;
 import com.example.tanyayuferova.lifestylenews.entity.Article;
+import com.example.tanyayuferova.lifestylenews.sync.ArticlesAsyncTaskLoader;
+import com.example.tanyayuferova.lifestylenews.ui.activity.ArticleDetailsActivity;
+import com.example.tanyayuferova.lifestylenews.ui.adapter.ArticlesAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,12 +98,15 @@ public class ArticlesListFragment extends Fragment
     }
 
     @Override
-    public void onClickArticle(Article article) {
+    public void onClickArticle(View view, Article article) {
         List<Article> data = adapter.getData();
         Intent intent = new Intent(getContext(), ArticleDetailsActivity.class);
         intent.putParcelableArrayListExtra(ArticleDetailsActivity.EXTRA_ARTICLES, new ArrayList<Parcelable>(data));
         intent.putExtra(ArticleDetailsActivity.EXTRA_SELECTED_INDEX, data.indexOf(article));
-        startActivity(intent);
+        View sharedView = view.findViewById(R.id.iv_image);
+        ActivityOptionsCompat options = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(getActivity(), sharedView, sharedView.getTransitionName());
+        startActivity(intent, options.toBundle());
     }
 
     public void refreshLoader() {
