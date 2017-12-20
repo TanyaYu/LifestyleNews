@@ -113,6 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/ToolbarStyle"
+                app:navigationIcon="@drawable/ic_newspaper"
                 app:title="@string/app_name" />
 
         </android.support.design.widget.AppBarLayout>
