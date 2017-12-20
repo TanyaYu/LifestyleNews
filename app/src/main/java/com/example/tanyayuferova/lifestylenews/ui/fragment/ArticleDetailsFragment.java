@@ -1,6 +1,7 @@
 package com.example.tanyayuferova.lifestylenews.ui.fragment;
 
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.tanyayuferova.lifestylenews.R;
 import com.example.tanyayuferova.lifestylenews.databinding.FragmentArticleDetailsBinding;
 import com.example.tanyayuferova.lifestylenews.entity.Article;
 import com.example.tanyayuferova.lifestylenews.utils.PaletteUtils;
@@ -61,8 +63,13 @@ public class ArticleDetailsFragment extends Fragment {
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                 // When image is change set scrim color generated from image palette
                 if (v instanceof ImageView && ((ImageView) v).getDrawable() != null) {
-                    BitmapDrawable drawable = (BitmapDrawable) ((ImageView) v).getDrawable();
-                    binding.collapsingToolbar.setContentScrimColor(PaletteUtils.getDarkMutedColor(drawable.getBitmap(), DEFAULT_MUTED_DARK_COLOR));
+                    Drawable drawable = ((ImageView) v).getDrawable();
+                    if (drawable instanceof BitmapDrawable) {
+                        BitmapDrawable bitmapDrawable = (BitmapDrawable) ((ImageView) v).getDrawable();
+                        binding.collapsingToolbar.setContentScrimColor(PaletteUtils.getDarkMutedColor(bitmapDrawable.getBitmap(), DEFAULT_MUTED_DARK_COLOR));
+                    } else {
+                        binding.collapsingToolbar.setContentScrimColor(getResources().getColor(R.color.colorPrimaryDark));
+                    }
                 }
             }
         });

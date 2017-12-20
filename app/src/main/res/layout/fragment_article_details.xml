@@ -51,7 +51,7 @@
                     android:paddingLeft="@dimen/fragment_article_details_description_padding_left"
                     android:paddingRight="@dimen/fragment_article_details_description_padding_right"
                     android:paddingTop="4sp"
-                    android:text='@{Html.fromHtml(String.format(@string/read_more_at_source, article.sourceName, article.url))}'
+                    android:text='@{article.sourceName==null ? "" : Html.fromHtml(String.format(@string/read_more_at_source, article.sourceName, article.url))}'
                     android:textSize="@dimen/fragment_article_details_description_text_size"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/fragment_article_details_image_height"
                     android:scaleType="centerCrop"
-                    app:error="@{@drawable/ic_no_image}"
                     app:imageUrl="@{article.urlToImage}"
                     app:layout_collapseMode="parallax"
                     android:transitionName='@{@string/transition_image_name + article.id}'
@@ -98,7 +97,7 @@
                     android:layout_marginLeft="@dimen/fragment_article_details_author_margin_left"
                     android:layout_marginRight="@dimen/fragment_article_details_author_margin_right"
                     android:maxLines="1"
-                    android:text='@{String.format(@string/author_published_on_date, article.author, DateConverter.convertDateToShortDateFormat(article.published))}'
+                    android:text='@{(article.author == null ? "" : String.format(@string/by_author, article.author)) + " " + (article.published==null ? "" : String.format(@string/on_date, DateConverter.convertDateToShortDateFormat(article.published)))}'
                     android:textColor="@color/colorSecondaryTextInverse"
                     tools:text="by Nick Douglas on 10/05/2017" />
 

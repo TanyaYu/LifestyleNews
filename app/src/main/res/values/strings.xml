@@ -5,12 +5,13 @@
     <string name="recent_title">Recent</string>
     <string name="favorite_title">Favorite</string>
     <string name="up">Up</string>
-    <string name="author_published_on_date">by %1$s on %2$s</string>
+    <string name="by_author">by %1$s</string>
+    <string name="on_date">on %1$s</string>
     <string name="action_share">Share</string>
     <string name="action_add_to_favorite">Add to favorite</string>
     <string name="action_remove_from_favorite">Remove from favorite</string>
     <string name="read_more_at_source"><Data><![CDATA[ Read more at <a href="%2$s">%1$s</a> ]]></Data></string>
-    <string name="source_published_on_date"><Data><![CDATA[ <a href="%2$s">%1$s</a> on %3$s ]]></Data></string>
+    <string name="source_link"><Data><![CDATA[ <a href="%2$s">%1$s</a> ]]></Data></string>
     <string name="error_loading_data">Can\'t find any article...</string>
     <string name="transition_image_name" translatable="false">transition_image_</string>
 </resources>
