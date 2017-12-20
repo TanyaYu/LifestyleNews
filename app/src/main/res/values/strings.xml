@@ -14,4 +14,5 @@
     <string name="source_link"><Data><![CDATA[ <a href="%2$s">%1$s</a> ]]></Data></string>
     <string name="error_loading_data">Can\'t find any article...</string>
     <string name="transition_image_name" translatable="false">transition_image_</string>
+    <string name="powered_by"><a href="https://newsapi.org/">NewsAPI.org</a></string>
 </resources>

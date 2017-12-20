@@ -86,6 +86,19 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_favorite_caption" />
 
+                    <TextView
+                        android:id="@+id/tv_credits"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:autoLink="web"
+                        android:background="@drawable/image_shade"
+                        android:paddingTop="4dp"
+                        android:text="@string/powered_by"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/activity_main_credits_text_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_favorite_list" />
                 </android.support.constraint.ConstraintLayout>
             </android.support.v4.widget.NestedScrollView>
         </android.support.v4.widget.SwipeRefreshLayout>
@@ -103,5 +116,7 @@
                 app:title="@string/app_name" />
 
         </android.support.design.widget.AppBarLayout>
+
+
     </android.support.design.widget.CoordinatorLayout>
 </layout>

@@ -15,6 +15,7 @@
 
     <dimen name="activity_main_list_type_caption_text_size">18sp</dimen>
     <dimen name="activity_main_list_type_caption_top_margin">5dp</dimen>
+    <dimen name="activity_main_credits_text_size">11sp</dimen>
 
     <dimen name="fragment_article_details_fab_margin">16dp</dimen>
     <dimen name="fragment_article_details_image_height">304dp</dimen>
