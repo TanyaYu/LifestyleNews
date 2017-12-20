@@ -8,6 +8,9 @@
         <variable
             name="article"
             type="com.example.tanyayuferova.lifestylenews.entity.Article" />
+        <variable
+            name="context"
+            type="android.content.Context"/>
         <import type="com.example.tanyayuferova.lifestylenews.utils.DateConverter" />
         <import type="android.text.Html" />
     </data>
@@ -97,7 +100,7 @@
                     android:layout_marginLeft="@dimen/fragment_article_details_author_margin_left"
                     android:layout_marginRight="@dimen/fragment_article_details_author_margin_right"
                     android:maxLines="1"
-                    android:text='@{(article.author == null ? "" : String.format(@string/by_author, article.author)) + " " + (article.published==null ? "" : String.format(@string/on_date, DateConverter.convertDateToShortDateFormat(article.published)))}'
+                    android:text='@{(article.author == null ? "" : String.format(@string/by_author, article.author)) + " " + (article.published==null ? "" : String.format(@string/on_date, DateConverter.convertDateToShortDateFormat(article.published, context)))}'
                     android:textColor="@color/colorSecondaryTextInverse"
                     tools:text="by Nick Douglas on 10/05/2017" />
 

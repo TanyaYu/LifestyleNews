@@ -32,10 +32,6 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
         this.clickHandler = clickHandler;
     }
 
-    public void setClickHandler(OnClickArticleHandler clickHandler) {
-        this.clickHandler = clickHandler;
-    }
-
     public class ArticlesAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final ArticleItemBinding binding;
 
@@ -45,6 +41,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
         }
 
         public void bind(Article item) {
+            binding.setContext(binding.getRoot().getContext());
             binding.setArticle(item);
             binding.getRoot().setOnClickListener(this);
             binding.tvSourcePublishedOnDate.setMovementMethod(LinkMovementMethod.getInstance());

@@ -45,6 +45,7 @@ public class ArticleDetailsFragment extends Fragment {
         initNavigationOnClickListener();
         initImageOnLayoutChangeListener();
         binding.setArticle(article);
+        binding.setContext(getContext());
         return binding.getRoot();
     }
 
