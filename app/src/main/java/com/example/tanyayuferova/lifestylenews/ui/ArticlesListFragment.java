@@ -30,6 +30,7 @@ public class ArticlesListFragment extends Fragment
 
     private FragmentArticlesListBinding binding;
     private ArticlesAdapter adapter;
+    private LoaderCallback callback;
     private int articlesLimit;
     private Uri uriData;
     private static int countLoaders = 0;
@@ -81,6 +82,10 @@ public class ArticlesListFragment extends Fragment
     @Override
     public void onLoadFinished(Loader<List<Article>> loader, List<Article> data) {
         adapter.setData(data);
+
+        if(callback != null) {
+            callback.onLoadFinished(data!=null && data.size()>0);
+        }
     }
 
     @Override
@@ -95,5 +100,17 @@ public class ArticlesListFragment extends Fragment
         intent.putParcelableArrayListExtra(ArticleDetailsActivity.EXTRA_ARTICLES, new ArrayList<Parcelable>(data));
         intent.putExtra(ArticleDetailsActivity.EXTRA_SELECTED_INDEX, data.indexOf(article));
         startActivity(intent);
+    }
+
+    public void refreshLoader() {
+        getActivity().getSupportLoaderManager().restartLoader(getArguments().getInt(ARGUMENT_LOADER_ID), null, this);
+    }
+
+    public void setLoaderCallback(LoaderCallback callback) {
+        this.callback = callback;
+    }
+
+    public interface LoaderCallback {
+        void onLoadFinished(boolean success);
     }
 }
