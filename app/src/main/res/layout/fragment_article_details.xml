@@ -126,6 +126,7 @@
                         android:paddingRight="@dimen/fragment_article_details_title_padding_right"
                         android:text="@{article.title}"
                         android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryTextInverse"
                         tools:text="Blind-Assistance App Be My Eyes Is Now on Android" />
                 </android.support.v7.widget.Toolbar>
             </android.support.design.widget.CollapsingToolbarLayout>

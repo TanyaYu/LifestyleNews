@@ -10,6 +10,7 @@
         <item name="android:textColorSecondary">@color/colorSecondaryText</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
     </style>
 
     <style name="AppTheme.TranparentStausBar" parent="AppTheme">
@@ -21,9 +22,13 @@
     </style>
 
     <style name="ToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:textColor">@color/colorPrimaryTextInverse</item>
         <item name="android:textColorPrimary">@color/colorPrimaryTextInverse</item>
+        <item name="android:actionMenuTextColor">@color/colorPrimaryText</item>
         <item name="android:elevation">@dimen/toolbar_elevation</item>
     </style>
 
+    <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_settings</item>
+        <item name="android:background">?android:attr/actionBarItemBackground</item>
+    </style>
 </resources>

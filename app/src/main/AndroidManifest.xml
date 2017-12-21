@@ -30,8 +30,10 @@
         </activity>
         <activity
             android:name=".ui.activity.ArticleDetailsActivity"
-            android:theme="@style/AppTheme.TranparentStausBar"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.TranparentStausBar" />
+        <activity android:name=".ui.activity.TopicsActivity" />
+        <activity android:name=".ui.activity.SettingsActivity"/>
     </application>
 
 </manifest>
