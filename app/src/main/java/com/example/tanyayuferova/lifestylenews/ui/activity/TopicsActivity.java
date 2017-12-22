@@ -3,22 +3,56 @@ package com.example.tanyayuferova.lifestylenews.ui.activity;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.tanyayuferova.lifestylenews.R;
 import com.example.tanyayuferova.lifestylenews.databinding.ActivityTopicsBinding;
+import com.example.tanyayuferova.lifestylenews.ui.adapter.TopicsAdapter;
+import com.example.tanyayuferova.lifestylenews.utils.PreferencesUtils;
 
-public class TopicsActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+public class TopicsActivity extends AppCompatActivity
+implements TopicsAdapter.OnClickTopicHandler {
 
     private ActivityTopicsBinding binding;
+    private TopicsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_topics);
+
+        Set<String> topics = PreferencesUtils.getTopicsPreferences(this);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        binding.rvTopics.setLayoutManager(layoutManager);
+        binding.rvTopics.setHasFixedSize(true);
+        binding.rvTopics.setAdapter(adapter = new TopicsAdapter(new ArrayList<String>(topics), this));
     }
 
-    public void onClickButtonOk(View view) {
+    public void onNavigationBackClick(View view) {
         finish();
+    }
+
+    public void onClickAddTopic(View view) {
+        adapter.addItem(binding.etTopic.getText().toString());
+        updateTopicsPreferences();
+
+        binding.etTopic.setText("");
+    }
+
+    @Override
+    public void onClickRemoveTopic(View view, String topic) {
+        adapter.removeItem(topic);
+        updateTopicsPreferences();
+    }
+
+    protected void updateTopicsPreferences() {
+        PreferencesUtils.setTopicsPreferences(this, new HashSet<String>(adapter.getData()));
     }
 }
