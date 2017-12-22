@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pref_periods_labels">
+        <item>@string/pref_period_2h</item>
+        <item>@string/pref_period_4h</item>
+        <item>@string/pref_period_8h</item>
+        <item>@string/pref_period_12h</item>
+        <item>@string/pref_period_24h</item>
+        <item>@string/pref_period_48h</item>
+    </array>
+
+    <array name="pref_periods_values">
+        <item>@string/pref_period_2h_value</item>
+        <item>@string/pref_period_4h_value</item>
+        <item>@string/pref_period_8h_value</item>
+        <item>@string/pref_period_12h_value</item>
+        <item>@string/pref_period_24h_value</item>
+        <item>@string/pref_period_48h_value</item>
+    </array>
+</resources>

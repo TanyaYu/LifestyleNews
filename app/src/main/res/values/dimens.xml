@@ -13,7 +13,7 @@
     <item name="article_item_title_line_spacing_multiplier" format="float" type="fraction">0.9</item>
     <item name="article_item_title_max_lines" format="integer" type="fraction">4</item>
 
-    <dimen name="activity_main_list_type_caption_text_size">18sp</dimen>
+    <dimen name="activity_main_list_type_caption_text_size">22sp</dimen>
     <dimen name="activity_main_list_type_caption_top_margin">5dp</dimen>
     <dimen name="activity_main_credits_text_size">11sp</dimen>
 

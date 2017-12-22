@@ -8,4 +8,11 @@
         android:summaryOn="@string/pref_notifications_enable_true"
         android:title="@string/pref_notifications_label" />
 
+    <ListPreference
+        android:defaultValue="@string/pref_period_12h"
+        android:entries="@array/pref_periods_labels"
+        android:entryValues="@array/pref_periods_values"
+        android:key="@string/pref_period_key"
+        android:title="@string/pref_period_label" />
+
 </PreferenceScreen>
