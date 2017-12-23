@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.BindingConversion;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -21,5 +22,9 @@ public class DateConverter {
     public static String convertDateToShortDateFormat(Date date, Context context) {
         Locale locale = context.getResources().getConfiguration().locale;
         return DateFormat.getDateInstance(DateFormat.SHORT, locale).format(date);
+    }
+
+    public static String convertDateToSqlFormat(Date date) {
+        return new SimpleDateFormat("YYYY-MM-DD hh:mm:ss").format(date);
     }
 }

@@ -34,6 +34,11 @@
             android:theme="@style/AppTheme.TranparentStausBar" />
         <activity android:name=".ui.activity.TopicsActivity" />
         <activity android:name=".ui.activity.SettingsActivity"/>
+
+        <provider
+            android:name=".data.ArticlesProvider"
+            android:authorities="@string/content_authority"
+            android:exported="false" />
     </application>
 
 </manifest>
