@@ -36,6 +36,7 @@
             android:layout_height="@dimen/activity_topics_action_buttons_size"
             android:layout_marginRight="@dimen/activity_topics_horizontal_margin"
             android:elevation="@dimen/fab_elevation"
+            android:scaleType="center"
             android:paddingBottom="@dimen/activity_topics_inner_item_padding"
             android:paddingTop="@dimen/activity_topics_inner_item_padding"
             app:layout_constraintEnd_toEndOf="parent"

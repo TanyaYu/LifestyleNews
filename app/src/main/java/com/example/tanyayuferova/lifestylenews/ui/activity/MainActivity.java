@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.tanyayuferova.lifestylenews.R;
 import com.example.tanyayuferova.lifestylenews.databinding.ActivityMainBinding;
 import com.example.tanyayuferova.lifestylenews.ui.fragment.ArticlesListFragment;
+import com.example.tanyayuferova.lifestylenews.utils.PreferencesUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.onLoadFinished();
             }
         });
+
+        if(PreferencesUtils.getTopicsPreferences(this).size() == 0){
+            startActivity(new Intent(this, TopicsActivity.class));
+        }
     }
 
     public void onFavoriteClick(View view) {
