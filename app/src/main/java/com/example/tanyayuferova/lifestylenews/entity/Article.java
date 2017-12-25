@@ -2,6 +2,7 @@ package com.example.tanyayuferova.lifestylenews.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import java.util.Date;
 
@@ -68,7 +69,7 @@ public class Article implements Parcelable {
     }
 
     public String getUrlToImage() {
-        return urlToImage;
+        return TextUtils.isEmpty(urlToImage) ? null : urlToImage;
     }
 
     public void setUrlToImage(String urlToImage) {

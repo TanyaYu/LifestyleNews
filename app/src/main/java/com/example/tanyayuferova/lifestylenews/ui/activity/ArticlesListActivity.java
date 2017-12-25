@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.tanyayuferova.lifestylenews.R;
 import com.example.tanyayuferova.lifestylenews.databinding.ActivityArticlesListBinding;
+import com.example.tanyayuferova.lifestylenews.sync.SyncTask;
 import com.example.tanyayuferova.lifestylenews.ui.fragment.ArticlesListFragment;
 
 public class ArticlesListActivity extends AppCompatActivity
@@ -23,6 +25,7 @@ implements ArticlesListFragment.LoaderCallback {
     private ArticlesListFragment articlesListFragment;
     private Uri uri;
     public static final String EXTRA_LIST_TITLE = "extra.list_title";
+    public static final int REQUEST_CODE_TOPICS_ACTIVITY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ implements ArticlesListFragment.LoaderCallback {
         binding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                articlesListFragment.refreshLoader();
+                new LoadArticlesAsyncTask().execute(false);
             }
         });
 
@@ -71,7 +74,7 @@ implements ArticlesListFragment.LoaderCallback {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_topics:
-                startActivity(new Intent(this, TopicsActivity.class));
+                startActivityForResult(new Intent(this, TopicsActivity.class), REQUEST_CODE_TOPICS_ACTIVITY);
                 return true;
 
             case R.id.action_settings:
@@ -79,5 +82,30 @@ implements ArticlesListFragment.LoaderCallback {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_CODE_TOPICS_ACTIVITY && resultCode == RESULT_OK) {
+            new LoadArticlesAsyncTask().execute(true);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private class LoadArticlesAsyncTask extends AsyncTask<Boolean, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Boolean... booleans) {
+            //Refresh list completely or only load new articles
+            if(booleans[0])
+                SyncTask.asyncRefreshAllArticles(ArticlesListActivity.this);
+            else SyncTask.asyncLoadNewArticles(ArticlesListActivity.this);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            articlesListFragment.refreshLoader();
+        }
     }
 }

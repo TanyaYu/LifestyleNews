@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.tanyayuferova.lifestylenews.R;
+import com.example.tanyayuferova.lifestylenews.data.ArticlesContract;
 import com.example.tanyayuferova.lifestylenews.databinding.ActivityMainBinding;
+import com.example.tanyayuferova.lifestylenews.sync.SyncTask;
+import com.example.tanyayuferova.lifestylenews.sync.SyncUtils;
 import com.example.tanyayuferova.lifestylenews.ui.fragment.ArticlesListFragment;
 import com.example.tanyayuferova.lifestylenews.utils.PreferencesUtils;
 
@@ -26,19 +30,21 @@ public class MainActivity extends AppCompatActivity {
     private boolean refreshStarted = true;
     private boolean showError = true;
 
+    public static final int REQUEST_CODE_TOPICS_ACTIVITY = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        SyncUtils.scheduleFirebaseJobDispatcherSync(this);
 
         setSupportActionBar(binding.toolbar);
         binding.swipeRefreshLayout.setRefreshing(true);
         binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshStarted = showError = true;
-                articlesFavoriteFragment.refreshLoader();
-                articlesRecentFragment.refreshLoader();
+                new LoadArticlesAsyncTask().execute(false);
             }
         });
 
@@ -48,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
         articlesRecentFragment = (ArticlesListFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_recent_list);
         if(articlesRecentFragment == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_recent_list, articlesRecentFragment = ArticlesListFragment.newInstance(null, maxArticles))
+                    .replace(R.id.fragment_recent_list,
+                            articlesRecentFragment = ArticlesListFragment.newInstance(ArticlesContract.CONTENT_RECENT_URI, maxArticles))
                     .commit();
         }
         articlesRecentFragment.setLoaderCallback(new ArticlesListFragment.LoaderCallback() {
@@ -65,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
         articlesFavoriteFragment = (ArticlesListFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_favorite_list);
         if(articlesFavoriteFragment == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_favorite_list, articlesFavoriteFragment = ArticlesListFragment.newInstance(null, maxArticles))
+                    .replace(R.id.fragment_favorite_list,
+                            articlesFavoriteFragment = ArticlesListFragment.newInstance(ArticlesContract.CONTENT_FAVORITE_URI, maxArticles))
                     .commit();
         }
         articlesFavoriteFragment.setLoaderCallback(new ArticlesListFragment.LoaderCallback() {
@@ -79,16 +87,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if(PreferencesUtils.getTopicsPreferences(this).size() == 0){
-            startActivity(new Intent(this, TopicsActivity.class));
+            startActivityForResult(new Intent(this, TopicsActivity.class), REQUEST_CODE_TOPICS_ACTIVITY);
         }
     }
 
     public void onFavoriteClick(View view) {
-        startArticlesListActivity(null, getString(R.string.favorite_title));
+        startArticlesListActivity(ArticlesContract.CONTENT_FAVORITE_URI, getString(R.string.favorite_title));
     }
 
     public void onRecentClick(View view) {
-        startArticlesListActivity(null, getString(R.string.recent_title));
+        startArticlesListActivity(ArticlesContract.CONTENT_RECENT_URI, getString(R.string.recent_title));
     }
 
     protected void startArticlesListActivity(Uri data, String title) {
@@ -124,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_topics:
-                startActivity(new Intent(this, TopicsActivity.class));
+                startActivityForResult(new Intent(this, TopicsActivity.class), REQUEST_CODE_TOPICS_ACTIVITY);
                 return true;
 
             case R.id.action_settings:
@@ -132,5 +140,36 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_CODE_TOPICS_ACTIVITY && resultCode == RESULT_OK) {
+            new LoadArticlesAsyncTask().execute(true);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private class LoadArticlesAsyncTask extends AsyncTask<Boolean, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Boolean... booleans) {
+            //Refresh list completely or only load new articles
+            if(booleans[0])
+                SyncTask.asyncRefreshAllArticles(MainActivity.this);
+            else SyncTask.asyncLoadNewArticles(MainActivity.this);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            articlesFavoriteFragment.refreshLoader();
+            articlesRecentFragment.refreshLoader();
+        }
+
+        @Override
+        protected void onPreExecute() {
+            refreshStarted = showError = true;
+        }
     }
 }

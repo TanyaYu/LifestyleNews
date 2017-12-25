@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 import com.example.tanyayuferova.lifestylenews.R;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -47,7 +48,7 @@ public class PreferencesUtils {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putStringSet(context.getString(R.string.pref_topics_key), topics);
-        editor.commit();
+        editor.apply();
     }
 
     /**
@@ -58,5 +59,30 @@ public class PreferencesUtils {
     public static Set<String> getTopicsPreferences(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getStringSet(context.getString(R.string.pref_topics_key), new HashSet<String>());
+    }
+
+    /**
+     * Gets last time of refresh
+     * @param context
+     * @return
+     */
+    public static Date getLastTimeRefresh(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        long milis = preferences.getLong(context.getString(R.string.pref_last_time_refresh_key), 0);
+        if(milis == 0)
+            return null;
+        return new Date(milis);
+    }
+
+    /**
+     * Sets last time of refresh
+     * @param context
+     * @param date
+     */
+    public static void setLastTimeRefresh(Context context, Date date) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putLong(context.getString(R.string.pref_last_time_refresh_key), date.getTime());
+        editor.apply();
     }
 }

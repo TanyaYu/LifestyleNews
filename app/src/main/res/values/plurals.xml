@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="numberOfArticlesLoaded">
+        <item quantity="one"> %d new article is available!</item>
+        <item quantity="other"> %d new articles are available!</item>
+    </plurals>
+</resources>

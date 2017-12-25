@@ -1,12 +1,15 @@
 package com.example.tanyayuferova.lifestylenews.sync;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.support.v4.content.AsyncTaskLoader;
 
 import com.example.tanyayuferova.lifestylenews.entity.Article;
-import com.example.tanyayuferova.lifestylenews.utils.TestUtils;
+import com.example.tanyayuferova.lifestylenews.utils.DataUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,9 +41,22 @@ public class ArticlesAsyncTaskLoader extends AsyncTaskLoader<List<Article>> {
             forceLoad();
         }
     }
+
     @Override
     public List<Article> loadInBackground() {
-        return TestUtils.getTestData(countLimit == 0 ? 100 : countLimit);
+        String sortOrder = countLimit == 0 ? "" : " limit " + countLimit;
+        ContentResolver contentResolver = getContext().getContentResolver();
+        Cursor cursor = contentResolver.query(uri, null, null,null, sortOrder);
+
+        List<Article> result = new ArrayList<>();
+        if(cursor == null || cursor.getCount() <=0)
+            return result;
+
+        while (cursor.moveToNext()) {
+            result.add(DataUtils.getArticle(cursor));
+        }
+        cursor.close();
+        return result;
     }
 
     public void deliverResult(List<Article> data) {

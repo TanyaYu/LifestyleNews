@@ -21,7 +21,7 @@ import static com.example.tanyayuferova.lifestylenews.data.ArticlesContract.*;
  * Created by Tanya Yuferova on 12/22/2017.
  */
 
-public class ArticlesProvider extends ContentProvider {
+public class ArticlesContentProvider extends ContentProvider {
 
     public static final int CODE_RECENT = 100;
     public static final int CODE_FAVORITE = 200;
@@ -49,7 +49,8 @@ public class ArticlesProvider extends ContentProvider {
         Cursor cursor;
         switch (uriMatcher.match(uri)) {
             case CODE_RECENT: {
-                sortOrder = ArticleEntry.COLUMN_PUBLISHED_AT + " desc";
+                if(sortOrder == null) sortOrder = "";
+                sortOrder = ArticleEntry.COLUMN_PUBLISHED_AT + " desc " + sortOrder;
                 cursor = dbHelper.getReadableDatabase().query(
                         ArticleEntry.TABLE_NAME,
                         projection,
@@ -62,9 +63,9 @@ public class ArticlesProvider extends ContentProvider {
             }
 
             case CODE_FAVORITE: {
-                sortOrder = ArticleEntry.COLUMN_FAVORITE_DATE + " desc";
-                selectionArgs = new String[]{"true"};
-                selection = ArticleEntry.COLUMN_FAVORITE + " = ? ";
+                if(sortOrder == null) sortOrder = "";
+                sortOrder = ArticleEntry.COLUMN_FAVORITE_DATE + " desc " + sortOrder;
+                selection = (selection == null ? " " : selection + " and ") + ArticleEntry.COLUMN_FAVORITE + " = 1 ";
                 cursor = dbHelper.getReadableDatabase().query(
                         ArticleEntry.TABLE_NAME,
                         projection,
@@ -92,7 +93,7 @@ public class ArticlesProvider extends ContentProvider {
             case CODE_FAVORITE: {
                 Date currentDate = Calendar.getInstance().getTime();
                 values.put(ArticleEntry.COLUMN_FAVORITE, true);
-                values.put(ArticleEntry.COLUMN_FAVORITE_DATE, DateConverter.convertDateToSqlFormat(currentDate));
+                values.put(ArticleEntry.COLUMN_FAVORITE_DATE, DateConverter.dateToISO8601Format(currentDate));
 
 
                 long newId = dbHelper.getWritableDatabase().insert(ArticleEntry.TABLE_NAME,
@@ -129,8 +130,7 @@ public class ArticlesProvider extends ContentProvider {
         int result;
         switch (uriMatcher.match(uri)) {
             case CODE_RECENT: {
-                selection = ArticleEntry.COLUMN_FAVORITE + " = ?";
-                selectionArgs = new String[]{"false"};
+                selection = (selection == null ? " " : selection + " and ") + ArticleEntry.COLUMN_FAVORITE + " = 0 ";
                 result = dbHelper.getWritableDatabase().delete(
                         ArticleEntry.TABLE_NAME,
                         selection,
@@ -139,8 +139,7 @@ public class ArticlesProvider extends ContentProvider {
             }
 
             case CODE_FAVORITE: {
-                selection = ArticleEntry.COLUMN_FAVORITE + " = ?";
-                selectionArgs = new String[]{"true"};
+                selection = (selection == null ? " " : selection + " and ") + ArticleEntry.COLUMN_FAVORITE + " = 1 ";
                 result = dbHelper.getWritableDatabase().delete(
                         ArticleEntry.TABLE_NAME,
                         selection,

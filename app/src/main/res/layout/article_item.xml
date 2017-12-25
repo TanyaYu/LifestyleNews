@@ -44,20 +44,21 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
-                app:error="@{@drawable/ic_no_image}"
+                app:error="@{@drawable/ic_newspaper_color}"
                 app:imageUrl="@{article.urlToImage}"
                 android:transitionName='@{@string/transition_image_name + article.id}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/guide_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_no_image" />
+                tools:src="@drawable/ic_newspaper_color" />
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:maxLines="@fraction/article_item_title_max_lines"
+                android:ellipsize="end"
                 android:padding="@dimen/article_item_inner_padding"
                 android:text="@{article.title}"
                 android:textSize="@dimen/article_item_title_text_size"
@@ -73,7 +74,8 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/article_item_inner_padding"
                 android:maxLines="1"
-                android:text='@{Html.fromHtml((article.sourceName==null ? "" : String.format(@string/source_link, article.sourceName, article.url)) + " " + (article.published==null ? "" : String.format(@string/on_date, DateConverter.convertDateToShortDateFormat(article.published, context))))}'
+                android:ellipsize="end"
+                android:text='@{Html.fromHtml((article.sourceName==null ? "" : String.format(@string/source_link, article.sourceName, article.url)) + " " + (article.published==null ? "" : String.format(@string/on_date, DateConverter.dateToShortDateFormat(article.published, context))))}'
                 android:textColor="?android:textColorSecondary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

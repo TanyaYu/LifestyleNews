@@ -8,6 +8,7 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
 
 import com.example.tanyayuferova.lifestylenews.R;
+import com.example.tanyayuferova.lifestylenews.sync.SyncUtils;
 
 /**
  * Created by Tanya Yuferova on 11/6/2017.
@@ -27,8 +28,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         for (int i = 0; i < count; i++) {
             Preference p = prefScreen.getPreference(i);
             if (p instanceof ListPreference) {
-                setPreferenceSummary((ListPreference) p,
-                        sharedPreferences.getString(p.getKey(), ""));
+                setPreferenceSummary((ListPreference) p, sharedPreferences.getString(p.getKey(), ""));
             }
         }
     }
@@ -38,8 +38,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         Preference preference = findPreference(key);
         if (null != preference) {
             if (preference instanceof ListPreference) {
-                setPreferenceSummary((ListPreference) preference,
-                        sharedPreferences.getString(preference.getKey(), ""));
+                setPreferenceSummary((ListPreference) preference, sharedPreferences.getString(preference.getKey(), ""));
+            }
+
+            if(key.equals(getString(R.string.pref_period_key))){
+                SyncUtils.scheduleFirebaseJobDispatcherSync(getContext());
             }
         }
     }

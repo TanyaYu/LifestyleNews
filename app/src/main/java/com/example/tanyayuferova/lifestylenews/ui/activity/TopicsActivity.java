@@ -33,6 +33,8 @@ implements TopicsAdapter.OnClickTopicHandler {
         binding.rvTopics.setLayoutManager(layoutManager);
         binding.rvTopics.setHasFixedSize(true);
         binding.rvTopics.setAdapter(adapter = new TopicsAdapter(new ArrayList<String>(topics), this));
+
+        setResult(RESULT_CANCELED);
     }
 
     public void onNavigationBackClick(View view) {
@@ -44,12 +46,16 @@ implements TopicsAdapter.OnClickTopicHandler {
         updateTopicsPreferences();
 
         binding.etTopic.setText("");
+
+        setResult(RESULT_OK);
     }
 
     @Override
     public void onClickRemoveTopic(View view, String topic) {
         adapter.removeItem(topic);
         updateTopicsPreferences();
+
+        setResult(RESULT_OK);
     }
 
     protected void updateTopicsPreferences() {

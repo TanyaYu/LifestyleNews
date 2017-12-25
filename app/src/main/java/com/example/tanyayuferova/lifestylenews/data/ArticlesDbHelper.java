@@ -13,7 +13,7 @@ import com.example.tanyayuferova.lifestylenews.data.ArticlesContract.*;
 public class ArticlesDbHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "articles.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public ArticlesDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -27,7 +27,7 @@ public class ArticlesDbHelper extends SQLiteOpenHelper {
     private void createArticlesTable(SQLiteDatabase db) {
         final String SQL_CREATE_ARTICLES_TABLE =
                 "CREATE TABLE " + ArticleEntry.TABLE_NAME + " (" +
-                        ArticleEntry._ID + " INTEGER PRIMARY KEY, " +
+                        ArticleEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         ArticleEntry.COLUMN_SOURCE_NAME + " varchar(200) NULL, " +
                         ArticleEntry.COLUMN_AUTHOR + " varchar(500) NULL, " +
                         ArticleEntry.COLUMN_TITLE + " varchar(500) NULL, " +
