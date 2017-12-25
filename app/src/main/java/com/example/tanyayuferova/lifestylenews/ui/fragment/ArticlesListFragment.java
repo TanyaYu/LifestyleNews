@@ -103,10 +103,7 @@ public class ArticlesListFragment extends Fragment
         Intent intent = new Intent(getContext(), ArticleDetailsActivity.class);
         intent.putParcelableArrayListExtra(ArticleDetailsActivity.EXTRA_ARTICLES, new ArrayList<Parcelable>(data));
         intent.putExtra(ArticleDetailsActivity.EXTRA_SELECTED_INDEX, data.indexOf(article));
-        View sharedView = view.findViewById(R.id.iv_image);
-        ActivityOptionsCompat options = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(getActivity(), sharedView, sharedView.getTransitionName());
-        startActivity(intent, options.toBundle());
+        startActivity(intent);
     }
 
     public void refreshLoader() {

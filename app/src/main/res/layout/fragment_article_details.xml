@@ -83,7 +83,6 @@
                     android:scaleType="centerCrop"
                     app:imageUrl="@{article.urlToImage}"
                     app:layout_collapseMode="parallax"
-                    android:transitionName='@{@string/transition_image_name + article.id}'
                     tools:src="@drawable/ic_no_image" />
 
                 <View

@@ -46,7 +46,6 @@
                 android:scaleType="centerCrop"
                 app:error="@{@drawable/ic_newspaper_color}"
                 app:imageUrl="@{article.urlToImage}"
-                android:transitionName='@{@string/transition_image_name + article.id}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/guide_image"
                 app:layout_constraintStart_toStartOf="parent"
