@@ -160,15 +160,7 @@ public class ArticlesContentProvider extends ContentProvider {
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
         int result;
         switch (uriMatcher.match(uri)) {
-            case CODE_RECENT: {
-                result = dbHelper.getWritableDatabase().update(
-                        ArticleEntry.TABLE_NAME,
-                        values,
-                        selection,
-                        selectionArgs);
-                break;
-            }
-
+            case CODE_RECENT:
             case CODE_FAVORITE: {
                 result = dbHelper.getWritableDatabase().update(
                         ArticleEntry.TABLE_NAME,

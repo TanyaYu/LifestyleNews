@@ -1,10 +1,13 @@
 package com.example.tanyayuferova.lifestylenews.ui.fragment;
 
+import android.content.ContentResolver;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ShareCompat;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +15,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.tanyayuferova.lifestylenews.R;
+import com.example.tanyayuferova.lifestylenews.data.ArticlesContract;
 import com.example.tanyayuferova.lifestylenews.databinding.FragmentArticleDetailsBinding;
 import com.example.tanyayuferova.lifestylenews.entity.Article;
+import com.example.tanyayuferova.lifestylenews.utils.DataUtils;
 import com.example.tanyayuferova.lifestylenews.utils.PaletteUtils;
+
+import java.util.Calendar;
 
 /**
  * Created by Tanya Yuferova on 12/17/2017.
@@ -42,8 +49,12 @@ public class ArticleDetailsFragment extends Fragment {
         Article article = getArguments().getParcelable(ARGUMENT_ARTICLE);
         binding = FragmentArticleDetailsBinding.inflate(inflater, container, false);
         binding.tvSource.setMovementMethod(LinkMovementMethod.getInstance());
+        binding.fabAddToFavorite.setImageDrawable(getContext().getResources()
+                .getDrawable(article.isFavorite() ? R.drawable.ic_bookmark : R.drawable.ic_bookmark_empty));
         initNavigationOnClickListener();
         initImageOnLayoutChangeListener();
+        initShareOnClickListener();
+        initAddToFavoriteOnClickListener();
         binding.setArticle(article);
         binding.setContext(getContext());
         return binding.getRoot();
@@ -54,6 +65,40 @@ public class ArticleDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().finish();
+            }
+        });
+    }
+
+    protected void initShareOnClickListener() {
+        binding.fabShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
+                        .setType("text/plain")
+                        .setText(binding.getArticle().getTitle())
+                        .getIntent(), getString(R.string.action_share)));
+            }
+        });
+    }
+
+    protected void initAddToFavoriteOnClickListener() {
+        binding.fabAddToFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean favorite = !binding.getArticle().isFavorite();
+
+                binding.fabAddToFavorite.setImageDrawable(getContext().getResources()
+                        .getDrawable(favorite ? R.drawable.ic_bookmark : R.drawable.ic_bookmark_empty));
+                binding.getArticle().setFavorite(favorite);
+                binding.getArticle().setAddedToFavored(Calendar.getInstance().getTime());
+
+                ContentResolver contentResolver = getContext().getContentResolver();
+                contentResolver.update(
+                        ArticlesContract.CONTENT_RECENT_URI,
+                        DataUtils.getContentValues(binding.getArticle()),
+                        ArticlesContract.ArticleEntry._ID + " = ?",
+                        new String[]{String.valueOf(binding.getArticle().getId())}
+                );
             }
         });
     }

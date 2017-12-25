@@ -158,6 +158,6 @@
             app:layout_anchor="@id/app_bar_layout"
             app:layout_anchorGravity="bottom|right|end"
             app:pressedTranslationZ="@dimen/fab_press_translation_z"
-            app:srcCompat="@drawable/ic_bookmark_empty" />
+            tools:src="@drawable/ic_bookmark_empty" />
     </android.support.design.widget.CoordinatorLayout>
 </layout>
