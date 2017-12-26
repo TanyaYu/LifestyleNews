@@ -1,11 +1,12 @@
 package com.example.tanyayuferova.lifestylenews.ui.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.AnimRes;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -20,6 +21,7 @@ import com.example.tanyayuferova.lifestylenews.entity.Article;
 import com.example.tanyayuferova.lifestylenews.sync.ArticlesAsyncTaskLoader;
 import com.example.tanyayuferova.lifestylenews.ui.activity.ArticleDetailsActivity;
 import com.example.tanyayuferova.lifestylenews.ui.adapter.ArticlesAdapter;
+import com.example.tanyayuferova.lifestylenews.utils.AnimationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +91,7 @@ public class ArticlesListFragment extends Fragment
     @Override
     public void onLoadFinished(Loader<List<Article>> loader, List<Article> data) {
         setAdapterData(data);
+        runRecyclerViewAnimation(R.anim.layout_animation_slide_up);
 
         if(callback != null) {
             callback.onLoadFinished(data!=null && data.size()>0);
@@ -97,6 +100,10 @@ public class ArticlesListFragment extends Fragment
 
     protected void setAdapterData(List<Article> data) {
         adapter.setData(new ArrayList<Object>(data));
+    }
+
+    public void runRecyclerViewAnimation(@AnimRes int animId) {
+        AnimationUtils.runLayoutAnimation(binding.recyclerView, animId);
     }
 
     @Override

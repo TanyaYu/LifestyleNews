@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -25,8 +26,8 @@ import com.example.tanyayuferova.lifestylenews.utils.PreferencesUtils;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private ArticlesListFragment articlesRecentFragment;
-    private ArticlesListFragment articlesFavoriteFragment;
+    protected ArticlesListFragment articlesRecentFragment;
+    protected ArticlesListFragment articlesFavoriteFragment;
     private boolean refreshStarted = true;
     private boolean showError = true;
 
@@ -99,11 +100,19 @@ public class MainActivity extends AppCompatActivity {
         startArticlesListActivity(ArticlesContract.CONTENT_RECENT_URI, getString(R.string.recent_title));
     }
 
-    protected void startArticlesListActivity(Uri data, String title) {
-        Intent intent = new Intent(this, ArticlesListActivity.class);
-        intent.setData(data);
-        intent.putExtra(ArticlesListActivity.EXTRA_LIST_TITLE, title);
-        startActivity(intent);
+    protected void startArticlesListActivity(final Uri data, final String title) {
+        articlesFavoriteFragment.runRecyclerViewAnimation(R.anim.layout_animation_fall_down);
+        articlesRecentFragment.runRecyclerViewAnimation(R.anim.layout_animation_fall_down);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, ArticlesListActivity.class);
+                intent.setData(data);
+                intent.putExtra(ArticlesListActivity.EXTRA_LIST_TITLE, title);
+                startActivity(intent);
+            }
+        }, getResources().getInteger(R.integer.anim_duration_medium));
     }
 
     protected void onLoadFinished() {
