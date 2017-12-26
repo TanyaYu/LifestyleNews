@@ -24,6 +24,8 @@ import com.example.tanyayuferova.lifestylenews.ui.adapter.ArticlesAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by Tanya Yuferova on 12/18/2017.
  */
@@ -42,6 +44,7 @@ public class ArticlesListFragment extends Fragment
     public static final String ARGUMENT_URI_DATA = "arg.uri_data";
     public static final String ARGUMENT_ARTICLES_COUNT = "arg.articles_count";
     public static final String ARGUMENT_LOADER_ID = "arg.loader_id";
+    public static final int REQUEST_CODE_ARTICLE_DETAILS_ACTIVITY = 12;
 
     public ArticlesListFragment() {
     }
@@ -103,7 +106,19 @@ public class ArticlesListFragment extends Fragment
         Intent intent = new Intent(getContext(), ArticleDetailsActivity.class);
         intent.putParcelableArrayListExtra(ArticleDetailsActivity.EXTRA_ARTICLES, new ArrayList<Parcelable>(data));
         intent.putExtra(ArticleDetailsActivity.EXTRA_SELECTED_INDEX, data.indexOf(article));
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE_ARTICLE_DETAILS_ACTIVITY);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_CODE_ARTICLE_DETAILS_ACTIVITY && resultCode == RESULT_OK) {
+            if(data != null) {
+                List<Article> articles = data.getParcelableArrayListExtra(ArticleDetailsActivity.EXTRA_ARTICLES);
+                if (articles != null)
+                    adapter.setData(articles);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     public void refreshLoader() {

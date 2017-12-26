@@ -33,6 +33,8 @@ public class ArticleDetailsActivity extends AppCompatActivity {
         binding.pager.setAdapter(new ArticleDetailsPagerAdapter(getSupportFragmentManager()));
         binding.pager.setPageTransformer(false, new ParallaxPageTransformer());
         binding.pager.setCurrentItem(selectedIndex);
+
+        setResult(RESULT_OK, getIntent());
     }
 
     public class ArticleDetailsPagerAdapter extends FragmentPagerAdapter {
