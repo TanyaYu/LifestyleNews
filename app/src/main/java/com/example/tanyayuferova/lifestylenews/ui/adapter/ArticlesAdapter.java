@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.example.tanyayuferova.lifestylenews.databinding.ArticleItemBinding;
 import com.example.tanyayuferova.lifestylenews.entity.Article;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,13 +17,13 @@ import java.util.List;
  * Created by Tanya Yuferova on 12/17/2017.
  */
 
-public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.ArticlesAdapterViewHolder>  {
+public class ArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
     public interface OnClickArticleHandler {
         void onClickArticle(View view, Article article);
     }
 
-    private List<Article> data;
+    protected List<Object> data;
     private OnClickArticleHandler clickHandler;
 
     public ArticlesAdapter() {
@@ -54,16 +55,16 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
     }
 
     @Override
-    public ArticlesAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         ArticleItemBinding itemBinding = ArticleItemBinding.inflate(layoutInflater, parent, false);
         return new ArticlesAdapterViewHolder(itemBinding);
     }
 
     @Override
-    public void onBindViewHolder(ArticlesAdapterViewHolder holder, int position) {
-        Article item = data.get(position);
-        holder.bind(item);
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Article item = (Article) data.get(position);
+        ((ArticlesAdapterViewHolder) holder).bind(item);
     }
 
     @Override
@@ -71,12 +72,21 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
         return data==null ? 0 : data.size();
     }
 
-    public void setData(List<Article> data) {
+    public void setData(List<Object> data) {
         this.data = data;
         notifyDataSetChanged();
     }
 
-    public List<Article> getData() {
+    public List<Object> getData() {
         return data;
+    }
+
+    public List<Article> getArticlesData() {
+        List<Article> result = new ArrayList<>();
+        for(Object o : data) {
+            if(o instanceof Article)
+                result.add((Article) o);
+        }
+        return result;
     }
 }

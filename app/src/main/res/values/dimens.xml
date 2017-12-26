@@ -5,6 +5,7 @@
     <dimen name="fab_press_translation_z">6dp</dimen>
 
     <dimen name="article_item_height">100sp</dimen>
+    <dimen name="article_item_ad_height">45dp</dimen>
     <item name="article_item_image_fraction" format="float" type="fraction">0.4</item>
     <dimen name="article_item_horizontal_margin">8dp</dimen>
     <dimen name="article_item_vertical_margin">4dp</dimen>

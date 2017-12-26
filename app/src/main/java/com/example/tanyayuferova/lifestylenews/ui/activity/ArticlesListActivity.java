@@ -22,8 +22,8 @@ public class ArticlesListActivity extends AppCompatActivity
 implements ArticlesListFragment.LoaderCallback {
 
     private ActivityArticlesListBinding binding;
-    private ArticlesListFragment articlesListFragment;
-    private Uri uri;
+    protected ArticlesListFragment articlesListFragment;
+    protected Uri uri;
     public static final String EXTRA_LIST_TITLE = "extra.list_title";
     public static final int REQUEST_CODE_TOPICS_ACTIVITY = 1;
 
@@ -44,7 +44,10 @@ implements ArticlesListFragment.LoaderCallback {
                 new LoadArticlesAsyncTask().execute(false);
             }
         });
+        initArticlesListFragment();
+    }
 
+    protected void initArticlesListFragment() {
         articlesListFragment = (ArticlesListFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_list);
         if(articlesListFragment == null) {
             getSupportFragmentManager().beginTransaction()

@@ -34,12 +34,12 @@ public class ArticlesListFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<List<Article>>,
         ArticlesAdapter.OnClickArticleHandler {
 
-    private FragmentArticlesListBinding binding;
-    private ArticlesAdapter adapter;
+    protected FragmentArticlesListBinding binding;
+    protected ArticlesAdapter adapter;
     private LoaderCallback callback;
     private int articlesLimit;
     private Uri uriData;
-    private static int countLoaders = 0;
+    protected static int countLoaders = 0;
 
     public static final String ARGUMENT_URI_DATA = "arg.uri_data";
     public static final String ARGUMENT_ARTICLES_COUNT = "arg.articles_count";
@@ -88,11 +88,15 @@ public class ArticlesListFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<List<Article>> loader, List<Article> data) {
-        adapter.setData(data);
+        setAdapterData(data);
 
         if(callback != null) {
             callback.onLoadFinished(data!=null && data.size()>0);
         }
+    }
+
+    protected void setAdapterData(List<Article> data) {
+        adapter.setData(new ArrayList<Object>(data));
     }
 
     @Override
@@ -102,7 +106,7 @@ public class ArticlesListFragment extends Fragment
 
     @Override
     public void onClickArticle(View view, Article article) {
-        List<Article> data = adapter.getData();
+        List<Article> data = adapter.getArticlesData();
         Intent intent = new Intent(getContext(), ArticleDetailsActivity.class);
         intent.putParcelableArrayListExtra(ArticleDetailsActivity.EXTRA_ARTICLES, new ArrayList<Parcelable>(data));
         intent.putExtra(ArticleDetailsActivity.EXTRA_SELECTED_INDEX, data.indexOf(article));
@@ -114,8 +118,7 @@ public class ArticlesListFragment extends Fragment
         if(requestCode == REQUEST_CODE_ARTICLE_DETAILS_ACTIVITY && resultCode == RESULT_OK) {
             if(data != null) {
                 List<Article> articles = data.getParcelableArrayListExtra(ArticleDetailsActivity.EXTRA_ARTICLES);
-                if (articles != null)
-                    adapter.setData(articles);
+                setAdapterData(articles);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
