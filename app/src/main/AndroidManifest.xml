@@ -33,7 +33,7 @@
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.TranparentStausBar" />
         <activity android:name=".ui.activity.TopicsActivity" />
-        <activity android:name=".ui.activity.SettingsActivity"/>
+        <activity android:name=".ui.activity.SettingsActivity" />
 
         <provider
             android:name=".data.ArticlesContentProvider"
@@ -43,12 +43,28 @@
         <service
             android:name=".sync.FirebaseJobService"
             android:exported="false">
-        <intent-filter>
-
-        <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
-            <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
-        </intent-filter>
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
         </service>
+
+        <receiver android:name=".ui.widget.RecentArticlesWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/recent_articles_widget_info" />
+        </receiver>
+
+
+        <service android:name=".services.ArticleIntentService" />
+
+        <service
+            android:name=".services.GridWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>
