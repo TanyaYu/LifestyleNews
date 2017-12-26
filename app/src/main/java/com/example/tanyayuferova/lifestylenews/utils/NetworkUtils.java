@@ -29,7 +29,7 @@ public class NetworkUtils {
     private static final String ENDPOINT = "everything";
     private static final String QUERY_PARAM = "q";
     private static final String API_KEY_PARAM = "apiKey";
-    private static final String API_KEY = "e0c55009fdd64c3787c348c699da58b0"; //FIXME API_KEY
+    private static final String API_KEY = ""; //FIXME API_KEY
     private static final String SORT_PARAM = "sortBy";
     private static final String SORT_PARAM_DEFAULT = "relevance";
     private static final String PAGE_PARAM = "page";
