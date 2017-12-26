@@ -32,6 +32,7 @@
     <dimen name="fragment_article_details_toolbar_margin_top">34sp</dimen>
     <dimen name="fragment_article_details_title_padding_right">4dp</dimen>
     <dimen name="fragment_article_details_title_text_size">24sp</dimen>
+    <dimen name="fragment_article_details_author_text_size">14sp</dimen>
     <item name="fragment_article_details_title_line_spacing_multiplier" format="float" type="fraction">0.9</item>
 
     <dimen name="activity_topics_title_text_size">32sp</dimen>

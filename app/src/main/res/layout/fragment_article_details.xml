@@ -98,6 +98,7 @@
                     android:layout_gravity="bottom"
                     android:layout_marginLeft="@dimen/fragment_article_details_author_margin_left"
                     android:layout_marginRight="@dimen/fragment_article_details_author_margin_right"
+                    android:textSize="@dimen/fragment_article_details_author_text_size"
                     android:maxLines="1"
                     android:text='@{(article.author == null ? "" : String.format(@string/by_author, article.author)) + " " + (article.published==null ? "" : String.format(@string/on_date, DateConverter.dateToShortDateFormat(article.published, context)))}'
                     android:textColor="@color/colorSecondaryTextInverse"
