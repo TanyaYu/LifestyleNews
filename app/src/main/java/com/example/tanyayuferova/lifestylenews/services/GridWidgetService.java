@@ -3,6 +3,7 @@ package com.example.tanyayuferova.lifestylenews.services;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -27,7 +28,7 @@ public class GridWidgetService extends RemoteViewsService {
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        return new GridRemoteViewsFactory(this.getApplicationContext());
+        return new GridRemoteViewsFactory(this.getApplicationContext(), intent.getData());
     }
 }
 
@@ -37,11 +38,13 @@ class GridRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     List<Article> data;
     // How many articles to display
     int displayNumber;
+    Uri uri;
 
 
-    public GridRemoteViewsFactory(Context applicationContext) {
+    public GridRemoteViewsFactory(Context applicationContext, Uri uri) {
         context = applicationContext;
         displayNumber = context.getResources().getInteger(R.integer.articles_list_rows) * context.getResources().getInteger(R.integer.articles_list_columns);
+        this.uri = uri;
     }
 
     @Override
@@ -50,7 +53,7 @@ class GridRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     @Override
     public void onDataSetChanged() {
-        new ArticlesAsyncTaskLoader(context, ArticlesContract.CONTENT_RECENT_URI, displayNumber) {
+        new ArticlesAsyncTaskLoader(context, uri, displayNumber) {
             @Override
             public void deliverResult(List<Article> data) {
                 super.deliverResult(data);

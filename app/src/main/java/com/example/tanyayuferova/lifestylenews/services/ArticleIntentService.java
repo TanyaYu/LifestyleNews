@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.tanyayuferova.lifestylenews.R;
+import com.example.tanyayuferova.lifestylenews.ui.widget.FavoriteArticlesWidget;
 import com.example.tanyayuferova.lifestylenews.ui.widget.RecentArticlesWidget;
 
 /**
@@ -15,20 +16,23 @@ import com.example.tanyayuferova.lifestylenews.ui.widget.RecentArticlesWidget;
 
 public class ArticleIntentService extends IntentService {
 
-    public static final String ACTION_UPDATE_ARTICLE_WIDGET = "action.update_article_widget";
+    public static final String ACTION_UPDATE_RECENT_ARTICLES_WIDGET = "action.update_recent_articles_widget";
+    public static final String ACTION_UPDATE_FAVORITE_ARTICLES_WIDGET = "action.update_favorite_articles_widget";
 
     public ArticleIntentService() {
         super("ArticleIntentService");
     }
 
-    /**
-     * Starts this service to perform UpdateRecipeWidgets action with the given parameters
-     *
-     * @see IntentService
-     */
-    public static void startActionUpdateRecipeWidgets(Context context) {
+
+    public static void startActionUpdateRecentArticlesWidgets(Context context) {
         Intent intent = new Intent(context, ArticleIntentService.class);
-        intent.setAction(ACTION_UPDATE_ARTICLE_WIDGET);
+        intent.setAction(ACTION_UPDATE_RECENT_ARTICLES_WIDGET);
+        context.startService(intent);
+    }
+
+    public static void startActionUpdateFavoriteArticlesWidgets(Context context) {
+        Intent intent = new Intent(context, ArticleIntentService.class);
+        intent.setAction(ACTION_UPDATE_FAVORITE_ARTICLES_WIDGET);
         context.startService(intent);
     }
 
@@ -36,16 +40,25 @@ public class ArticleIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
             final String action = intent.getAction();
-            if (ACTION_UPDATE_ARTICLE_WIDGET.equals(action)) {
-                handleActionUpdateRecipeWidgets();
+            if (ACTION_UPDATE_RECENT_ARTICLES_WIDGET.equals(action)) {
+                handleActionUpdateRecentArticlesWidgets();
+            } else if (ACTION_UPDATE_FAVORITE_ARTICLES_WIDGET.equals(action)) {
+                handleActionUpdateFavoriteArticlesWidgets();
             }
         }
     }
 
-    private void handleActionUpdateRecipeWidgets() {
+    private void handleActionUpdateRecentArticlesWidgets() {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(ArticleIntentService.this);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(ArticleIntentService.this, RecentArticlesWidget.class));
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_grid_view);
-        RecentArticlesWidget.updateRecipeWidgets(ArticleIntentService.this, appWidgetManager, appWidgetIds);
+        RecentArticlesWidget.updateWidgets(ArticleIntentService.this, appWidgetManager, appWidgetIds);
+    }
+
+    private void handleActionUpdateFavoriteArticlesWidgets() {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(ArticleIntentService.this);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(ArticleIntentService.this, FavoriteArticlesWidget.class));
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_grid_view);
+        FavoriteArticlesWidget.updateWidgets(ArticleIntentService.this, appWidgetManager, appWidgetIds);
     }
 }

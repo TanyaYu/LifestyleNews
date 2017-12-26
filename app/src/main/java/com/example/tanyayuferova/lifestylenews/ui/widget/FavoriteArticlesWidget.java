@@ -19,7 +19,7 @@ import com.example.tanyayuferova.lifestylenews.ui.activity.ArticleDetailsActivit
 /**
  * Implementation of App Widget functionality.
  */
-public class RecentArticlesWidget extends AppWidgetProvider {
+public class FavoriteArticlesWidget extends AppWidgetProvider {
 
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
@@ -30,7 +30,7 @@ public class RecentArticlesWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        ArticleIntentService.startActionUpdateRecentArticlesWidgets(context);
+        ArticleIntentService.startActionUpdateFavoriteArticlesWidgets(context);
     }
 
     /**
@@ -56,7 +56,7 @@ public class RecentArticlesWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_grid_view);
         // Set the GridWidgetService intent to act as the adapter for the GridView
         Intent intent = new Intent(context, GridWidgetService.class);
-        intent.setData(ArticlesContract.CONTENT_RECENT_URI);
+        intent.setData(ArticlesContract.CONTENT_FAVORITE_URI);
         views.setRemoteAdapter(R.id.widget_grid_view, intent);
         // Set the ArticleDetailsActivity intent to launch when clicked
         Intent appIntent = new Intent(context, ArticleDetailsActivity.class);
@@ -71,7 +71,7 @@ public class RecentArticlesWidget extends AppWidgetProvider {
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager,
                                           int appWidgetId, Bundle newOptions) {
-        ArticleIntentService.startActionUpdateRecentArticlesWidgets(context);
+        ArticleIntentService.startActionUpdateFavoriteArticlesWidgets(context);
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
     }
 

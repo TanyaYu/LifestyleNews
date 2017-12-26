@@ -69,7 +69,11 @@ public class Article implements Parcelable {
     }
 
     public String getUrlToImage() {
-        return TextUtils.isEmpty(urlToImage) ? null : urlToImage;
+        if(TextUtils.isEmpty(urlToImage))
+            return null;
+        if(!(urlToImage.startsWith("https:") || urlToImage.startsWith("http:")))
+            urlToImage = "https:" + urlToImage;
+        return urlToImage;
     }
 
     public void setUrlToImage(String urlToImage) {
