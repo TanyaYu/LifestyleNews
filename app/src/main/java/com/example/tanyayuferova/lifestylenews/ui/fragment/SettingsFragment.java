@@ -36,7 +36,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Preference preference = findPreference(key);
-        if (null != preference) {
+        if (preference != null) {
             if (preference instanceof ListPreference) {
                 setPreferenceSummary((ListPreference) preference, sharedPreferences.getString(preference.getKey(), ""));
             }
