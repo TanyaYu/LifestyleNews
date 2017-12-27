@@ -1,0 +1,111 @@
+{
+  "project_info": {
+    "project_number": "1042435765418",
+    "project_id": "lifestyle-news"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042435765418:android:c1b0040594224de4",
+        "android_client_info": {
+          "package_name": "com.example.tanyayuferova.lifestylenews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042435765418-3d6ccgju7uds1j6902851ng543n50uqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqJOmMt5AzupLGR8y25sJ6qRMNNGpOJo0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-111670308-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042435765418:android:0e189d1daf0f0331",
+        "android_client_info": {
+          "package_name": "com.example.tanyayuferova.lifestylenews.free"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042435765418-3d6ccgju7uds1j6902851ng543n50uqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqJOmMt5AzupLGR8y25sJ6qRMNNGpOJo0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-111670308-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042435765418:android:2129147dd5fcac2d",
+        "android_client_info": {
+          "package_name": "com.example.tanyayuferova.lifestylenews.paid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042435765418-3d6ccgju7uds1j6902851ng543n50uqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqJOmMt5AzupLGR8y25sJ6qRMNNGpOJo0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-111670308-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

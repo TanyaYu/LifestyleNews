@@ -15,11 +15,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.tanyayuferova.lifestylenews.R;
+import com.example.tanyayuferova.lifestylenews.analitics.AnalyticsApplication;
 import com.example.tanyayuferova.lifestylenews.data.ArticlesContract;
 import com.example.tanyayuferova.lifestylenews.databinding.FragmentArticleDetailsBinding;
 import com.example.tanyayuferova.lifestylenews.entity.Article;
 import com.example.tanyayuferova.lifestylenews.utils.DataUtils;
 import com.example.tanyayuferova.lifestylenews.utils.PaletteUtils;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.Calendar;
 
@@ -30,6 +33,7 @@ import java.util.Calendar;
 public class ArticleDetailsFragment extends Fragment {
 
     private FragmentArticleDetailsBinding binding;
+    protected Tracker tracker;
     private static final int DEFAULT_MUTED_DARK_COLOR = 0xFF333333;
     public static final String ARGUMENT_ARTICLE = "arg.article";
 
@@ -57,6 +61,10 @@ public class ArticleDetailsFragment extends Fragment {
         initAddToFavoriteOnClickListener();
         binding.setArticle(article);
         binding.setContext(getContext());
+
+        AnalyticsApplication application = (AnalyticsApplication) getActivity().getApplication();
+        tracker = application.getDefaultTracker();
+
         return binding.getRoot();
     }
 
@@ -77,6 +85,11 @@ public class ArticleDetailsFragment extends Fragment {
                         .setType("text/plain")
                         .setText(binding.getArticle().getTitle())
                         .getIntent(), getString(R.string.action_share)));
+
+                tracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Action")
+                        .setAction(getString(R.string.action_share))
+                        .build());
             }
         });
     }
@@ -99,6 +112,11 @@ public class ArticleDetailsFragment extends Fragment {
                         ArticlesContract.ArticleEntry._ID + " = ?",
                         new String[]{String.valueOf(binding.getArticle().getId())}
                 );
+
+                tracker.send(new HitBuilders.EventBuilder()
+                        .setCategory("Action")
+                        .setAction(getString(R.string.action_add_to_favorite))
+                        .build());
             }
         });
     }
