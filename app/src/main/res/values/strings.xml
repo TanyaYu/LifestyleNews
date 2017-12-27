@@ -48,4 +48,7 @@
 
     <string name="recent_articles_widget_label">Recent articles</string>
     <string name="favorite_articles_widget_label">Favorite articles</string>
+
+    <string name="back">Back</string>
+    <string name="article_image">Article image</string>
 </resources>

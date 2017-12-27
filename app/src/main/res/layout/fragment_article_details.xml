@@ -37,6 +37,8 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/fragment_article_details_description_padding_left"
                     android:paddingRight="@dimen/fragment_article_details_description_padding_right"
+                    android:paddingStart="@dimen/fragment_article_details_description_padding_left"
+                    android:paddingEnd="@dimen/fragment_article_details_description_padding_right"
                     android:paddingTop="@dimen/fragment_article_details_description_padding_top"
                     android:text='@{article.description}'
                     android:textSize="@dimen/fragment_article_details_description_text_size"
@@ -53,6 +55,8 @@
                     android:paddingBottom="@dimen/fragment_article_details_description_padding_bottom"
                     android:paddingLeft="@dimen/fragment_article_details_description_padding_left"
                     android:paddingRight="@dimen/fragment_article_details_description_padding_right"
+                    android:paddingStart="@dimen/fragment_article_details_description_padding_left"
+                    android:paddingEnd="@dimen/fragment_article_details_description_padding_right"
                     android:paddingTop="4sp"
                     android:text='@{article.sourceName==null ? "" : Html.fromHtml(String.format(@string/read_more_at_source, article.sourceName, article.url))}'
                     android:textSize="@dimen/fragment_article_details_description_text_size"
@@ -81,6 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/fragment_article_details_image_height"
                     android:scaleType="centerCrop"
+                    android:contentDescription="@string/article_image"
                     app:imageUrl="@{article.urlToImage}"
                     app:layout_collapseMode="parallax"
                     tools:src="@drawable/ic_no_image" />
@@ -98,6 +103,8 @@
                     android:layout_gravity="bottom"
                     android:layout_marginLeft="@dimen/fragment_article_details_author_margin_left"
                     android:layout_marginRight="@dimen/fragment_article_details_author_margin_right"
+                    android:layout_marginStart="@dimen/fragment_article_details_author_margin_left"
+                    android:layout_marginEnd="@dimen/fragment_article_details_author_margin_right"
                     android:textSize="@dimen/fragment_article_details_author_text_size"
                     android:maxLines="1"
                     android:text='@{(article.author == null ? "" : String.format(@string/by_author, article.author)) + " " + (article.published==null ? "" : String.format(@string/on_date, DateConverter.dateToShortDateFormat(article.published, context)))}'
@@ -124,6 +131,7 @@
                         android:layout_height="wrap_content"
                         android:lineSpacingMultiplier="@fraction/fragment_article_details_title_line_spacing_multiplier"
                         android:paddingRight="@dimen/fragment_article_details_title_padding_right"
+                        android:paddingEnd="@dimen/fragment_article_details_title_padding_right"
                         android:text="@{article.title}"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimaryTextInverse"
@@ -139,6 +147,7 @@
             android:layout_gravity="bottom|end"
             android:layout_marginBottom="@dimen/fragment_article_details_fab_margin"
             android:layout_marginRight="@dimen/fragment_article_details_fab_margin"
+            android:layout_marginEnd="@dimen/fragment_article_details_fab_margin"
             android:contentDescription="@string/action_share"
             android:elevation="@dimen/fab_elevation"
             android:scaleType="center"
@@ -152,6 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/fragment_article_details_fab_margin"
+            android:layout_marginEnd="@dimen/fragment_article_details_fab_margin"
             android:contentDescription="@string/action_share"
             android:elevation="@dimen/fab_elevation"
             android:scaleType="center"

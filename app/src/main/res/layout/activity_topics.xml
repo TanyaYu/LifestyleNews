@@ -17,8 +17,8 @@
             android:text="@string/topics_activity_title"
             android:textAlignment="center"
             android:textSize="@dimen/activity_topics_title_text_size"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -26,6 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_topics_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_topics_horizontal_margin"
             android:layout_marginTop="@dimen/activity_topics_title_margin_bottom"
             android:singleLine="true"
             app:layout_constraintEnd_toStartOf="@id/fab_add_topic"
@@ -38,6 +39,7 @@
             android:layout_width="@dimen/activity_topics_action_buttons_size"
             android:layout_height="@dimen/activity_topics_action_buttons_size"
             android:layout_marginRight="@dimen/activity_topics_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_topics_horizontal_margin"
             android:layout_marginTop="@dimen/activity_topics_title_margin_bottom"
             android:elevation="@dimen/fab_elevation"
             android:onClick="onClickAddTopic"
@@ -54,8 +56,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/activity_topics_vertical_margin"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_topic" />
 
         <ImageView
@@ -65,7 +67,8 @@
             android:onClick="onNavigationBackClick"
             android:paddingEnd="@dimen/activity_topics_navigation_padding"
             android:paddingStart="@dimen/activity_topics_navigation_padding"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:contentDescription="@string/back"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_arrow_back_dark" />
     </android.support.constraint.ConstraintLayout>
