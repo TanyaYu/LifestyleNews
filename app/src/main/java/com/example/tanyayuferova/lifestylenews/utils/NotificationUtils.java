@@ -72,7 +72,6 @@ public class NotificationUtils {
 
     private static Bitmap largeIcon(Context context, int resource) {
         Resources res = context.getResources();
-        Bitmap largeIcon = BitmapFactory.decodeResource(res, resource);
-        return largeIcon;
+        return BitmapFactory.decodeResource(res, resource);
     }
 }

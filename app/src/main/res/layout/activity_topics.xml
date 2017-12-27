@@ -45,6 +45,7 @@
             android:onClick="onClickAddTopic"
             android:scaleType="center"
             android:textSize="@dimen/activity_topics_item_text_size"
+            android:contentDescription="@string/add_topic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_topics_title"
             app:pressedTranslationZ="@dimen/fab_press_translation_z"

@@ -41,6 +41,7 @@
             android:scaleType="center"
             android:paddingBottom="@dimen/activity_topics_inner_item_padding"
             android:paddingTop="@dimen/activity_topics_inner_item_padding"
+            android:contentDescription="@string/remove_topic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:pressedTranslationZ="@dimen/fab_press_translation_z"

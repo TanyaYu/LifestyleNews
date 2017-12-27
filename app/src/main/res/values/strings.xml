@@ -51,4 +51,7 @@
 
     <string name="back">Back</string>
     <string name="article_image">Article image</string>
+
+    <string name="remove_topic">Remove</string>
+    <string name="add_topic">Add</string>
 </resources>
