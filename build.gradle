@@ -24,7 +24,6 @@ allprojects {
 
     ext {
         supportLibVersion = '26.1.0'
-        rootdir = "C:/Android/UDACITY/Projects/6 Capstone/LifestyleNews"
     }
 }
 
