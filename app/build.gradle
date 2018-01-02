@@ -1,12 +1,16 @@
 apply plugin: 'com.android.application'
 
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(rootProject.file('keystore.properties')))
+
+
 android {
     signingConfigs {
         config {
-            keyAlias 'NewsKey'
-            keyPassword 'TY89068215297'
-            storeFile file("$rootDir/lifestylenewskey.jks")
-            storePassword 'TY89068215297'
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
         }
     }
     compileSdkVersion 26
