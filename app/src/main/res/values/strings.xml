@@ -44,7 +44,7 @@
     <string name="pref_topics_key" translatable="false">preference_topics</string>
     <string name="pref_last_time_refresh_key" translatable="false">preference_last_time_refresh</string>
 
-    <string name="content_authority">com.example.tanyayuferova.lifestylenews</string>
+    <string name="content_authority">com.tanyayuferova.lifestylenews</string>
 
     <string name="recent_articles_widget_label">Recent articles</string>
     <string name="favorite_articles_widget_label">Favorite articles</string>

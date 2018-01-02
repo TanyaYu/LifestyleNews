@@ -7,12 +7,12 @@
 
         <variable
             name="article"
-            type="com.example.tanyayuferova.lifestylenews.entity.Article" />
+            type="com.tanyayuferova.lifestylenews.entity.Article" />
         <variable
             name="context"
             type="android.content.Context"/>
 
-        <import type="com.example.tanyayuferova.lifestylenews.utils.DateConverter" />
+        <import type="com.tanyayuferova.lifestylenews.utils.DateConverter" />
         <import type="android.text.Html" />
     </data>
 

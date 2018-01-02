@@ -8,7 +8,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1042435765418:android:c1b0040594224de4",
         "android_client_info": {
-          "package_name": "com.example.tanyayuferova.lifestylenews"
+          "package_name": "com.tanyayuferova.lifestylenews"
         }
       },
       "oauth_client": [
@@ -42,7 +42,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1042435765418:android:0e189d1daf0f0331",
         "android_client_info": {
-          "package_name": "com.example.tanyayuferova.lifestylenews.free"
+          "package_name": "com.tanyayuferova.lifestylenews.free"
         }
       },
       "oauth_client": [
@@ -76,7 +76,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1042435765418:android:2129147dd5fcac2d",
         "android_client_info": {
-          "package_name": "com.example.tanyayuferova.lifestylenews.paid"
+          "package_name": "com.tanyayuferova.lifestylenews.paid"
         }
       },
       "oauth_client": [

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.tanyayuferova.lifestylenews.ui.activity.ArticlesListActivity">
+    tools:context="com.tanyayuferova.lifestylenews.ui.activity.ArticlesListActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinator"

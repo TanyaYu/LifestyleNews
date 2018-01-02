@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.tanyayuferova.lifestylenews.ui.activity.TopicsActivity">
+    tools:context="com.tanyayuferova.lifestylenews.ui.activity.TopicsActivity">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraint_layout"

@@ -5,11 +5,11 @@
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tanyayuferova.lifestylenews.ui.activity.SettingsActivity">
+    tools:context="com.tanyayuferova.lifestylenews.ui.activity.SettingsActivity">
 
     <fragment
         android:id="@+id/activity_settings"
-        android:name="com.example.tanyayuferova.lifestylenews.ui.fragment.SettingsFragment"
+        android:name="com.tanyayuferova.lifestylenews.ui.fragment.SettingsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />

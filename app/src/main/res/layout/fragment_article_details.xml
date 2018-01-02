@@ -7,11 +7,11 @@
 
         <variable
             name="article"
-            type="com.example.tanyayuferova.lifestylenews.entity.Article" />
+            type="com.tanyayuferova.lifestylenews.entity.Article" />
         <variable
             name="context"
             type="android.content.Context"/>
-        <import type="com.example.tanyayuferova.lifestylenews.utils.DateConverter" />
+        <import type="com.tanyayuferova.lifestylenews.utils.DateConverter" />
         <import type="android.text.Html" />
     </data>
 
@@ -154,7 +154,7 @@
             app:fabSize="normal"
             app:pressedTranslationZ="@dimen/fab_press_translation_z"
             app:srcCompat="@drawable/ic_share"
-            app:layout_behavior="com.example.tanyayuferova.lifestylenews.ui.behavior.ScrollAwareFABBehavior"/>
+            app:layout_behavior="com.tanyayuferova.lifestylenews.ui.behavior.ScrollAwareFABBehavior"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_add_to_favorite"
