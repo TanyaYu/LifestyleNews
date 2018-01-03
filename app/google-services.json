@@ -1,32 +1,32 @@
 {
   "project_info": {
-    "project_number": "1042435765418",
-    "project_id": "lifestyle-news"
+    "project_number": "239281374140",
+    "project_id": "firebase-lifestyle-news"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1042435765418:android:c1b0040594224de4",
+        "mobilesdk_app_id": "1:239281374140:android:2711bff2af51b5b1",
         "android_client_info": {
           "package_name": "com.tanyayuferova.lifestylenews"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1042435765418-3d6ccgju7uds1j6902851ng543n50uqj.apps.googleusercontent.com",
+          "client_id": "239281374140-thlcddg9ll8n9b1gi897h61qpu7ud3r5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCqJOmMt5AzupLGR8y25sJ6qRMNNGpOJo0"
+          "current_key": "AIzaSyAuC0W6_D70z9DBjLENdVkOhbHkj5DTk5M"
         }
       ],
       "services": {
         "analytics_service": {
           "status": 2,
           "analytics_property": {
-            "tracking_id": "UA-111670308-1"
+            "tracking_id": "UA-111627273-1"
           }
         },
         "appinvite_service": {
@@ -40,61 +40,61 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1042435765418:android:0e189d1daf0f0331",
-        "android_client_info": {
-          "package_name": "com.tanyayuferova.lifestylenews.free"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1042435765418-3d6ccgju7uds1j6902851ng543n50uqj.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCqJOmMt5AzupLGR8y25sJ6qRMNNGpOJo0"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 2,
-          "analytics_property": {
-            "tracking_id": "UA-111670308-1"
-          }
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 1
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1042435765418:android:2129147dd5fcac2d",
+        "mobilesdk_app_id": "1:239281374140:android:ac4a741923783efa",
         "android_client_info": {
           "package_name": "com.tanyayuferova.lifestylenews.paid"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1042435765418-3d6ccgju7uds1j6902851ng543n50uqj.apps.googleusercontent.com",
+          "client_id": "239281374140-thlcddg9ll8n9b1gi897h61qpu7ud3r5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCqJOmMt5AzupLGR8y25sJ6qRMNNGpOJo0"
+          "current_key": "AIzaSyAuC0W6_D70z9DBjLENdVkOhbHkj5DTk5M"
         }
       ],
       "services": {
         "analytics_service": {
           "status": 2,
           "analytics_property": {
-            "tracking_id": "UA-111670308-1"
+            "tracking_id": "UA-111627273-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239281374140:android:011bc97102fa81ac",
+        "android_client_info": {
+          "package_name": "com.tanyayuferova.lifestylenews.free"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239281374140-thlcddg9ll8n9b1gi897h61qpu7ud3r5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuC0W6_D70z9DBjLENdVkOhbHkj5DTk5M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-111627273-1"
           }
         },
         "appinvite_service": {

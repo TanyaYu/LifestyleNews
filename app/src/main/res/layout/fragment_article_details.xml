@@ -166,7 +166,7 @@
             android:elevation="@dimen/fab_elevation"
             android:scaleType="center"
             app:fabSize="normal"
-            app:layout_anchor="@id/app_bar_layout"
+            app:layout_anchor="@id/collapsing_toolbar"
             app:layout_anchorGravity="bottom|right|end"
             app:pressedTranslationZ="@dimen/fab_press_translation_z"
             tools:src="@drawable/ic_bookmark_empty" />
