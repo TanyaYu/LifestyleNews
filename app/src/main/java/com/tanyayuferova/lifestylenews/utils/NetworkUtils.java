@@ -3,6 +3,7 @@ package com.tanyayuferova.lifestylenews.utils;
 import android.content.Context;
 import android.net.Uri;
 
+import com.tanyayuferova.lifestylenews.BuildConfig;
 import com.tanyayuferova.lifestylenews.entity.Article;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class NetworkUtils {
     private static final String ENDPOINT = "everything";
     private static final String QUERY_PARAM = "q";
     private static final String API_KEY_PARAM = "apiKey";
-    private static final String API_KEY = ""; //FIXME API_KEY
+    private static final String API_KEY = BuildConfig.NEWS_API_KEY;
     private static final String SORT_PARAM = "sortBy";
     private static final String SORT_PARAM_DEFAULT = "relevance";
     private static final String PAGE_PARAM = "page";

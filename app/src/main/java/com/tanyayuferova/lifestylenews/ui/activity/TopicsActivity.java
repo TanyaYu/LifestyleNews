@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.tanyayuferova.lifestylenews.R;
@@ -42,6 +43,9 @@ implements TopicsAdapter.OnClickTopicHandler {
     }
 
     public void onClickAddTopic(View view) {
+        if(TextUtils.isEmpty(binding.etTopic.getText()))
+            return;
+
         adapter.addItem(binding.etTopic.getText().toString());
         updateTopicsPreferences();
 
