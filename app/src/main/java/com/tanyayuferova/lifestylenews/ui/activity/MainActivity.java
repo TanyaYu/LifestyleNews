@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_CODE_TOPICS_ACTIVITY && resultCode == RESULT_OK) {
             new LoadArticlesAsyncTask().execute(true);
-        }
-        super.onActivityResult(requestCode, resultCode, data);
+        } else
+            super.onActivityResult(requestCode, resultCode, data);
     }
 
     private class LoadArticlesAsyncTask extends AsyncTask<Boolean, Void, Void> {
@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             refreshStarted = showError = true;
+            binding.swipeRefreshLayout.setRefreshing(true);
         }
     }
 }

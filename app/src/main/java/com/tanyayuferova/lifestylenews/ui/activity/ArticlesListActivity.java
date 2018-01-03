@@ -91,8 +91,8 @@ implements ArticlesListFragment.LoaderCallback {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_CODE_TOPICS_ACTIVITY && resultCode == RESULT_OK) {
             new LoadArticlesAsyncTask().execute(true);
-        }
-        super.onActivityResult(requestCode, resultCode, data);
+        } else
+            super.onActivityResult(requestCode, resultCode, data);
     }
 
     private class LoadArticlesAsyncTask extends AsyncTask<Boolean, Void, Void> {
@@ -109,6 +109,11 @@ implements ArticlesListFragment.LoaderCallback {
         @Override
         protected void onPostExecute(Void aVoid) {
             articlesListFragment.refreshLoader();
+        }
+
+        @Override
+        protected void onPreExecute() {
+            binding.swipeRefresh.setRefreshing(true);
         }
     }
 }
