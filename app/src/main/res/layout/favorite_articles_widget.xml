@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
     android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:scaleType="centerCrop"
         android:contentDescription="@string/article_image"
-        android:src="@drawable/ic_newspaper_color"
+        app:srcCompat="@drawable/ic_newspaper_color"
         tools:src="@drawable/ic_newspaper_color" />
 
     <TextView

@@ -36,8 +36,8 @@ public class NotificationUtils {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .setSmallIcon(R.drawable.ic_newspaper)
-                .setLargeIcon(largeIcon(context, R.drawable.ic_newspaper))
+                .setSmallIcon(R.drawable.ic_notification_icon)
+                .setLargeIcon(largeIcon(context, R.drawable.ic_notification_icon))
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(context.getResources().getQuantityString(R.plurals.numberOfArticlesLoaded, articlesQuantity, articlesQuantity))
                 .setContentIntent(contentIntent(context))

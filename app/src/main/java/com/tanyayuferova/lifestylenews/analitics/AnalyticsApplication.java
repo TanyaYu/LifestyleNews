@@ -2,6 +2,7 @@ package com.tanyayuferova.lifestylenews.analitics;
 
 
 import android.app.Application;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.tanyayuferova.lifestylenews.R;
 import com.google.android.gms.analytics.GoogleAnalytics;
@@ -20,5 +21,11 @@ public class AnalyticsApplication extends Application {
             mTracker = analytics.newTracker(R.xml.global_tracker);
         }
         return mTracker;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 }
