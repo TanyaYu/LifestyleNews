@@ -25,10 +25,9 @@
             android:paddingTop="@dimen/activity_topics_inner_item_padding"
             android:text="@{topic}"
             android:textSize="@dimen/activity_topics_item_text_size"
-            app:layout_constraintBottom_toBottomOf="@id/fab_remove_topic"
-            app:layout_constraintEnd_toStartOf="@id/fab_add_topic"
+            app:layout_constraintEnd_toStartOf="@id/fab_remove_topic"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/fab_remove_topic"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="android" />
 
         <android.support.design.widget.FloatingActionButton
@@ -43,7 +42,8 @@
             android:paddingTop="@dimen/activity_topics_inner_item_padding"
             android:contentDescription="@string/remove_topic"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_topic"
+            app:layout_constraintBottom_toBottomOf="@id/tv_topic"
             app:pressedTranslationZ="@dimen/fab_press_translation_z"
             app:srcCompat="@drawable/ic_remove" />
     </android.support.constraint.ConstraintLayout>

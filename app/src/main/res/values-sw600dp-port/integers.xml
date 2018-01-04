@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="articles_list_columns">2</integer>
+    <integer name="articles_list_rows">3</integer>
+    <integer name="items_pre_ad">24</integer>
+</resources>

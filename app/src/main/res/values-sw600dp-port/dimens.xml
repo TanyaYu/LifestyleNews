@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="activity_topics_horizontal_margin">200dp</dimen>
+    <dimen name="activity_topics_horizontal_margin">120dp</dimen>
 
     <dimen name="fragment_article_details_fab_margin">24dp</dimen>
     <dimen name="fragment_article_details_image_height">404dp</dimen>
-    <dimen name="fragment_article_details_description_padding_right">150dp</dimen>
+    <dimen name="fragment_article_details_description_padding_right">82dp</dimen>
     <dimen name="fragment_article_details_description_padding_left">65dp</dimen>
     <dimen name="fragment_article_details_description_padding_bottom">90dp</dimen>
     <dimen name="fragment_article_details_description_text_size">20sp</dimen>
     <dimen name="fragment_article_details_author_margin_left">65dp</dimen>
-    <dimen name="fragment_article_details_author_margin_right">150dp</dimen>
+    <dimen name="fragment_article_details_author_margin_right">82dp</dimen>
     <dimen name="fragment_article_details_title_text_size">26sp</dimen>
-    <dimen name="fragment_article_details_title_padding_right">150dp</dimen>
+    <dimen name="fragment_article_details_title_padding_right">82dp</dimen>
     <dimen name="fragment_article_details_author_text_size">16sp</dimen>
     <item name="fragment_article_details_description_line_spacing_multiplier" format="float" type="fraction">1.3</item>
 
