@@ -1,6 +1,6 @@
 # LifestyleNews
 
-The app provides articles from various sources to your specific interest
+The app provides articles from various sources of your specific interest
 
 # Developed by
 
