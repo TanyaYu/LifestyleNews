@@ -1,9 +1,34 @@
-# LifestyleNews
+_My Capstone project in Android Developer Nanodegree course_
+# Lifestyle News
+The app provides articles from various sources of your specific interest using keywords. The articles are provided by News API https://newsapi.org/.
 
-The app provides articles from various sources of your specific interest
+<img src="https://github.com/TanyaYu/LifestyleNews/blob/master/screenshots/main.png" height="500"> <img src="https://github.com/TanyaYu/LifestyleNews/blob/master/screenshots/details.png" height="500"> <img src="https://github.com/TanyaYu/LifestyleNews/blob/master/screenshots/favorite.png" height="500"> <img src="https://github.com/TanyaYu/LifestyleNews/blob/master/screenshots/settings.png" height="500"> <img src="https://github.com/TanyaYu/LifestyleNews/blob/master/screenshots/topics.png" height="500"> <img src="https://github.com/TanyaYu/LifestyleNews/blob/master/screenshots/widget.png" height="500">
+
+# The app functionality
+- Allows user to choose topics of interest;
+- Allows user to browse Recent and Favorite articles;
+- Allows user to add an article to Favorite;
+- Allows user to share an article;
+- Provides a link to original article source;
+- Loads new articles regularly and notifies user how many articles have been loaded;
+- Allows user to choose background refresh frequency and turn notifications on or off.
+
+# What have I learned from this project?
+In this project, I demonstrate the skills I've learned in my Nanodegree journey, and apply them to creating a unique app experience of my own. The skills indlude:
+- Supporting different screen sizes;
+- Implementing notifications;
+- Implementing layout animation and PageTransformer;
+- Implementing product flavors: free and paid;
+- Implementing widget;
+- Including support for accessibility;
+- Integrating AdMob;
+- Integrating Google Analytics;
+- Using signing configuration;
+- Implementing FirebaseJobDispatcher to regullary pull articles from API service;
+- Implementing ContentProvider to store recent and favorite articles localy;
+- ...and others.
 
 # Developed by
-
 - Tanya Iuferova - tanya.yu.95@gmail.com
 
 # License
