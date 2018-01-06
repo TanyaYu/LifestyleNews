@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Loads articles from ContentProvider
+ *
  * Created by Tanya Yuferova on 12/17/2017.
  */
 

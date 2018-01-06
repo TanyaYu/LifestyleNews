@@ -23,6 +23,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         void onClickArticle(View view, Article article);
     }
 
+    // Object - because we can store Articles or NativeExpressAdView in data
     protected List<Object> data;
     private OnClickArticleHandler clickHandler;
 
@@ -81,6 +82,10 @@ public class ArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return data;
     }
 
+    /**
+     * Returns data list including only articles
+     * @return
+     */
     public List<Article> getArticlesData() {
         List<Article> result = new ArrayList<>();
         for(Object o : data) {

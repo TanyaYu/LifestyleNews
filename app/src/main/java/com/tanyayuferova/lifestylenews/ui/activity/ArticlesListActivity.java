@@ -90,18 +90,21 @@ implements ArticlesListFragment.LoaderCallback {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_CODE_TOPICS_ACTIVITY && resultCode == RESULT_OK) {
+            // We need to refresh list after editing lifestyle topics
             new LoadArticlesAsyncTask().execute(true);
         } else
             super.onActivityResult(requestCode, resultCode, data);
     }
 
+    //FIXME duplicate needs refactoring
     private class LoadArticlesAsyncTask extends AsyncTask<Boolean, Void, Void> {
 
         @Override
         protected Void doInBackground(Boolean... booleans) {
-            //Refresh list completely or only load new articles
             if(booleans[0])
+                // Refreshes list completely (necessary if used has changed lifestyle topics)
                 SyncTask.asyncRefreshAllArticles(ArticlesListActivity.this);
+            // Loads only new few articles
             else SyncTask.asyncLoadNewArticles(ArticlesListActivity.this);
             return null;
         }

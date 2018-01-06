@@ -22,6 +22,10 @@ public class SyncUtils {
 
     private static final String ARTICLES_SYNC_TAG = "articles-sync";
 
+    /**
+     * Schedule a recurring job to for loading articles
+     * @param context
+     */
     synchronized public static void scheduleFirebaseJobDispatcherSync(@NonNull final Context context) {
 
         Driver driver = new GooglePlayDriver(context);

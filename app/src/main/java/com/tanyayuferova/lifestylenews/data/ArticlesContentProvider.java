@@ -48,6 +48,7 @@ public class ArticlesContentProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Cursor cursor;
         switch (uriMatcher.match(uri)) {
+            // Selects all articles sorted by publish date
             case CODE_RECENT: {
                 if(sortOrder == null) sortOrder = "";
                 sortOrder = ArticleEntry.COLUMN_PUBLISHED_AT + " desc " + sortOrder;
@@ -63,6 +64,7 @@ public class ArticlesContentProvider extends ContentProvider {
             }
 
             case CODE_FAVORITE: {
+                // Selects only favorite articles sorted by added to favorite date
                 if(sortOrder == null) sortOrder = "";
                 sortOrder = ArticleEntry.COLUMN_FAVORITE_DATE + " desc " + sortOrder;
                 selection = (selection == null ? " " : selection + " and ") + ArticleEntry.COLUMN_FAVORITE + " = 1 ";
@@ -90,6 +92,7 @@ public class ArticlesContentProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
         Uri result;
         switch (uriMatcher.match(uri)) {
+            // Creates article with favorite mark
             case CODE_FAVORITE: {
                 Date currentDate = Calendar.getInstance().getTime();
                 values.put(ArticleEntry.COLUMN_FAVORITE, true);
@@ -106,6 +109,7 @@ public class ArticlesContentProvider extends ContentProvider {
                 break;
             }
 
+            // Creates article
             case CODE_RECENT: {
                 long newId = dbHelper.getWritableDatabase().insert(ArticleEntry.TABLE_NAME,
                         null, values);
@@ -129,6 +133,7 @@ public class ArticlesContentProvider extends ContentProvider {
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         int result;
         switch (uriMatcher.match(uri)) {
+            // Deletes articles only without favorite mark
             case CODE_RECENT: {
                 selection = (selection == null ? " " : selection + " and ") + ArticleEntry.COLUMN_FAVORITE + " = 0 ";
                 result = dbHelper.getWritableDatabase().delete(
@@ -138,6 +143,7 @@ public class ArticlesContentProvider extends ContentProvider {
                 break;
             }
 
+            // Deletes only favorite articles
             case CODE_FAVORITE: {
                 selection = (selection == null ? " " : selection + " and ") + ArticleEntry.COLUMN_FAVORITE + " = 1 ";
                 result = dbHelper.getWritableDatabase().delete(
@@ -160,6 +166,7 @@ public class ArticlesContentProvider extends ContentProvider {
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
         int result;
         switch (uriMatcher.match(uri)) {
+            // Updates an article
             case CODE_RECENT:
             case CODE_FAVORITE: {
                 result = dbHelper.getWritableDatabase().update(
@@ -184,6 +191,7 @@ public class ArticlesContentProvider extends ContentProvider {
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         switch (uriMatcher.match(uri)) {
+            // Creates a bulk of articles
             case CODE_RECENT:
                 db.beginTransaction();
                 int rowsInserted = 0;

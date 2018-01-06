@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Service providing views for Favorite and Recent widgets
+ *
  * Created by Tanya Yuferova on 11/14/2017.
  */
 
@@ -32,6 +34,9 @@ public class GridWidgetService extends RemoteViewsService {
     }
 }
 
+/**
+ * Provides views for Favorite and Recent widgets
+ */
 class GridRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     Context context;

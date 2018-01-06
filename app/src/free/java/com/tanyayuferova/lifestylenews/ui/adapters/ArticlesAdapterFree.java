@@ -11,6 +11,8 @@ import com.tanyayuferova.lifestylenews.ui.adapter.ArticlesAdapter;
 import com.google.android.gms.ads.NativeExpressAdView;
 
 /**
+ * Articles adapter with native ads
+ *
  * Created by Tanya Yuferova on 12/26/2017.
  */
 

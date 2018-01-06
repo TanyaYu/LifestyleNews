@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * ArticlesListFragment with native ads in articles list
+ *
  * Created by Tanya Yuferova on 12/26/2017.
  */
 

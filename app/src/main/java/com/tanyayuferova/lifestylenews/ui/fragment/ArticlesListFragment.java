@@ -41,6 +41,7 @@ public class ArticlesListFragment extends Fragment
     private LoaderCallback callback;
     private int articlesLimit;
     private Uri uriData;
+    // To provide each fragment with unique loader id
     protected static int countLoaders = 0;
 
     public static final String ARGUMENT_URI_DATA = "arg.uri_data";
@@ -123,6 +124,8 @@ public class ArticlesListFragment extends Fragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_CODE_ARTICLE_DETAILS_ACTIVITY && resultCode == RESULT_OK) {
+            // We need to refresh list after modifying an article, otherwise Favorite mark would display incorrectly
+            // FIXME needs refactoring
             if(data != null) {
                 List<Article> articles = data.getParcelableArrayListExtra(ArticleDetailsActivity.EXTRA_ARTICLES);
                 setAdapterData(articles);

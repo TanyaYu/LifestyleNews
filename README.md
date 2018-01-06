@@ -15,6 +15,7 @@ The app provides articles from various sources of your specific interest using k
 
 # What have I learned from this project?
 In this project, I demonstrate the skills I've learned in my Nanodegree journey, and apply them to creating a unique app experience of my own. The skills indlude:
+- Using Data Binging
 - Supporting different screen sizes;
 - Implementing notifications;
 - Implementing layout animation and PageTransformer;

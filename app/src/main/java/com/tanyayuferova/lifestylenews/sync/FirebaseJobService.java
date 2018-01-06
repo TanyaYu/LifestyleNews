@@ -7,6 +7,8 @@ import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
 
 /**
+ * Executes loading new articles
+ *
  * Created by Tanya Yuferova on 12/23/2017.
  */
 

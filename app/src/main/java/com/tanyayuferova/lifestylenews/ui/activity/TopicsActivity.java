@@ -22,6 +22,7 @@ implements TopicsAdapter.OnClickTopicHandler {
 
     private ActivityTopicsBinding binding;
     private TopicsAdapter adapter;
+    public final int RESULT_NOT_MODIFIED = 784539;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ implements TopicsAdapter.OnClickTopicHandler {
         binding.rvTopics.setHasFixedSize(true);
         binding.rvTopics.setAdapter(adapter = new TopicsAdapter(new ArrayList<String>(topics), this));
 
-        setResult(RESULT_CANCELED);
+        setResult(RESULT_NOT_MODIFIED);
     }
 
     public void onNavigationBackClick(View view) {
@@ -51,7 +52,7 @@ implements TopicsAdapter.OnClickTopicHandler {
 
         binding.etTopic.setText("");
 
-        setResult(RESULT_OK);
+        setResult(RESULT_OK); //Is modified
     }
 
     @Override
@@ -59,7 +60,7 @@ implements TopicsAdapter.OnClickTopicHandler {
         adapter.removeItem(topic);
         updateTopicsPreferences();
 
-        setResult(RESULT_OK);
+        setResult(RESULT_OK); //Is modified
     }
 
     protected void updateTopicsPreferences() {

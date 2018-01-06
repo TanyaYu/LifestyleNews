@@ -9,6 +9,8 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
 /**
+ * Application supporting analytics
+ *
  * Created by Tanya Yuferova on 12/27/2017.
  */
 

@@ -34,6 +34,7 @@ public class NotificationUtils {
         if(articlesQuantity <=0)
             return;
 
+        // FIXME NotificationCompat.Builder is deprecated. Issue #2
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .setSmallIcon(R.drawable.ic_notification_icon)

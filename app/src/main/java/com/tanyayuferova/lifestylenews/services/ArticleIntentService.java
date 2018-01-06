@@ -11,6 +11,8 @@ import com.tanyayuferova.lifestylenews.ui.widget.FavoriteArticlesWidget;
 import com.tanyayuferova.lifestylenews.ui.widget.RecentArticlesWidget;
 
 /**
+ * Intent service for updating widgets
+ *
  * Created by Tanya Yuferova on 11/14/2017.
  */
 

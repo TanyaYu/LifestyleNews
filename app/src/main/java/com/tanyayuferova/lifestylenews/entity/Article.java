@@ -71,6 +71,7 @@ public class Article implements Parcelable {
     public String getUrlToImage() {
         if(TextUtils.isEmpty(urlToImage))
             return null;
+        // Some images do not have http: in their url
         if(!(urlToImage.startsWith("https:") || urlToImage.startsWith("http:")))
             urlToImage = "https:" + urlToImage;
         return urlToImage;
