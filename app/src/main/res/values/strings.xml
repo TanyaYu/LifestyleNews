@@ -54,4 +54,7 @@
 
     <string name="remove_topic">Remove</string>
     <string name="add_topic">Add</string>
+
+    <string name="notification_new_articles_channel_id" translatable="false">new_articles_chanel</string>
+    <string name="notification_new_articles_channel_title">New articles</string>
 </resources>

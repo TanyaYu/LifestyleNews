@@ -1,6 +1,8 @@
 package com.tanyayuferova.lifestylenews.utils;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -34,8 +36,11 @@ public class NotificationUtils {
         if(articlesQuantity <=0)
             return;
 
-        // FIXME NotificationCompat.Builder is deprecated. Issue #2
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createReminderChannel(context);
+        }
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, context.getString(R.string.notification_new_articles_channel_id))
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .setSmallIcon(R.drawable.ic_notification_icon)
                 .setLargeIcon(largeIcon(context, R.drawable.ic_notification_icon))
@@ -53,6 +58,17 @@ public class NotificationUtils {
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(NEW_ARTICLES_NOTIFICATION_ID, notificationBuilder.build());
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private static void createReminderChannel(Context context) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel channel = new NotificationChannel(context.getString(R.string.notification_new_articles_channel_id),
+                context.getString(R.string.notification_new_articles_channel_title), notificationManager.IMPORTANCE_DEFAULT);
+        channel.enableLights(false);
+        channel.enableVibration(true);
+        channel.setShowBadge(true);
+        notificationManager.createNotificationChannel(channel);
     }
 
     /**
