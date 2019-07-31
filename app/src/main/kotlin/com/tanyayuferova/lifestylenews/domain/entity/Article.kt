@@ -34,6 +34,7 @@ data class Article(
         title = title,
         photoUrl = photoUrl,
         publisher = getPublisherFormatted(res),
+        description = description.orEmpty(),
         isFavorite = isFavorite
     )
 

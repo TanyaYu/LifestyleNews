@@ -7,10 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
+import com.tanyayuferova.lifestylenews.ui.common.ItemDivider
 import com.tanyayuferova.lifestylenews.ui.common.PaginationWrapperAdapter
 
 /**
@@ -59,6 +62,7 @@ fun View.isVisible(isVisible: Boolean) {
 fun ImageView.loadImage(url: String?) {
     Glide.with(this)
         .load(url)
+        .centerCrop()
         .into(this)
 }
 
@@ -66,6 +70,7 @@ fun ImageView.loadImage(url: String?) {
 fun ImageView.loadImageError(url: String?, error: Drawable) {
     Glide.with(this)
         .load(url)
+        .centerCrop()
         .placeholder(error)
         .error(error)
         .into(this)
@@ -81,5 +86,24 @@ fun TextView.setLinkMovement(linkMovement: Boolean) {
     if(linkMovement) {
         movementMethod = LinkMovementMethod.getInstance()
     }
+}
+
+@BindingAdapter("isSelected")
+fun View.isSelected(isSelected: Boolean) {
+    this.isSelected = isSelected
+}
+
+@BindingAdapter(value = ["itemDecoration", "android:orientation"], requireAll = false)
+fun RecyclerView.itemDecoration(drawable: Drawable, recyclerOrientation: Int?) {
+    val orientation = recyclerOrientation
+        ?:(layoutManager as? LinearLayoutManager)?.orientation
+        ?: VERTICAL
+    this.addItemDecoration(
+        ItemDivider(
+            context,
+            orientation,
+            drawable
+        )
+    )
 }
 

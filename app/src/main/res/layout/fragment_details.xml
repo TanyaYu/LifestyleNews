@@ -106,7 +106,7 @@
                     android:layout_marginRight="@dimen/fragment_article_details_author_margin_right"
                     android:maxLines="1"
                     android:text="@{vm.article.published}"
-                    android:textColor="@color/colorSecondaryTextInverse"
+                    android:textColor="@color/secondaryTextInverse"
                     android:textSize="@dimen/fragment_article_details_author_text_size"
                     tools:text="by Nick Douglas on 10/05/2017" />
 
@@ -117,7 +117,6 @@
                     android:layout_gravity="bottom"
                     android:layout_marginTop="@dimen/fragment_article_details_toolbar_margin_top"
                     android:layout_marginBottom="@dimen/fragment_article_details_toolbar_margin_bottom"
-                    android:theme="@style/ToolbarStyle"
                     app:contentInsetStartWithNavigation="0dp"
                     app:layout_collapseMode="pin"
                     app:navigationIcon="@drawable/ic_arrow_back"
@@ -132,7 +131,7 @@
                         android:paddingEnd="@dimen/fragment_article_details_title_padding_right"
                         android:paddingRight="@dimen/fragment_article_details_title_padding_right"
                         android:text="@{vm.article.title}"
-                        android:textColor="@color/colorPrimaryTextInverse"
+                        android:textColor="@color/primaryTextInverse"
                         android:textSize="@dimen/fragment_article_details_title_text_size"
                         android:textStyle="bold"
                         tools:text="Blind-Assistance App Be My Eyes Is Now on Android" />
