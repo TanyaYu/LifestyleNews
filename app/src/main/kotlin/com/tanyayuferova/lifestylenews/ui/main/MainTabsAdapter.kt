@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.tanyayuferova.lifestylenews.ui.favorites.FavoritesFragment
 import com.tanyayuferova.lifestylenews.ui.list.ListFragment
-import timber.log.Timber
+import java.lang.IllegalStateException
 
 /**
  * Author: Tanya Yuferova
@@ -21,7 +21,7 @@ class MainTabsAdapter(
         return when(position) {
             0 -> ListFragment()
             1 -> FavoritesFragment()
-            else -> throw Exception("Unknown fragment position $position")
+            else -> throw IllegalStateException("Unknown fragment position $position")
         }
     }
 
@@ -29,7 +29,7 @@ class MainTabsAdapter(
         return when(position) {
             0 -> "Recent" //todo resources
             1 -> "Saved"
-            else -> throw Exception("Unknown fragment position $position")
+            else -> throw IllegalStateException("Unknown fragment position $position")
         }
     }
 

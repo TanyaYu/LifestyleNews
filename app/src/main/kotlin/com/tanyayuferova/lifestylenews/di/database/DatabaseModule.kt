@@ -34,4 +34,3 @@ object DatabaseModule {
         return database.articlesDao()
     }
 }
- 

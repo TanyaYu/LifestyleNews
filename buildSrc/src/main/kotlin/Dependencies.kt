@@ -161,15 +161,15 @@ object Dependencies {
         const val material = "com.google.android.material:material:1.1.0-alpha05"
         const val gson = "com.google.code.gson:gson:2.8.5"
 //
-        val firebase = Firebase
+//        val firebase = Firebase
         val dagger = Dagger
 
-        object Firebase {
+//        object Firebase {
 //            const val core = "com.google.firebase:firebase-core:16.0.9"
 //            const val messaging = "com.google.firebase:firebase-messaging:18.0.0"
 //            const val crashlytics = "com.crashlytics.sdk.android:crashlytics:2.10.1"
 //            const val config = "com.google.firebase:firebase-config:17.0.0"
-        }
+//        }
 
         object Dagger {
             const val runtime = "com.google.dagger:dagger:${versions.dagger}"
