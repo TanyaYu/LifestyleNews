@@ -1,127 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.tanyayuferova.lifestylenews.ui.activity.MainActivity">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".ui.activity.MainActivity">
 
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/coordinator"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipe_refresh_layout"
+    <fragment
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
 
-            <android.support.v4.widget.NestedScrollView
-                android:id="@+id/scrollView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/constraint_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/tv_recent_caption"
-                        style="@style/SectionCaption"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/article_item_horizontal_margin"
-                        android:layout_marginStart="@dimen/article_item_horizontal_margin"
-                        android:layout_marginTop="@dimen/activity_main_list_type_caption_top_margin"
-                        android:onClick="onRecentClick"
-                        android:text="@string/recent_caption"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/iv_recent_arrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:onClick="onRecentClick"
-                        android:contentDescription="@string/recent_caption"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_recent_caption"
-                        app:layout_constraintStart_toEndOf="@id/tv_recent_caption"
-                        app:layout_constraintTop_toTopOf="@id/tv_recent_caption"
-                        app:srcCompat="@drawable/ic_next" />
-
-                    <FrameLayout
-                        android:id="@+id/fragment_recent_list"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_recent_caption" />
-
-                    <TextView
-                        android:id="@+id/tv_favorite_caption"
-                        style="@style/SectionCaption"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/article_item_horizontal_margin"
-                        android:layout_marginStart="@dimen/article_item_horizontal_margin"
-                        android:layout_marginTop="@dimen/activity_main_list_type_caption_top_margin"
-                        android:onClick="onFavoriteClick"
-                        android:text="@string/favorite_caption"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/fragment_recent_list" />
-
-                    <ImageView
-                        android:id="@+id/iv_favorite_arrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:onClick="onFavoriteClick"
-                        android:contentDescription="@string/favorite_caption"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_favorite_caption"
-                        app:layout_constraintStart_toEndOf="@id/tv_favorite_caption"
-                        app:layout_constraintTop_toTopOf="@id/tv_favorite_caption"
-                        app:srcCompat="@drawable/ic_next" />
-
-                    <FrameLayout
-                        android:id="@+id/fragment_favorite_list"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_favorite_caption" />
-
-                    <TextView
-                        android:id="@+id/tv_credits"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:autoLink="web"
-                        android:background="@drawable/image_shade"
-                        android:paddingTop="4dp"
-                        android:text="@string/powered_by"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/activity_main_credits_text_size"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/fragment_favorite_list" />
-                </android.support.constraint.ConstraintLayout>
-            </android.support.v4.widget.NestedScrollView>
-        </android.support.v4.widget.SwipeRefreshLayout>
-
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/toolbar_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/ToolbarStyle"
-                app:navigationIcon="@drawable/ic_newspaper"
-                app:title="@string/app_name" />
-
-        </android.support.design.widget.AppBarLayout>
-
-
-    </android.support.design.widget.CoordinatorLayout>
-</layout>
+</FrameLayout>
