@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main">
+
+    <fragment
+        android:id="@+id/main"
+        android:name="com.tanyayuferova.lifestylenews.ui.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_main_to_details"
+            app:destination="@id/details" />
+    </fragment>
+
+    <!--<fragment-->
+        <!--android:id="@+id/list"-->
+        <!--android:name="com.tanyayuferova.lifestylenews.ui.list.ListFragment"-->
+        <!--android:label="fragment_list"-->
+        <!--tools:layout="@layout/fragment_list"/>-->
+
+    <fragment
+        android:id="@+id/details"
+        android:name="com.tanyayuferova.lifestylenews.ui.details.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+</navigation>

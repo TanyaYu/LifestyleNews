@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.list.ListFragment">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.tanyayuferova.lifestylenews.domain.list.ListViewModel" />
+
+        <import type="com.tanyayuferova.lifestylenews.domain.list.ListViewModel.DataState" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            bind:isRefreshing="@{vm.state == DataState.LOADING}"
+            bind:onRefreshListener="@{vm::onSwipeRefresh}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adapter="@{vm.wrapperAdapter}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:adapterFooter="@{vm.footer}"
+                bind:hasFixedSize="@{true}"
+                bind:isVisible="@{vm.state == DataState.DATA || vm.state == DataState.LOADING}"
+                bind:listData="@{vm.articles}"
+                tools:listitem="@layout/item_article" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:id="@+id/stub"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            bind:isVisible="@{vm.state == DataState.ERROR}"
+            tools:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Error" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/retry"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> vm.onRetryClick()}" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            bind:isVisible="@{vm.state == DataState.EMPTY}"
+            tools:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Empty" />
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+</layout>

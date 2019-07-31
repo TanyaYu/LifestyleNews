@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.favorites.FavoritesFragment">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.tanyayuferova.lifestylenews.domain.favorites.FavoritesViewModel" />
+
+        <import type="com.tanyayuferova.lifestylenews.domain.favorites.FavoritesViewModel.DataState" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adapter="@{vm.adapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            bind:hasFixedSize="@{true}"
+            bind:isVisible="@{vm.state == DataState.DATA}"
+            bind:listData="@{vm.articles}"
+            tools:listitem="@layout/item_article" />
+
+
+        <LinearLayout
+            android:id="@+id/stub"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            bind:isVisible="@{vm.state == DataState.ERROR}"
+            tools:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Error" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/retry"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v) -> vm.onRetryClick()}" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            bind:isVisible="@{vm.state == DataState.EMPTY}"
+            tools:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Empty" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>
