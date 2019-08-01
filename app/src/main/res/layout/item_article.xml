@@ -41,12 +41,13 @@
                 android:layout_width="0dp"
                 android:layout_height="140dp"
                 android:contentDescription="@string/article_image"
-                app:error="@{@drawable/ic_newspaper_color}"
+                app:error="@{@drawable/photo_error_placeholder}"
                 app:imageUrl="@{item.photoUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/primaryLight" />
+                app:placeholder="@{@drawable/photo_placeholder}"
+                tools:src="@drawable/photo_placeholder" />
 
             <View
                 android:layout_width="0dp"
