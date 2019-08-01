@@ -15,7 +15,8 @@ import kotlin.math.roundToInt
 open class ItemDivider(
     context: Context,
     private val orientation: Int = VERTICAL,
-    var divider: Drawable = ContextCompat.getDrawable(context, R.drawable.divider)!!
+    private val divider: Drawable = ContextCompat.getDrawable(context, R.drawable.divider)
+        ?: throw NoSuchElementException("Can't find default divider drawable R.drawable.divider")
 ) : RecyclerView.ItemDecoration() {
 
     private val bounds = Rect()
@@ -39,7 +40,7 @@ open class ItemDivider(
         val childCount = parent.childCount
         for (i in 0 until childCount - 1) {
             val child = parent.getChildAt(i)
-            parent.getDecoratedBoundsWithMargins(child, bounds)
+            parent.layoutManager?.getDecoratedBoundsWithMargins(child, bounds)
             val bottom = bounds.bottom + child.translationY.roundToInt()
             val top = bottom - divider.intrinsicHeight
             divider.setBounds(left, top, right, bottom)
@@ -56,7 +57,7 @@ open class ItemDivider(
         val childCount = parent.childCount
         for (i in 0 until childCount - 1) {
             val child = parent.getChildAt(i)
-            parent.layoutManager!!.getDecoratedBoundsWithMargins(child, bounds)
+            parent.layoutManager?.getDecoratedBoundsWithMargins(child, bounds)
             val right = bounds.right + child.translationX.roundToInt()
             val left = right - divider.intrinsicWidth
             divider.setBounds(left, top, right, bottom)
