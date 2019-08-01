@@ -33,41 +33,24 @@
             bind:listData="@{vm.articles}"
             tools:listitem="@layout/item_article" />
 
-
-        <LinearLayout
-            android:id="@+id/stub"
+        <com.tanyayuferova.lifestylenews.ui.views.EmptyView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            app:action="@string/retry_action"
+            app:action_enabled="true"
+            app:icon="@drawable/ic_broken_image"
+            app:icon_tint="?android:textColorSecondary"
+            app:text="@string/unknown_error_message"
             bind:isVisible="@{vm.state == DataState.ERROR}"
-            tools:visibility="gone">
+            bind:onActionClick="@{vm::onRetryClick}" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Error" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/retry"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{(v) -> vm.onRetryClick()}" />
-        </LinearLayout>
-
-        <LinearLayout
+        <com.tanyayuferova.lifestylenews.ui.views.EmptyView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            bind:isVisible="@{vm.state == DataState.EMPTY}"
-            tools:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Empty" />
-
-        </LinearLayout>
+            app:icon="@drawable/ic_search"
+            app:icon_tint="?android:textColorSecondary"
+            app:text="@string/articles_empty_data_message"
+            bind:isVisible="@{vm.state == DataState.EMPTY}" />
 
     </FrameLayout>
 </layout>

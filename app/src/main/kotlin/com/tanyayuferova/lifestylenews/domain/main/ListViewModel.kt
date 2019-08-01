@@ -53,7 +53,7 @@ class ListViewModel @Inject constructor(
     }
 
     override fun onError(error: Throwable) {
-        state.set(ERROR)
+        state.set(UNKNOWN_ERROR)
     }
 
     override fun onEmpty() {
@@ -117,7 +117,8 @@ class ListViewModel @Inject constructor(
     enum class DataState {
         LOADING,
         DATA,
-        ERROR,
+        UNKNOWN_ERROR,
+        CONNECTION_ERROR,
         EMPTY
     }
 

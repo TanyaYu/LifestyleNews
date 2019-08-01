@@ -3,6 +3,7 @@ package com.tanyayuferova.lifestylenews.ui.common.binding
 import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 
 /**
@@ -12,7 +13,7 @@ import androidx.databinding.BindingAdapter
 
 @BindingAdapter("isVisible")
 fun View.isVisible(isVisible: Boolean) {
-    visibility = if (isVisible) View.VISIBLE else View.GONE
+    this.isVisible = isVisible
 }
 
 @BindingAdapter("isSelected")
