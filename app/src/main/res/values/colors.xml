@@ -5,13 +5,5 @@
     <color name="primaryDark">#00796B</color>
     <color name="accent">#FF1744</color>
     <color name="primaryLight">#80CBC4</color>
-    <color name="primaryTextInverse">#FFFFFF</color>
-    <color name="secondaryTextInverse">#eeee</color>
-    <color name="primaryText">#de000000</color>
-    <color name="secondaryText">#8a000000</color>
     <color name="divider">#e0e0e0</color>
-    <color name="grayTransparent">#60000000</color>
-    <color name="windowBackground">#f0f0f0</color>
-    <color name="ripple">@color/ripple_material_light</color>
-    <color name="toolbar_icon">@color/white</color>
 </resources>

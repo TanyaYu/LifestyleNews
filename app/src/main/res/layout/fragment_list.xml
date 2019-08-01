@@ -9,9 +9,9 @@
 
         <variable
             name="vm"
-            type="com.tanyayuferova.lifestylenews.domain.list.ListViewModel" />
+            type="com.tanyayuferova.lifestylenews.domain.main.ListViewModel" />
 
-        <import type="com.tanyayuferova.lifestylenews.domain.list.ListViewModel.DataState" />
+        <import type="com.tanyayuferova.lifestylenews.domain.main.ListViewModel" />
 
     </data>
 

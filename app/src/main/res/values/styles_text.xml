@@ -1,42 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Title">
-        <item name="android:textSize">@dimen/text_size_xh</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:textStyle">bold</item>
-    </style>
+    <style name="Title" parent="TextAppearance.MaterialComponents.Headline6"/>
 
     <style name="Title.Inverse">
         <item name="android:textColor">?android:textColorPrimaryInverse</item>
     </style>
 
-    <style name="Subhead">
-        <item name="android:textSize">@dimen/text_size_h</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
+    <style name="Title2" parent="Title">
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="Subhead2">
-        <item name="android:textSize">@dimen/text_size_h</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:textStyle">bold</item>
-    </style>
+    <style name="Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1"/>
 
-    <style name="Subhead2.Inverse">
+    <style name="Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2"/>
+
+    <style name="Subtitle2.Inverse">
         <item name="android:textColor">?android:textColorPrimaryInverse</item>
     </style>
 
-    <style name="Body">
-        <item name="android:textSize">@dimen/text_size_m</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:textStyle">normal</item>
+    <style name="Body" parent="TextAppearance.MaterialComponents.Body1"/>
+
+    <style name="Body.Secondary">
+        <item name="android:textColor">?android:textColorSecondary</item>
     </style>
 
-    <style name="Caption">
-        <item name="android:textSize">@dimen/text_size_m</item>
+    <style name="Body2" parent="TextAppearance.MaterialComponents.Body2"/>
+
+    <style name="Body2.Secondary">
         <item name="android:textColor">?android:textColorSecondary</item>
-        <item name="android:textStyle">normal</item>
     </style>
+
+    <style name="Button" parent="TextAppearance.MaterialComponents.Button"/>
+
+    <style name="Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Caption.Secondary">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Overline" parent="TextAppearance.MaterialComponents.Overline"/>
 
 </resources>

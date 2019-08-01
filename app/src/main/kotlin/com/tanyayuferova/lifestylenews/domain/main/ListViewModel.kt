@@ -1,4 +1,4 @@
-package com.tanyayuferova.lifestylenews.domain.list
+package com.tanyayuferova.lifestylenews.domain.main
 
 import android.content.res.Resources
 import androidx.databinding.ObservableField
@@ -8,11 +8,10 @@ import com.tanyayuferova.lifestylenews.domain.common.Pagination
 import com.tanyayuferova.lifestylenews.domain.baseviewmodel.RxViewModel
 import com.tanyayuferova.lifestylenews.domain.common.Schedulers.main
 import com.tanyayuferova.lifestylenews.ui.list.ArticleListItem
-import com.tanyayuferova.lifestylenews.domain.list.ListViewModel.DataState.*
+import com.tanyayuferova.lifestylenews.domain.main.ListViewModel.DataState.*
 import com.tanyayuferova.lifestylenews.ui.list.ArticlesAdapter
 import com.tanyayuferova.lifestylenews.ui.common.PaginationWrapperAdapter
 import com.tanyayuferova.lifestylenews.ui.common.PaginationWrapperAdapter.Footer
-import com.tanyayuferova.lifestylenews.ui.main.MainFragmentDirections.Companion.actionMainToDetails
 import com.tanyayuferova.lifestylenews.utils.mapList
 import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject
@@ -25,19 +24,16 @@ import javax.inject.Inject
  */
 class ListViewModel @Inject constructor(
     private val res: Resources,
-    private val articlesRepository: ArticlesRepository
-) : RxViewModel(),
-    Pagination.ViewInteraction<ArticleListItem>,
-    ArticlesAdapter.ActionsHandler
-{
+    private val articlesRepository: ArticlesRepository,
+    private val articlesInteraction: ArticleListInteractionViewModel
+) : RxViewModel(), Pagination.ViewInteraction<ArticleListItem> {
+
     val articles = ObservableField<List<ArticleListItem>>()
     val state = ObservableField(LOADING)
     val footer = ObservableField<Footer?>()
 
     //todo move in fragment
-    private val adapter = ArticlesAdapter(
-        actionsHandler = this
-    )
+    private val adapter = ArticlesAdapter(articlesInteraction)
 
     val wrapperAdapter = PaginationWrapperAdapter(
         pageSize = PAGE_SIZE,
@@ -99,20 +95,6 @@ class ListViewModel @Inject constructor(
 
     override fun onComplete() {
         footer.set(null)
-    }
-
-    override fun onArticleClick(id: Int) {
-        navController?.navigate(actionMainToDetails(id))
-    }
-
-    override fun onFavoriteClick(id: Int, isFavorite: Boolean) {
-        if(isFavorite) {
-            articlesRepository.setUnFavorite(id)
-                .bindSubscribeBy()
-        } else {
-            articlesRepository.setFavorite(id)
-                .bindSubscribeBy()
-        }
     }
 
     fun onSwipeRefresh() {

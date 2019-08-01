@@ -8,9 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import com.tanyayuferova.lifestylenews.BR
-import com.tanyayuferova.lifestylenews.domain.baseviewmodel.NavigationViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -18,7 +16,7 @@ import javax.inject.Inject
  * Author: Tanya Yuferova
  * Date: 7/28/2019
  */
-abstract class ViewModelFragment<Binding : ViewDataBinding, ViewModel : NavigationViewModel>
+abstract class ViewModelFragment<Binding : ViewDataBinding, ViewModel : com.tanyayuferova.lifestylenews.domain.baseviewmodel.ViewModel>
     : DaggerFragment() {
 
     abstract val layout: Int
@@ -35,7 +33,6 @@ abstract class ViewModelFragment<Binding : ViewDataBinding, ViewModel : Navigati
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProviders.of(this, viewModelFactory)[viewModelClass]
-        viewModel.navController = findNavController()
         bindArgs(viewModel)
         viewModel.onReady()
 
@@ -56,10 +53,5 @@ abstract class ViewModelFragment<Binding : ViewDataBinding, ViewModel : Navigati
 
     open fun bindViewModel(binding: Binding, viewModel: ViewModel) {
         binding.setVariable(BR.vm, viewModel)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        viewModel.navController = null
     }
 }

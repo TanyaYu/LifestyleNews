@@ -9,9 +9,9 @@
 
         <variable
             name="vm"
-            type="com.tanyayuferova.lifestylenews.domain.favorites.FavoritesViewModel" />
+            type="com.tanyayuferova.lifestylenews.domain.main.FavoritesViewModel" />
 
-        <import type="com.tanyayuferova.lifestylenews.domain.favorites.FavoritesViewModel.DataState" />
+        <import type="com.tanyayuferova.lifestylenews.domain.main.FavoritesViewModel" />
 
     </data>
 
