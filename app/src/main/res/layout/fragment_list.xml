@@ -11,7 +11,7 @@
             name="vm"
             type="com.tanyayuferova.lifestylenews.domain.main.ListViewModel" />
 
-        <import type="com.tanyayuferova.lifestylenews.domain.main.ListViewModel" />
+        <import type="com.tanyayuferova.lifestylenews.domain.main.ListViewModel.DataState" />
 
     </data>
 
@@ -30,7 +30,6 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:adapter="@{vm.wrapperAdapter}"
                 android:orientation="vertical"
                 android:clipToPadding="false"
                 android:paddingTop="@dimen/spacing_m"

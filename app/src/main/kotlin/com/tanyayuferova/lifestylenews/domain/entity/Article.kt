@@ -9,6 +9,7 @@ import com.tanyayuferova.lifestylenews.ui.details.ArticleDetails
 import com.tanyayuferova.lifestylenews.utils.DateFormatter
 import java.util.Date
 import java.util.concurrent.TimeUnit
+import kotlin.math.round
 
 /**
  * Author: Tanya Yuferova
@@ -33,7 +34,7 @@ data class Article(
         id = id,
         title = title,
         photoUrl = photoUrl,
-        publisher = getPublisherFormatted(res),
+        publisher = getListItemPublisher(res),
         description = description.orEmpty(),
         isFavorite = isFavorite
     )
@@ -42,57 +43,63 @@ data class Article(
         id = id,
         title = title,
         description = description.orEmpty(),
-        source = getSourceFormatted(res),
-        published = getAuthorFormatted(res) + " " + getPublishedFormatted(res),
+        source = getSourceFormatted(res).orEmpty(),
+        published = getDetailsPublisher(res),
         photoUrl = photoUrl.orEmpty(),
         isFavorite = isFavorite
     )
 
     private fun getSourceFormatted(res: Resources) = sourceName?.let {
         res.getString(R.string.source_link, sourceName, url)
-    }.orEmpty()
+    }
 
     private fun getPublishedFormatted(res: Resources) = published?.let {
         res.getString(
             R.string.on_date,
             DateFormatter.formatShort(published)
         )
-    }.orEmpty()
+    }
 
-    //todo move logic
-    private fun getPublishedPeriod(res: Resources) = published?.let {
+    private fun getPublishedPeriod(res: Resources):String? = published?.let {
         val now = Date()
         val timeSpend = now.time - published.time
 
-        val hours = TimeUnit.MILLISECONDS.toHours(timeSpend)
+        val hours = TimeUnit.MILLISECONDS.toHours(timeSpend).toInt()
         if (hours < 24) {
-            return res.getQuantityString(R.plurals.hours_ago, hours.toInt(), hours)
+            return res.getQuantityString(R.plurals.hours_ago, hours, hours)
         }
-        val days = TimeUnit.MILLISECONDS.toDays(timeSpend)
+        val days = TimeUnit.MILLISECONDS.toDays(timeSpend).toInt()
         if (days < 7) {
-            return res.getQuantityString(R.plurals.days_ago, days.toInt(), days)
+            return res.getQuantityString(R.plurals.days_ago, days, days)
         }
-        val weeks = days / 7
+        val weeks = round(days / 7f).toInt()
         if (weeks < 6) {
-            return res.getQuantityString(R.plurals.weeks_ago, weeks.toInt(), weeks)
+            return res.getQuantityString(R.plurals.weeks_ago, weeks, weeks)
         }
-        //todo round
-        val months = days / 30 //todo think of a better way
+        // approximate
+        val months = round(days / 30f).toInt()
         if (months < 12) {
             return res.getQuantityString(R.plurals.months_ago, months.toInt(), months)
         }
-        val years = months / 12
+        val years = round(months / 12f).toInt()
         return res.getQuantityString(R.plurals.years_ago, years.toInt(), years)
-    }.orEmpty()
+    }
 
     private fun getAuthorFormatted(res: Resources) = author?.let {
         res.getString(R.string.by_author, author)
-    }.orEmpty()
+    }
 
-    private fun getPublisherFormatted(res: Resources) = arrayListOf(
+    private fun getListItemPublisher(res: Resources) = arrayListOf(
         getSourceFormatted(res),
         getPublishedPeriod(res)
     )
-        .filter { it.isNotBlank() }
+        .filterNot { it.isNullOrBlank() }
         .joinToString(" • ")
+
+    private fun getDetailsPublisher(res: Resources) = arrayListOf(
+        getAuthorFormatted(res),
+        getPublishedFormatted(res)
+    )
+        .filterNot { it.isNullOrBlank() }
+        .joinToString(" ")
 }

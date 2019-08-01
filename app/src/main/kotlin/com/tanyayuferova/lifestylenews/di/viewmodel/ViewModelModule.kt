@@ -2,7 +2,7 @@ package com.tanyayuferova.lifestylenews.di.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.tanyayuferova.lifestylenews.domain.main.ArticleListInteractionViewModel
+import com.tanyayuferova.lifestylenews.domain.main.ArticleItemsViewModel
 import com.tanyayuferova.lifestylenews.domain.main.FavoritesViewModel
 import com.tanyayuferova.lifestylenews.domain.main.ListViewModel
 import com.tanyayuferova.lifestylenews.domain.main.MainViewModel
@@ -44,6 +44,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ArticleListInteractionViewModel::class)
-    internal abstract fun bindArticleListInteractionViewModel(viewModel: ArticleListInteractionViewModel): ViewModel
+    @ViewModelKey(ArticleItemsViewModel::class)
+    internal abstract fun bindArticleListInteractionViewModel(viewModel: ArticleItemsViewModel): ViewModel
 }

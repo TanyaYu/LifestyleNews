@@ -11,7 +11,7 @@ import javax.inject.Inject
  * Author: Tanya Yuferova
  * Date: 8/1/19
  */
-class ArticleListInteractionViewModel @Inject constructor(
+class ArticleItemsViewModel @Inject constructor(
     private val articlesRepository: ArticlesRepository,
     private val navController: NavController
 ) : RxViewModel(), ArticlesAdapter.ActionsHandler {

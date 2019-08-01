@@ -11,7 +11,7 @@
             name="vm"
             type="com.tanyayuferova.lifestylenews.domain.main.FavoritesViewModel" />
 
-        <import type="com.tanyayuferova.lifestylenews.domain.main.FavoritesViewModel" />
+        <import type="com.tanyayuferova.lifestylenews.domain.main.FavoritesViewModel.DataState" />
 
     </data>
 
@@ -23,7 +23,6 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adapter="@{vm.adapter}"
             android:clipToPadding="false"
             android:paddingTop="@dimen/spacing_m"
             android:paddingBottom="@dimen/spacing_m"

@@ -10,10 +10,10 @@ import androidx.lifecycle.ViewModelProviders
  * Author: Tanya Yuferova
  * Date: 7/28/2019
  */
-inline fun <reified T : ViewModel> FragmentActivity.injectViewModel(factory: ViewModelProvider.Factory): T {
+inline fun <reified T : ViewModel> FragmentActivity.provideViewModel(factory: ViewModelProvider.Factory): T {
     return ViewModelProviders.of(this, factory)[T::class.java]
 }
 
-inline fun <reified T : ViewModel> Fragment.injectViewModel(factory: ViewModelProvider.Factory): T {
+inline fun <reified T : ViewModel> Fragment.provideViewModel(factory: ViewModelProvider.Factory): T {
     return ViewModelProviders.of(this, factory)[T::class.java]
 }

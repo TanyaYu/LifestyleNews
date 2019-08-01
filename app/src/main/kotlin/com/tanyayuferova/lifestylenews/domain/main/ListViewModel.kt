@@ -9,8 +9,6 @@ import com.tanyayuferova.lifestylenews.domain.baseviewmodel.RxViewModel
 import com.tanyayuferova.lifestylenews.domain.common.Schedulers.main
 import com.tanyayuferova.lifestylenews.ui.list.ArticleListItem
 import com.tanyayuferova.lifestylenews.domain.main.ListViewModel.DataState.*
-import com.tanyayuferova.lifestylenews.ui.list.ArticlesAdapter
-import com.tanyayuferova.lifestylenews.ui.common.PaginationWrapperAdapter
 import com.tanyayuferova.lifestylenews.ui.common.PaginationWrapperAdapter.Footer
 import com.tanyayuferova.lifestylenews.utils.mapList
 import io.reactivex.Single
@@ -24,29 +22,18 @@ import javax.inject.Inject
  */
 class ListViewModel @Inject constructor(
     private val res: Resources,
-    private val articlesRepository: ArticlesRepository,
-    private val articlesInteraction: ArticleListInteractionViewModel
+    private val articlesRepository: ArticlesRepository
 ) : RxViewModel(), Pagination.ViewInteraction<ArticleListItem> {
 
     val articles = ObservableField<List<ArticleListItem>>()
     val state = ObservableField(LOADING)
     val footer = ObservableField<Footer?>()
 
-    //todo move in fragment
-    private val adapter = ArticlesAdapter(articlesInteraction)
-
-    val wrapperAdapter = PaginationWrapperAdapter(
-        pageSize = PAGE_SIZE,
-        newPageRequest = ::onNewPageRequest,
-        adapter = adapter
-    )
-
+    private val dataSubject = BehaviorSubject.create<List<ArticleListItem>>()
     private val pagination = Pagination(
         dataProvider = ::requestPage,
         viewInteraction = this
     )
-
-    private val dataSubject = BehaviorSubject.create<List<ArticleListItem>>()
 
     init {
         articlesRepository.clearCache()
@@ -105,12 +92,12 @@ class ListViewModel @Inject constructor(
         pagination.retry()
     }
 
-    private fun onRetryPageClick() {
-        pagination.retryPage()
+    fun onNewPageRequest() {
+        pagination.loadNewPage()
     }
 
-    private fun onNewPageRequest() {
-        pagination.loadNewPage()
+    private fun onRetryPageClick() {
+        pagination.retryPage()
     }
 
     private fun requestPage(page: Int): Single<List<ArticleListItem>> {
@@ -135,6 +122,6 @@ class ListViewModel @Inject constructor(
     }
 
     companion object {
-        private const val PAGE_SIZE = 30
+        const val PAGE_SIZE = 30
     }
 }
