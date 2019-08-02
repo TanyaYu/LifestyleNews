@@ -49,7 +49,7 @@
     <dimen name="spacing_h">16dp</dimen>
     <dimen name="spacing_xh">24dp</dimen>
     <dimen name="spacing_xxh">32dp</dimen>
-    <dimen name="spacing_xxxh">64dp</dimen>
+    <dimen name="spacing_xxxh">48dp</dimen>
 
     <dimen name="text_size_xl">10sp</dimen>
     <dimen name="text_size_l">12sp</dimen>

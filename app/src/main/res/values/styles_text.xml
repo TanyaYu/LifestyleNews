@@ -13,6 +13,10 @@
 
     <style name="Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1"/>
 
+    <style name="Subtitle.Secondary" >
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
     <style name="Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2"/>
 
     <style name="Subtitle2.Inverse">

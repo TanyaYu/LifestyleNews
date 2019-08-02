@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="AppTheme">
+        <attr name="emptyViewStyle" format="reference"/>
+    </declare-styleable>
+
     <declare-styleable name="EmptyView">
         <attr name="text" format="string" />
         <attr name="icon" format="reference" />
-        <attr name="icon_tint" format="color" />
+        <attr name="iconTint" format="color" />
         <attr name="action" format="string" />
-        <attr name="action_enabled" format="boolean" />
+        <attr name="actionEnabled" format="boolean" />
     </declare-styleable>
 </resources>

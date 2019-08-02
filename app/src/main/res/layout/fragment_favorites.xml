@@ -36,10 +36,7 @@
         <com.tanyayuferova.lifestylenews.ui.views.EmptyView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:action="@string/retry_action"
-            app:action_enabled="true"
             app:icon="@drawable/ic_broken_image"
-            app:icon_tint="?android:textColorSecondary"
             app:text="@string/unknown_error_message"
             bind:isVisible="@{vm.state == DataState.ERROR}"
             bind:onActionClick="@{vm::onRetryClick}" />
@@ -48,7 +45,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:icon="@drawable/ic_search"
-            app:icon_tint="?android:textColorSecondary"
             app:text="@string/articles_empty_data_message"
             bind:isVisible="@{vm.state == DataState.EMPTY}" />
 

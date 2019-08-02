@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="@dimen/icon_size_xh"
-        android:layout_height="@dimen/icon_size_xh"
+        android:layout_width="@dimen/icon_size_h"
+        android:layout_height="@dimen/icon_size_h"
         android:layout_marginBottom="@dimen/spacing_h"
         android:contentDescription="@string/content_description_empty_view"
         tools:src="@drawable/ic_search" />
@@ -23,19 +23,19 @@
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/spacing_xxxh"
         android:layout_marginRight="@dimen/spacing_xxxh"
-        android:textAppearance="@style/Subtitle"
+        android:gravity="center_horizontal"
+        android:textAppearance="@style/Subtitle.Secondary"
         tools:text="Please try again later Please try again later Please try again later Please try again later" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/action"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_m"
+        android:layout_marginTop="@dimen/spacing_h"
         android:text="@string/retry_action" />
 
     <Space

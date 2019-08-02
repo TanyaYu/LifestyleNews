@@ -136,7 +136,7 @@
                 android:onClick="@{() -> handler.onReadClick(item.id)}"
                 android:padding="@dimen/spacing_l"
                 android:src="@drawable/ic_launch"
-                android:tint="?android:textColorPrimary"
+                android:tint="@color/iconTintFocused"
                 app:layout_constraintEnd_toEndOf="@id/description"
                 app:layout_constraintTop_toTopOf="@id/publisher" />
 

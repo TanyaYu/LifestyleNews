@@ -23,7 +23,7 @@ import androidx.databinding.BindingAdapter
 class EmptyView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = R.attr.emptyViewStyle
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
     private val textView: TextView
@@ -60,15 +60,16 @@ class EmptyView @JvmOverloads constructor(
         gravity = Gravity.CENTER_HORIZONTAL
 
         val typedArray = context.obtainStyledAttributes(
-            attrs, R.styleable.EmptyView,
-            defStyleAttr, 0
+            attrs, R.styleable.EmptyView, defStyleAttr, 0
         )
         text = typedArray.getText(R.styleable.EmptyView_text)
         icon = typedArray.getDrawable(R.styleable.EmptyView_icon)
-        val tint = typedArray.getColor(R.styleable.EmptyView_icon_tint, ContextCompat.getColor(context, R.color.white))
-        icon?.let { DrawableCompat.setTint(it, tint) }
+        val tint = typedArray.getColor(R.styleable.EmptyView_iconTint, NO_TINT)
+        if (tint != NO_TINT) {
+            icon?.let { DrawableCompat.setTint(it, tint) }
+        }
         actionButton.text = typedArray.getText(R.styleable.EmptyView_action)
-        isActionEnabled = typedArray.getBoolean(R.styleable.EmptyView_action_enabled, false)
+        isActionEnabled = typedArray.getBoolean(R.styleable.EmptyView_actionEnabled, false)
         typedArray.recycle()
     }
 
@@ -78,10 +79,13 @@ class EmptyView @JvmOverloads constructor(
 
     companion object {
 
+        private const val NO_TINT = Int.MIN_VALUE
+
         @JvmStatic
         @BindingAdapter("onActionClick")
         fun EmptyView.setOnActionClick(action: () -> Unit) {
             setAction(action)
+            isActionEnabled = true
         }
     }
 }

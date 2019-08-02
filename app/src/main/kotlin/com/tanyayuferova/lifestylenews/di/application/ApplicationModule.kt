@@ -6,6 +6,8 @@ import com.tanyayuferova.lifestylenews.Application
 import com.tanyayuferova.lifestylenews.data.BASE_URL
 import com.tanyayuferova.lifestylenews.data.articles.ArticlesService
 import com.tanyayuferova.lifestylenews.data.network.ApiKeyInterceptor
+import com.tanyayuferova.lifestylenews.data.network.status.NetworkStatusReceiver
+import com.tanyayuferova.lifestylenews.data.network.status.NetworkStatusService
 import com.tanyayuferova.lifestylenews.di.activity.ActivityScope
 import com.tanyayuferova.lifestylenews.di.activity.FragmentBuildersModule
 import com.tanyayuferova.lifestylenews.domain.common.Schedulers
@@ -19,6 +21,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 
 /**
@@ -37,12 +40,14 @@ abstract class ApplicationModule {
     @Module
     companion object {
         @Provides
+        @Singleton
         @JvmStatic
         fun provideResources(context: Context): Resources {
             return context.resources
         }
 
         @Provides
+        @Singleton
         @JvmStatic
         fun provideOkHttpClient(): OkHttpClient {
             return OkHttpClient.Builder()
@@ -54,6 +59,7 @@ abstract class ApplicationModule {
         }
 
         @Provides
+        @Singleton
         @JvmStatic
         fun provideArticlesService(httpClient: OkHttpClient): ArticlesService {
             return Retrofit.Builder()
@@ -64,6 +70,19 @@ abstract class ApplicationModule {
                 .build()
                 .create(ArticlesService::class.java)
         }
-    }
 
+        @Provides
+        @Singleton
+        @JvmStatic
+        fun provideNetworkStatusReceiver(context: Context): NetworkStatusReceiver {
+            return NetworkStatusReceiver(context)
+        }
+
+        @Provides
+        @Singleton
+        @JvmStatic
+        fun provideNetworkStatusService(networkStatusReceiver: NetworkStatusReceiver): NetworkStatusService {
+            return networkStatusReceiver
+        }
+    }
 }
