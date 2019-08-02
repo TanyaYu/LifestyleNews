@@ -21,89 +21,125 @@
         <import type="android.text.Html" />
     </data>
 
-    <FrameLayout
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/article_item_height"
-        android:layout_marginStart="@dimen/article_item_horizontal_margin"
-        android:layout_marginLeft="@dimen/article_item_horizontal_margin"
-        android:layout_marginTop="@dimen/article_item_vertical_margin"
-        android:layout_marginEnd="@dimen/article_item_horizontal_margin"
-        android:layout_marginRight="@dimen/article_item_horizontal_margin"
-        android:layout_marginBottom="@dimen/article_item_vertical_margin"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_h"
+        android:layout_marginRight="@dimen/spacing_h"
+        android:background="@color/white"
         android:clickable="true"
         android:focusable="true"
         android:onClick="@{() -> handler.onArticleClick(item.id)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="@fraction/article_item_image_fraction" />
-
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/iv_image"
+                android:id="@+id/image"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="140dp"
                 android:contentDescription="@string/article_image"
-                android:scaleType="centerCrop"
-                app:error="@{@drawable/ic_newspaper_color}"
+                app:error="@{@drawable/photo_error_placeholder}"
                 app:imageUrl="@{item.photoUrl}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/guide_image"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_newspaper_color" />
-            <!-- todo make selector -->
+                app:placeholder="@{@drawable/photo_placeholder}"
+                tools:src="@drawable/photo_placeholder" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/photo_overlay"
+                app:layout_constraintBottom_toBottomOf="@id/image"
+                app:layout_constraintEnd_toEndOf="@id/image"
+                app:layout_constraintStart_toStartOf="@id/image"
+                app:layout_constraintTop_toTopOf="@id/image" />
+
             <ImageView
                 android:id="@+id/favorite"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@{isFavorite ? @color/colorAccent : @color/colorPrimary}"
+                android:layout_width="@dimen/icon_size_m"
+                android:layout_height="@dimen/icon_size_m"
+                android:layout_marginLeft="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:layout_marginRight="@dimen/spacing_m"
+                android:background="?selectableItemBackgroundBorderless"
                 android:clickable="true"
+                android:contentDescription="@string/content_description_article_save"
                 android:focusable="true"
                 android:onClick="@{() -> handler.onFavoriteClick(item.id, isFavorite)}"
-                app:layout_constraintStart_toStartOf="@id/iv_image"
-                app:layout_constraintTop_toTopOf="@id/iv_image"
-                tools:background="@color/colorAccent" />
+                android:src="@drawable/bookmark_selector"
+                android:tint="@color/bookmark_color_selector"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:isSelected="@{isFavorite}"
+                tools:isSelected="@{false}" />
 
             <TextView
-                android:id="@+id/tv_title"
+                android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:lineSpacingMultiplier="@fraction/article_item_title_line_spacing_multiplier"
-                android:maxLines="@fraction/article_item_title_max_lines"
-                android:padding="@dimen/article_item_inner_padding"
+                android:layout_marginLeft="@dimen/spacing_h"
+                android:layout_marginTop="@dimen/spacing_l"
+                android:layout_marginRight="@dimen/spacing_h"
+                android:lineSpacingMultiplier="0.9"
                 android:text="@{item.title}"
-                android:textSize="@dimen/article_item_title_text_size"
+                android:textAppearance="@style/Title2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/guide_image"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image"
                 tools:text="Blind-Assistance 'App Be My Eyes' Is Now on Android " />
 
             <TextView
-                android:id="@+id/tv_source_published_on_date"
+                android:id="@+id/description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_h"
+                android:layout_marginTop="@dimen/spacing_l"
+                android:layout_marginRight="@dimen/spacing_h"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@{item.description}"
+                android:textAppearance="@style/Body2.Secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:text="Image via Be My Eyes Be My Eyes, an app that lets sighted people remotely help blind people with visual tasks, is now available on Android, after two years on iOS. The app is free, anonymous, and available 24/7. Anyone can join as a volunteer or end user. The…" />
+
+            <TextView
+                android:id="@+id/publisher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_h"
+                android:layout_marginTop="@dimen/spacing_l"
+                android:layout_marginRight="@dimen/spacing_h"
+                android:layout_marginBottom="@dimen/spacing_h"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:padding="@dimen/article_item_inner_padding"
                 android:text='@{Html.fromHtml(item.publisher)}'
-                android:textColor="?android:textColorSecondary"
+                android:textAppearance="@style/Caption"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/guide_image"
+                app:layout_constraintEnd_toStartOf="@id/read"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description"
                 bind:linkMovement="@{true}"
                 tools:text="Kinja.com on October 5, 2017" />
 
+            <ImageView
+                android:id="@+id/read"
+                android:layout_width="@dimen/icon_size_m"
+                android:layout_height="@dimen/icon_size_m"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/content_description_article_read"
+                android:onClick="@{() -> handler.onReadClick(item.id)}"
+                android:padding="@dimen/spacing_l"
+                android:src="@drawable/ic_launch"
+                android:tint="?android:textColorPrimary"
+                app:layout_constraintEnd_toEndOf="@id/description"
+                app:layout_constraintTop_toTopOf="@id/publisher" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

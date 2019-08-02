@@ -9,9 +9,9 @@
 
         <variable
             name="vm"
-            type="com.tanyayuferova.lifestylenews.domain.list.ListViewModel" />
+            type="com.tanyayuferova.lifestylenews.domain.main.ListViewModel" />
 
-        <import type="com.tanyayuferova.lifestylenews.domain.list.ListViewModel.DataState" />
+        <import type="com.tanyayuferova.lifestylenews.domain.main.ListViewModel.DataState" />
 
     </data>
 
@@ -30,11 +30,15 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:adapter="@{vm.wrapperAdapter}"
+                android:orientation="vertical"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/spacing_m"
+                android:paddingBottom="@dimen/spacing_m"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 bind:adapterFooter="@{vm.footer}"
                 bind:hasFixedSize="@{true}"
                 bind:isVisible="@{vm.state == DataState.DATA || vm.state == DataState.LOADING}"
+                bind:itemDecoration="@{@drawable/divider_spacing_h}"
                 bind:listData="@{vm.articles}"
                 tools:listitem="@layout/item_article" />
 

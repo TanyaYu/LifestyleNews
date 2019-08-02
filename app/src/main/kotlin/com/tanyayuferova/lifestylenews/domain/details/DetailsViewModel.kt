@@ -2,6 +2,7 @@ package com.tanyayuferova.lifestylenews.domain.details
 
 import android.content.res.Resources
 import androidx.databinding.ObservableField
+import androidx.navigation.NavController
 import com.tanyayuferova.lifestylenews.data.articles.ArticlesRepository
 import com.tanyayuferova.lifestylenews.domain.baseviewmodel.RxViewModel
 import com.tanyayuferova.lifestylenews.ui.details.ArticleDetails
@@ -13,7 +14,8 @@ import javax.inject.Inject
  */
 class DetailsViewModel @Inject constructor(
     private val articlesRepository: ArticlesRepository,
-    private val res: Resources
+    private val res: Resources,
+    private val navController: NavController
 ) : RxViewModel() {
 
     var id: Int = -1
@@ -27,6 +29,6 @@ class DetailsViewModel @Inject constructor(
     }
 
     fun onBackClick() {
-        navController?.navigateUp()
+        navController.navigateUp()
     }
 }

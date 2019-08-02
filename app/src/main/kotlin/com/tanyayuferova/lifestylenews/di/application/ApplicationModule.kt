@@ -30,7 +30,7 @@ abstract class ApplicationModule {
     @Binds
     internal abstract fun provideContext(application: Application): Context
 
-    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
+    @ContributesAndroidInjector(modules = [MainActivityModule::class, FragmentBuildersModule::class])
     @ActivityScope
     internal abstract fun bindMainActivity(): MainActivity
 

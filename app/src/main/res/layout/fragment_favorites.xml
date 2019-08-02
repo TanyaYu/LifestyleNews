@@ -9,9 +9,9 @@
 
         <variable
             name="vm"
-            type="com.tanyayuferova.lifestylenews.domain.favorites.FavoritesViewModel" />
+            type="com.tanyayuferova.lifestylenews.domain.main.FavoritesViewModel" />
 
-        <import type="com.tanyayuferova.lifestylenews.domain.favorites.FavoritesViewModel.DataState" />
+        <import type="com.tanyayuferova.lifestylenews.domain.main.FavoritesViewModel.DataState" />
 
     </data>
 
@@ -23,10 +23,13 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:adapter="@{vm.adapter}"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_m"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             bind:hasFixedSize="@{true}"
             bind:isVisible="@{vm.state == DataState.DATA}"
+            bind:itemDecoration="@{@drawable/divider_spacing_h}"
             bind:listData="@{vm.articles}"
             tools:listitem="@layout/item_article" />
 

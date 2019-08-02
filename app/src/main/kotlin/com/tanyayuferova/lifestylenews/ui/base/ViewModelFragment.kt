@@ -8,26 +8,25 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import com.tanyayuferova.lifestylenews.BR
-import com.tanyayuferova.lifestylenews.domain.baseviewmodel.NavigationViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
+import com.tanyayuferova.lifestylenews.domain.baseviewmodel.ViewModel
 
 /**
  * Author: Tanya Yuferova
  * Date: 7/28/2019
  */
-abstract class ViewModelFragment<Binding : ViewDataBinding, ViewModel : NavigationViewModel>
+abstract class ViewModelFragment<Binding : ViewDataBinding, VM : ViewModel>
     : DaggerFragment() {
 
     abstract val layout: Int
-    abstract val viewModelClass: Class<ViewModel>
+    abstract val viewModelClass: Class<VM>
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: ViewModel
+    private lateinit var viewModel: VM
     private lateinit var binding: Binding
 
     override fun onCreateView(
@@ -35,7 +34,6 @@ abstract class ViewModelFragment<Binding : ViewDataBinding, ViewModel : Navigati
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProviders.of(this, viewModelFactory)[viewModelClass]
-        viewModel.navController = findNavController()
         bindArgs(viewModel)
         viewModel.onReady()
 
@@ -46,7 +44,7 @@ abstract class ViewModelFragment<Binding : ViewDataBinding, ViewModel : Navigati
     }
 
     // fixme temp solution
-    open fun bindArgs(viewModel: ViewModel) {
+    open fun bindArgs(viewModel: VM) {
 
     }
 
@@ -54,12 +52,7 @@ abstract class ViewModelFragment<Binding : ViewDataBinding, ViewModel : Navigati
 
     }
 
-    open fun bindViewModel(binding: Binding, viewModel: ViewModel) {
+    open fun bindViewModel(binding: Binding, viewModel: VM) {
         binding.setVariable(BR.vm, viewModel)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        viewModel.navController = null
     }
 }

@@ -13,7 +13,7 @@ import timber.log.Timber
  * Author: Tanya Yuferova
  * Date: 7/27/2019
  */
-open class RxViewModel : NavigationViewModel() {
+open class RxViewModel : ViewModel() {
 
     private val disposable = CompositeDisposable()
 

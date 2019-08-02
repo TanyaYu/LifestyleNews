@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="content_description_article_image">Article image</string>
+    <string name="content_description_article_save">Save article</string>
+    <string name="content_description_article_read">Read article</string>
+</resources>
