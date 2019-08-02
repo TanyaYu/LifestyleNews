@@ -24,6 +24,9 @@ interface ArticlesDao {
     @Query("SELECT * FROM article WHERE id = :id")
     fun getById(id: Int): Single<Article>
 
+    @Query("update article SET isFavorite = :isFavorite WHERE id = :id")
+    fun updateIsFavorite(id: Int, isFavorite: Int): Completable
+
     @Query("update article SET isFavorite = :isFavorite, addedToFavored = :dateAdded WHERE id = :id")
     fun updateIsFavorite(id: Int, isFavorite: Int, dateAdded: Date?): Completable
 

@@ -64,4 +64,7 @@
     <string name="unknown_error_message_short">Unknown error</string>
     <string name="connection_error_message_short">No Internet connection</string>
     <string name="retry_action">Retry</string>
+    <string name="undo_action">Undo</string>
+
+    <string name="article_removed_message">Removed from saved</string>
 </resources>

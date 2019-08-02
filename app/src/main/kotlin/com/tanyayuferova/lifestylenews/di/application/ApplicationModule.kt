@@ -10,6 +10,9 @@ import com.tanyayuferova.lifestylenews.data.network.status.NetworkStatusReceiver
 import com.tanyayuferova.lifestylenews.data.network.status.NetworkStatusService
 import com.tanyayuferova.lifestylenews.di.activity.ActivityScope
 import com.tanyayuferova.lifestylenews.di.activity.FragmentBuildersModule
+import com.tanyayuferova.lifestylenews.domain.activityCommand.ActivityCommandsExecutor
+import com.tanyayuferova.lifestylenews.domain.activityCommand.ActivityCommandsExecutorImpl
+import com.tanyayuferova.lifestylenews.domain.activityCommand.ActivityHolder
 import com.tanyayuferova.lifestylenews.domain.common.Schedulers
 import com.tanyayuferova.lifestylenews.ui.activity.MainActivity
 import dagger.Binds
@@ -30,6 +33,7 @@ import javax.inject.Singleton
  */
 @Module
 abstract class ApplicationModule {
+
     @Binds
     internal abstract fun provideContext(application: Application): Context
 
@@ -83,6 +87,20 @@ abstract class ApplicationModule {
         @JvmStatic
         fun provideNetworkStatusService(networkStatusReceiver: NetworkStatusReceiver): NetworkStatusService {
             return networkStatusReceiver
+        }
+
+        @Provides
+        @Singleton
+        @JvmStatic
+        fun provideActivityCommandsExecutor() : ActivityCommandsExecutor {
+            return ActivityCommandsExecutorImpl()
+        }
+
+        @Provides
+        @Singleton
+        @JvmStatic
+        fun provideActivityHolder(executor: ActivityCommandsExecutor) : ActivityHolder {
+            return executor
         }
     }
 }
