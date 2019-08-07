@@ -3,6 +3,7 @@ package com.tanyayuferova.lifestylenews.ui.common
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
@@ -34,11 +35,7 @@ class PaginationWrapperAdapter<T, VH : RecyclerView.ViewHolder>(
         }
 
     init {
-        adapter.registerAdapterDataObserver(
-            Observer(
-                this
-            )
-        )
+        adapter.registerAdapterDataObserver(Observer(this))
     }
 
     fun submitList(list: List<T>?) {
@@ -119,8 +116,9 @@ class PaginationWrapperAdapter<T, VH : RecyclerView.ViewHolder>(
         }
     }
 
-    private fun bindFooter(holder: ErrorViewHolder, footer: Error) {
-        holder.retryButton.setOnClickListener {
+    private fun bindFooter(holder: ErrorViewHolder, footer: Error) = with(holder) {
+        messageView.text = footer.errorMessage
+        retryButton.setOnClickListener {
             footer.onRetry()
         }
     }
@@ -155,12 +153,13 @@ class PaginationWrapperAdapter<T, VH : RecyclerView.ViewHolder>(
     class LoaderViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     class ErrorViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val messageView: TextView = view.findViewById(R.id.message)
         val retryButton: MaterialButton = view.findViewById(R.id.retryButton)
     }
 
     sealed class Footer {
         object Loader : Footer()
-        class Error(val onRetry: () -> Unit) : Footer()
+        class Error(val errorMessage: String, val onRetry: () -> Unit) : Footer()
     }
 
     companion object {

@@ -30,8 +30,8 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:clipToPadding="false"
+                android:orientation="vertical"
                 android:paddingTop="@dimen/spacing_m"
                 android:paddingBottom="@dimen/spacing_m"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -44,41 +44,28 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <LinearLayout
-            android:id="@+id/stub"
+        <com.tanyayuferova.lifestylenews.ui.views.EmptyView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            bind:isVisible="@{vm.state == DataState.ERROR}"
-            tools:visibility="gone">
+            app:icon="@drawable/ic_signal_wifi_off"
+            app:text="@string/connection_error_message"
+            bind:isVisible="@{vm.state == DataState.CONNECTION_ERROR}"
+            bind:onActionClick="@{vm::onRetryClick}" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Error" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/retry"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{(v) -> vm.onRetryClick()}" />
-        </LinearLayout>
-
-        <LinearLayout
+        <com.tanyayuferova.lifestylenews.ui.views.EmptyView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            bind:isVisible="@{vm.state == DataState.EMPTY}"
-            tools:visibility="gone">
+            app:icon="@drawable/ic_broken_image"
+            app:text="@string/unknown_error_message"
+            bind:isVisible="@{vm.state == DataState.UNKNOWN_ERROR}"
+            bind:onActionClick="@{vm::onRetryClick}" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Empty" />
-
-        </LinearLayout>
-
+        <com.tanyayuferova.lifestylenews.ui.views.EmptyView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:icon="@drawable/ic_search"
+            app:text="@string/articles_empty_data_message"
+            bind:isVisible="@{vm.state == DataState.EMPTY}" />
 
     </FrameLayout>
 </layout>

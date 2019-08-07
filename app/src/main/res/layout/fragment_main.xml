@@ -21,10 +21,11 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                app:layout_scrollFlags="scroll"
-                android:elevation="0dp"
                 android:layout_height="wrap_content"
-                app:title="@string/app_name" />
+                android:elevation="0dp"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                app:title="@string/app_name"
+                bind:targetApi="lollipop" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
@@ -34,7 +35,6 @@
                 android:layout_gravity="top" />
 
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <com.tanyayuferova.lifestylenews.ui.views.NonSwipableViewPager
             android:id="@+id/viewPager"

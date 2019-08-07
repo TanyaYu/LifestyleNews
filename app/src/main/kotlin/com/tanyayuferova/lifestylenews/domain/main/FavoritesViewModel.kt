@@ -7,6 +7,7 @@ import com.tanyayuferova.lifestylenews.domain.baseviewmodel.RxViewModel
 import com.tanyayuferova.lifestylenews.ui.list.ArticleListItem
 import com.tanyayuferova.lifestylenews.utils.mapList
 import com.tanyayuferova.lifestylenews.domain.main.FavoritesViewModel.DataState.*
+import java.lang.Exception
 import javax.inject.Inject
 
 /**
@@ -29,20 +30,24 @@ class FavoritesViewModel @Inject constructor(
         articlesRepository.observeFavorites()
             .mapList { it.toListItem(res) }
             .bindSubscribeBy(
-                onNext = { list ->
-                    if (list.isEmpty())
-                        state.set(EMPTY)
-                    else state.set(DATA)
-                    articles.set(list)
-                },
-                onError = {
-                    state.set(ERROR)
-                }
+                onNext = ::onData,
+                onError = ::onError
             )
     }
 
     fun onRetryClick() {
         loadData()
+    }
+
+    private fun onData(data: List<ArticleListItem>) {
+        if (data.isEmpty())
+            state.set(EMPTY)
+        else state.set(DATA)
+        articles.set(data)
+    }
+
+    private fun onError(exception: Throwable) {
+        state.set(ERROR)
     }
 
     enum class DataState {

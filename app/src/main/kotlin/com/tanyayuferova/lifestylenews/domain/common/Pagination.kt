@@ -16,8 +16,7 @@ class Pagination<T>(
 ) {
     private var page = 1
 
-    private var state: State =
-        Initial()
+    private var state: State = Initial()
 
     private val disposable = CompositeDisposable()
 

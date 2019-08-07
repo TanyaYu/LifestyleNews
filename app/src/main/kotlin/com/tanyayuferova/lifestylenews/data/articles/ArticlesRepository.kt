@@ -1,7 +1,8 @@
 package com.tanyayuferova.lifestylenews.data.articles
 
+import com.tanyayuferova.lifestylenews.data.network.exeption.NoConnectionException
+import com.tanyayuferova.lifestylenews.data.network.status.NetworkStatusService
 import com.tanyayuferova.lifestylenews.domain.entity.Article
-import com.tanyayuferova.lifestylenews.domain.common.Schedulers
 import com.tanyayuferova.lifestylenews.utils.mapList
 import io.reactivex.Single
 import java.util.*
@@ -13,7 +14,8 @@ import javax.inject.Inject
  */
 class ArticlesRepository @Inject constructor(
     private val articlesService: ArticlesService,
-    private val articlesDao: ArticlesDao
+    private val articlesDao: ArticlesDao,
+    private val networkStatusService: NetworkStatusService
 ) {
 
     // TODO query
@@ -24,9 +26,15 @@ class ArticlesRepository @Inject constructor(
             page = page,
             query = "android"
         )
-            .subscribeOn(Schedulers.io)
+            .onErrorResumeNext { error ->
+                val exception = when {
+                    !networkStatusService.isNetworkAvailable() -> NoConnectionException()
+                    else -> error
+                }
+                Single.error(exception)
+            }
             .map {
-                if(it.errorCode == "maximumResultsReached")
+                if (it.errorCode == "maximumResultsReached")
                     emptyList()
                 else it.articles
             }

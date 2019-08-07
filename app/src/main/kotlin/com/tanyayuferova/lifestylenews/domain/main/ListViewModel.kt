@@ -2,8 +2,11 @@ package com.tanyayuferova.lifestylenews.domain.main
 
 import android.content.res.Resources
 import androidx.databinding.ObservableField
+import com.tanyayuferova.lifestylenews.R
 import com.tanyayuferova.lifestylenews.data.articles.ArticlesRepository
 import com.tanyayuferova.lifestylenews.data.articles.combineWithFavorites
+import com.tanyayuferova.lifestylenews.data.network.exeption.NoConnectionException
+import com.tanyayuferova.lifestylenews.data.network.status.NetworkStatusService
 import com.tanyayuferova.lifestylenews.domain.common.Pagination
 import com.tanyayuferova.lifestylenews.domain.baseviewmodel.RxViewModel
 import com.tanyayuferova.lifestylenews.domain.common.Schedulers.main
@@ -22,7 +25,8 @@ import javax.inject.Inject
  */
 class ListViewModel @Inject constructor(
     private val res: Resources,
-    private val articlesRepository: ArticlesRepository
+    private val articlesRepository: ArticlesRepository,
+    private val networkStatusService: NetworkStatusService
 ) : RxViewModel(), Pagination.ViewInteraction<ArticleListItem> {
 
     val articles = ObservableField<List<ArticleListItem>>()
@@ -45,6 +49,9 @@ class ListViewModel @Inject constructor(
                 onNext = articles::set,
                 onError = ::onError
             )
+
+        networkStatusService.observe()
+            .bindSubscribeBy(::onNetworkStatusChanged)
     }
 
     override fun onNewData(data: List<ArticleListItem>) {
@@ -53,7 +60,16 @@ class ListViewModel @Inject constructor(
     }
 
     override fun onError(error: Throwable) {
-        state.set(ERROR)
+        if(articles.get().isNullOrEmpty()) {
+            when (error) {
+                is NoConnectionException -> state.set(CONNECTION_ERROR)
+                else -> state.set(UNKNOWN_ERROR)
+            }
+        }
+        else {
+            state.set(DATA)
+            //todo show snack bar
+        }
     }
 
     override fun onEmpty() {
@@ -73,7 +89,12 @@ class ListViewModel @Inject constructor(
     }
 
     override fun onPageError(error: Throwable) {
-        footer.set(Footer.Error(::onRetryPageClick))
+        val errorMessage = when(error) {
+            is NoConnectionException -> res.getString(R.string.connection_error_message_short)
+            else -> res.getString(R.string.unknown_error_message_short)
+        }
+        val errorFooter = Footer.Error(errorMessage, ::onRetryPageClick)
+        footer.set(errorFooter)
     }
 
     override fun onPageLoading() {
@@ -101,12 +122,17 @@ class ListViewModel @Inject constructor(
     }
 
     private fun requestPage(page: Int): Single<List<ArticleListItem>> {
-        return articlesRepository.get(page,
-            PAGE_SIZE
-        )
+        return articlesRepository.get(page, PAGE_SIZE)
             .mapList { it.toListItem(res) }
             .doOnError(Timber::e)
             .observeOn(main)
+    }
+
+    private fun onNetworkStatusChanged(isConnected: Boolean) {
+        if (isConnected) {
+            pagination.retry()
+            pagination.retryPage()
+        }
     }
 
     override fun onCleared() {
@@ -117,7 +143,8 @@ class ListViewModel @Inject constructor(
     enum class DataState {
         LOADING,
         DATA,
-        ERROR,
+        UNKNOWN_ERROR,
+        CONNECTION_ERROR,
         EMPTY
     }
 
