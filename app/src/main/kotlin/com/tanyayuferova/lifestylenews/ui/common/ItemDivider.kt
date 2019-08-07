@@ -3,6 +3,7 @@ package com.tanyayuferova.lifestylenews.ui.common
 import androidx.recyclerview.widget.RecyclerView
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
@@ -10,14 +11,13 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tanyayuferova.lifestylenews.R
-import java.lang.Exception
 import kotlin.math.roundToInt
 
 open class ItemDivider(
     context: Context,
     private val orientation: Int = VERTICAL,
     private val divider: Drawable = ContextCompat.getDrawable(context, R.drawable.divider)
-        ?: throw Exception("Can't find default divider drawable R.drawable.divider")
+        ?: throw Resources.NotFoundException("Can't find default divider drawable R.drawable.divider")
 ) : RecyclerView.ItemDecoration() {
 
     private val bounds = Rect()
