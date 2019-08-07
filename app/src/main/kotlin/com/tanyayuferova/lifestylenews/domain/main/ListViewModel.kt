@@ -42,8 +42,9 @@ class ListViewModel @Inject constructor(
     )
 
     init {
-        articlesRepository.clearCache()
-            .bindSubscribeBy(pagination::start)
+        articlesRepository.clearCache().bindSubscribeBy {
+            pagination.start()
+        }
 
         dataSubject.hide()
             .combineWithFavorites(articlesRepository.observeFavoritesIds())
@@ -62,13 +63,12 @@ class ListViewModel @Inject constructor(
     }
 
     override fun onError(error: Throwable) {
-        if(articles.get().isNullOrEmpty()) {
+        if (articles.get().isNullOrEmpty()) {
             when (error) {
                 is NoConnectionException -> state.set(CONNECTION_ERROR)
                 else -> state.set(UNKNOWN_ERROR)
             }
-        }
-        else {
+        } else {
             state.set(DATA)
             snackBarController.short(getShortErrorMessage(error))
         }
@@ -135,7 +135,7 @@ class ListViewModel @Inject constructor(
     }
 
     private fun getShortErrorMessage(error: Throwable): String {
-        return when(error) {
+        return when (error) {
             is NoConnectionException -> res.getString(R.string.connection_error_message_short)
             else -> res.getString(R.string.unknown_error_message_short)
         }
