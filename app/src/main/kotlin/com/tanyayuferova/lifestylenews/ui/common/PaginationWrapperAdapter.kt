@@ -69,7 +69,7 @@ class PaginationWrapperAdapter<T, VH : RecyclerView.ViewHolder>(
             LOADER_FOOTER_TYPE -> {
                 LoaderViewHolder(
                     inflater.inflate(
-                        R.layout.footer_loader,
+                        R.layout.item_footer_loader,
                         parent,
                         false
                     )
@@ -78,7 +78,7 @@ class PaginationWrapperAdapter<T, VH : RecyclerView.ViewHolder>(
             ERROR_FOOTER_TYPE -> {
                 ErrorViewHolder(
                     inflater.inflate(
-                        R.layout.footer_error,
+                        R.layout.item_footer_error,
                         parent,
                         false
                     )

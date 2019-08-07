@@ -63,10 +63,10 @@
     <dimen name="icon_size_h">36dp</dimen>
     <dimen name="icon_size_xh">48dp</dimen>
 
-    <dimen name="elevation_l">2dp</dimen>
-    <dimen name="elevation_m">4dp</dimen>
-    <dimen name="elevation_h">6dp</dimen>
+    <dimen name="single_line_item_m">48dp</dimen>
+    <dimen name="single_line_item_h">56dp</dimen>
+    <dimen name="single_line_item_xh">72dp</dimen>
 
-    <dimen name="toolbar_size">56dp</dimen>
-    <dimen name="toolbar_elevation">@dimen/elevation_m</dimen>
+    <dimen name="two_line_item_m">64dp</dimen>
+    <dimen name="two_line_item_h">72dp</dimen>
 </resources>

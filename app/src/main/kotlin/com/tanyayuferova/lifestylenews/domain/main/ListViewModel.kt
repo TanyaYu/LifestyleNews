@@ -10,6 +10,7 @@ import com.tanyayuferova.lifestylenews.data.network.status.NetworkStatusService
 import com.tanyayuferova.lifestylenews.domain.common.Pagination
 import com.tanyayuferova.lifestylenews.domain.baseviewmodel.RxViewModel
 import com.tanyayuferova.lifestylenews.domain.common.Schedulers.main
+import com.tanyayuferova.lifestylenews.domain.common.SnackBarController
 import com.tanyayuferova.lifestylenews.ui.list.ArticleListItem
 import com.tanyayuferova.lifestylenews.domain.main.ListViewModel.DataState.*
 import com.tanyayuferova.lifestylenews.ui.common.PaginationWrapperAdapter.Footer
@@ -26,7 +27,8 @@ import javax.inject.Inject
 class ListViewModel @Inject constructor(
     private val res: Resources,
     private val articlesRepository: ArticlesRepository,
-    private val networkStatusService: NetworkStatusService
+    private val networkStatusService: NetworkStatusService,
+    private val snackBarController: SnackBarController
 ) : RxViewModel(), Pagination.ViewInteraction<ArticleListItem> {
 
     val articles = ObservableField<List<ArticleListItem>>()
@@ -68,7 +70,7 @@ class ListViewModel @Inject constructor(
         }
         else {
             state.set(DATA)
-            //todo show snack bar
+            snackBarController.short(getShortErrorMessage(error))
         }
     }
 
@@ -89,11 +91,8 @@ class ListViewModel @Inject constructor(
     }
 
     override fun onPageError(error: Throwable) {
-        val errorMessage = when(error) {
-            is NoConnectionException -> res.getString(R.string.connection_error_message_short)
-            else -> res.getString(R.string.unknown_error_message_short)
-        }
-        val errorFooter = Footer.Error(errorMessage, ::onRetryPageClick)
+        val message = getShortErrorMessage(error)
+        val errorFooter = Footer.Error(message, ::onRetryPageClick)
         footer.set(errorFooter)
     }
 
@@ -132,6 +131,13 @@ class ListViewModel @Inject constructor(
         if (isConnected) {
             pagination.retry()
             pagination.retryPage()
+        }
+    }
+
+    private fun getShortErrorMessage(error: Throwable): String {
+        return when(error) {
+            is NoConnectionException -> res.getString(R.string.connection_error_message_short)
+            else -> res.getString(R.string.unknown_error_message_short)
         }
     }
 
