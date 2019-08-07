@@ -25,9 +25,9 @@ class ArticleItemsViewModel @Inject constructor(
 
     override fun onFavoriteClick(id: Int, isFavorite: Boolean) {
         if (isFavorite) {
-            articlesRepository.setUnFavorite(id).bindSubscribeBy({
+            articlesRepository.setUnFavorite(id).bindSubscribeBy {
                 onUnFavoriteComplete(id)
-            })
+            }
         } else {
             articlesRepository.setFavorite(id).bindSubscribeBy()
         }
