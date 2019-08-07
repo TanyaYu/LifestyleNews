@@ -8,9 +8,9 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
 }
 
-//apply {
-//    from("script-git-version.gradle")
-//}
+apply {
+    from("script-git-version.gradle")
+}
 
 val keystoreProperties = Properties().apply {
     val keyStoreFile = rootProject.file("keystore.properties")
@@ -24,8 +24,8 @@ android {
         applicationId = "com.tanyayuferova.lifestylenews"
         minSdkVersion(Project.versions.sdk.min)
         targetSdkVersion(Project.versions.sdk.target)
-        versionCode = 1 // extra["gitVersionCode"] as? Int
-        versionName = "0.0.1" // extra["gitVersionName"] as? String
+        versionCode = extra["gitVersionCode"] as? Int
+        versionName = extra["gitVersionName"] as? String
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -65,7 +65,6 @@ dependencies {
     implementation(Project.dependencies.androidX.lifecycle.runtime)
     implementation(Project.dependencies.androidX.lifecycle.extensions)
     implementation(Project.dependencies.androidX.lifecycle.viewmodelKtx)
-//    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt(Project.dependencies.androidX.lifecycle.compiler)
 
     // Navigation
