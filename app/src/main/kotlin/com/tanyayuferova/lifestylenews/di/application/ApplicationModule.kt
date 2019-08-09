@@ -6,6 +6,7 @@ import com.tanyayuferova.lifestylenews.Application
 import com.tanyayuferova.lifestylenews.data.BASE_URL
 import com.tanyayuferova.lifestylenews.data.articles.ArticlesService
 import com.tanyayuferova.lifestylenews.data.network.ApiKeyInterceptor
+import com.tanyayuferova.lifestylenews.data.network.ErrorInterceptor
 import com.tanyayuferova.lifestylenews.data.network.status.NetworkStatusReceiver
 import com.tanyayuferova.lifestylenews.data.network.status.NetworkStatusService
 import com.tanyayuferova.lifestylenews.di.activity.ActivityScope
@@ -53,12 +54,13 @@ abstract class ApplicationModule {
         @Provides
         @Singleton
         @JvmStatic
-        fun provideOkHttpClient(): OkHttpClient {
+        fun provideOkHttpClient(networkStatusService: NetworkStatusService): OkHttpClient {
             return OkHttpClient.Builder()
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(ApiKeyInterceptor())
+                .addInterceptor(ErrorInterceptor(networkStatusService))
                 .build()
         }
 

@@ -27,9 +27,9 @@ class PaginationWrapperAdapter<T, VH : RecyclerView.ViewHolder>(
                 val old = field
                 field = new
                 when {
-                    old != null && new == null -> notifyItemRemoved(adapter.itemCount + 1)
-                    old == null && new != null -> notifyItemInserted(adapter.itemCount + 1)
-                    old != null && new != null -> notifyItemChanged(adapter.itemCount + 1)
+                    old != null && new == null -> notifyItemRemoved(adapter.itemCount)
+                    old == null && new != null -> notifyItemInserted(adapter.itemCount)
+                    old != null && new != null -> notifyItemChanged(adapter.itemCount)
                 }
             }
         }

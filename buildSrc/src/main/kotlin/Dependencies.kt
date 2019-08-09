@@ -47,18 +47,9 @@ object Dependencies {
     val androidX = AndroidX
     val google = Google
     val rx = Rx
-//    val arello = Arello
     val bumptech = Bumptech
-//    val stephanenicolas = Stephanenicolas
     val squareup = Squareup
-//    val tinder = Tinder
-//    val shyiko = Shyiko
-//
-//    object Shyiko {
-//        const val ktlint = "com.github.shyiko.ktlint:${versions.ktlint}"
-//        const val ktlintCore = "com.github.shyiko.ktlint:ktlint-core:${versions.ktlint}"
-//        const val ktlintTest = "com.github.shyiko.ktlint:ktlint-test:${Dependencies.Versions.ktlint}"
-//    }
+
 
     object Kotlin {
         const val stdlibJdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
@@ -69,15 +60,12 @@ object Dependencies {
     object Bumptech {
         const val glide = "com.github.bumptech.glide:glide:${versions.glide}"
         const val glideCompiler = "com.github.bumptech.glide:compiler:${versions.glide}"
-//        const val glideOkHttpIntegration = "com.github.bumptech.glide:okhttp3-integration:${versions.glide}"
-//        const val glideWebpDecoder = "com.zlc.glide:webpdecoder:1.5.${versions.glide}"
     }
 
     object Rx {
         const val java = "io.reactivex.rxjava2:rxjava:${versions.rxJava}"
         const val kotlin = "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}"
         const val android = "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}"
-//        const val relay = "com.jakewharton.rxrelay2:rxrelay:${versions.rxRelay}"
     }
 
     object Squareup {

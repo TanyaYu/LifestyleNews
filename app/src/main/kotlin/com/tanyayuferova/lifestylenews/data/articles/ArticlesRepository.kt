@@ -1,7 +1,6 @@
 package com.tanyayuferova.lifestylenews.data.articles
 
-import com.tanyayuferova.lifestylenews.data.network.exeption.NoConnectionException
-import com.tanyayuferova.lifestylenews.data.network.status.NetworkStatusService
+import com.tanyayuferova.lifestylenews.data.network.exeption.UpgradeRequiredException
 import com.tanyayuferova.lifestylenews.domain.entity.Article
 import com.tanyayuferova.lifestylenews.utils.mapList
 import io.reactivex.Single
@@ -14,29 +13,22 @@ import javax.inject.Inject
  */
 class ArticlesRepository @Inject constructor(
     private val articlesService: ArticlesService,
-    private val articlesDao: ArticlesDao,
-    private val networkStatusService: NetworkStatusService
+    private val articlesDao: ArticlesDao
 ) {
 
     // TODO query
-    // TODO errorCodes
     fun get(page: Int, limit: Int): Single<List<Article>> {
         return articlesService.everything(
             limit = limit,
             page = page,
             query = "android"
         )
+            .map { it.articles }
             .onErrorResumeNext { error ->
-                val exception = when {
-                    !networkStatusService.isNetworkAvailable() -> NoConnectionException()
-                    else -> error
+                when (error) {
+                    is UpgradeRequiredException -> Single.just(emptyList())
+                    else -> Single.error(error)
                 }
-                Single.error(exception)
-            }
-            .map {
-                if (it.errorCode == "maximumResultsReached")
-                    emptyList()
-                else it.articles
             }
             .mapList { it.toArticle() }
             .toObservable()
