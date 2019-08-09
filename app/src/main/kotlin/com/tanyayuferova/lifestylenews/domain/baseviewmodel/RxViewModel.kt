@@ -67,10 +67,10 @@ open class RxViewModel : ViewModel() {
     }
 
     fun Completable.bindSubscribeBy(
-        onComplete: () -> Unit = {},
         onError: (Throwable) -> Unit = Timber::e,
         subscribeOn: Scheduler = computation,
-        observeOn: Scheduler = main
+        observeOn: Scheduler = main,
+        onComplete: () -> Unit = {}
     ) {
         disposable += this
             .subscribeOn(subscribeOn)
@@ -86,5 +86,4 @@ open class RxViewModel : ViewModel() {
         super.onCleared()
         disposable.dispose()
     }
-
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.tanyayuferova.lifestylenews.R
+import com.tanyayuferova.lifestylenews.di.activity.ActivityScope
 import com.tanyayuferova.lifestylenews.ui.activity.MainActivity
 import dagger.Binds
 import dagger.Module
@@ -20,6 +21,7 @@ abstract class MainActivityModule {
 
     @Module companion object {
         @Provides
+        @ActivityScope
         @JvmStatic
         fun provideNavController(activity: AppCompatActivity) : NavController {
             return activity.findNavController(R.id.nav_host_fragment)

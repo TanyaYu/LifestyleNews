@@ -57,5 +57,7 @@ class ArticlesRepository @Inject constructor(
 
     fun setFavorite(id: Int) = articlesDao.updateIsFavorite(id, 1, Date())
 
-    fun setUnFavorite(id: Int) = articlesDao.updateIsFavorite(id, 0, null)
+    fun setUnFavorite(id: Int) = articlesDao.updateIsFavorite(id, 0)
+
+    fun undoUnFavorite(id: Int) = articlesDao.updateIsFavorite(id, 1)
 }

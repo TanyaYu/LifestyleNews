@@ -1,7 +1,9 @@
 package com.tanyayuferova.lifestylenews.domain.main
 
 import androidx.navigation.NavController
+import com.tanyayuferova.lifestylenews.R
 import com.tanyayuferova.lifestylenews.data.articles.ArticlesRepository
+import com.tanyayuferova.lifestylenews.domain.common.SnackBarController
 import com.tanyayuferova.lifestylenews.domain.baseviewmodel.RxViewModel
 import com.tanyayuferova.lifestylenews.ui.list.ArticlesAdapter
 import com.tanyayuferova.lifestylenews.ui.main.MainFragmentDirections.Companion.actionMainToDetails
@@ -13,7 +15,8 @@ import javax.inject.Inject
  */
 class ArticleItemsViewModel @Inject constructor(
     private val articlesRepository: ArticlesRepository,
-    private val navController: NavController
+    private val navController: NavController,
+    private val snackBarController: SnackBarController
 ) : RxViewModel(), ArticlesAdapter.ActionsHandler {
 
     override fun onArticleClick(id: Int) {
@@ -21,9 +24,10 @@ class ArticleItemsViewModel @Inject constructor(
     }
 
     override fun onFavoriteClick(id: Int, isFavorite: Boolean) {
-        if(isFavorite) {
-            articlesRepository.setUnFavorite(id).bindSubscribeBy()
-            // todo snack bar undo only for favorites
+        if (isFavorite) {
+            articlesRepository.setUnFavorite(id).bindSubscribeBy {
+                onUnFavoriteComplete(id)
+            }
         } else {
             articlesRepository.setFavorite(id).bindSubscribeBy()
         }
@@ -31,5 +35,13 @@ class ArticleItemsViewModel @Inject constructor(
 
     override fun onReadClick(id: Int) {
         navController.navigate(actionMainToDetails(id))
+    }
+
+    private fun onUnFavoriteComplete(id: Int) {
+        snackBarController.long(R.string.article_removed_message) {
+            setAction(R.string.undo_action) {
+                articlesRepository.undoUnFavorite(id).bindSubscribeBy()
+            }
+        }
     }
 }
