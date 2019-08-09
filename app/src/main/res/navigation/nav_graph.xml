@@ -13,13 +13,10 @@
         <action
             android:id="@+id/action_main_to_details"
             app:destination="@id/details" />
+        <action
+            android:id="@+id/action_main_to_browse"
+            app:destination="@id/browse" />
     </fragment>
-
-    <!--<fragment-->
-        <!--android:id="@+id/list"-->
-        <!--android:name="com.tanyayuferova.lifestylenews.ui.list.ListFragment"-->
-        <!--android:label="fragment_list"-->
-        <!--tools:layout="@layout/fragment_list"/>-->
 
     <fragment
         android:id="@+id/details"
@@ -29,5 +26,18 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_details_to_browse"
+            app:destination="@id/browse" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/browse"
+        android:name="com.tanyayuferova.lifestylenews.ui.details.BrowseFragment"
+        android:label="fragment_browse"
+        tools:layout="@layout/fragment_browse">
+        <argument
+            android:name="url"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -1,4 +1,4 @@
-package com.tanyayuferova.lifestylenews.ui.common.binding
+package com.tanyayuferova.lifestylenews.ui.common.binding.adapters
 
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
@@ -9,6 +9,6 @@ import androidx.databinding.BindingAdapter
  */
 
 @BindingAdapter("onNavigationIconClick")
-fun Toolbar.onNavigationIconClick(action: () -> Unit) {
+fun Toolbar.setONavigationIconClick(action: () -> Unit) {
     setNavigationOnClickListener { action() }
 }

@@ -10,5 +10,6 @@ data class ArticleListItem(
     val photoUrl: String?,
     val publisher: String,
     val description: String,
-    val isFavorite: Boolean
+    val isFavorite: Boolean,
+    val hasUrl: Boolean
 )

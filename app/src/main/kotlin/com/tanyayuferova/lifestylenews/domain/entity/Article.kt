@@ -36,7 +36,8 @@ data class Article(
         photoUrl = photoUrl,
         publisher = getListItemPublisher(res),
         description = description.orEmpty(),
-        isFavorite = isFavorite
+        isFavorite = isFavorite,
+        hasUrl = !url.isNullOrEmpty()
     )
 
     fun toDetails(res: Resources) = ArticleDetails(

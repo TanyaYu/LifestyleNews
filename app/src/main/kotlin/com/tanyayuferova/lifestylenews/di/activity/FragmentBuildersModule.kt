@@ -1,5 +1,6 @@
 package com.tanyayuferova.lifestylenews.di.activity
 
+import com.tanyayuferova.lifestylenews.ui.details.BrowseFragment
 import com.tanyayuferova.lifestylenews.ui.favorites.FavoritesFragment
 import com.tanyayuferova.lifestylenews.ui.list.ListFragment
 import com.tanyayuferova.lifestylenews.ui.main.MainFragment
@@ -25,4 +26,7 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     internal abstract fun bindDetailsFragment(): DetailsFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindBrowseFragment(): BrowseFragment
 }

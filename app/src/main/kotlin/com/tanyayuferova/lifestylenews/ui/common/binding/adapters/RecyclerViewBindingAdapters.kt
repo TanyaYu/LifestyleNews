@@ -1,4 +1,4 @@
-package com.tanyayuferova.lifestylenews.ui.common.binding
+package com.tanyayuferova.lifestylenews.ui.common.binding.adapters
 
 import android.graphics.drawable.Drawable
 import androidx.databinding.BindingAdapter
@@ -14,7 +14,7 @@ import com.tanyayuferova.lifestylenews.ui.common.PaginationWrapperAdapter
  */
 
 @BindingAdapter("listData")
-fun <T> RecyclerView.listData(data: List<T>?) {
+fun <T> RecyclerView.setListData(data: List<T>?) {
     if (adapter is ListAdapter<*, *>)
         (adapter as? ListAdapter<T, *>)?.submitList(data)
     if (adapter is PaginationWrapperAdapter<*, *>)
@@ -27,7 +27,7 @@ fun RecyclerView.hasFixedSize(hasFixedSize: Boolean) {
 }
 
 @BindingAdapter("adapterFooter")
-fun <T> RecyclerView.adapterFooter(footer: PaginationWrapperAdapter.Footer?) {
+fun <T> RecyclerView.setAdapterFooter(footer: PaginationWrapperAdapter.Footer?) {
     val adapter = adapter
     if (adapter is PaginationWrapperAdapter<*, *>) {
         adapter.footer = footer
@@ -35,7 +35,7 @@ fun <T> RecyclerView.adapterFooter(footer: PaginationWrapperAdapter.Footer?) {
 }
 
 @BindingAdapter(value = ["itemDecoration", "android:orientation"], requireAll = false)
-fun RecyclerView.itemDecoration(drawable: Drawable, recyclerOrientation: Int?) {
+fun RecyclerView.addItemDecoration(drawable: Drawable, recyclerOrientation: Int?) {
     val orientation = recyclerOrientation
         ?: (layoutManager as? LinearLayoutManager)?.orientation
         ?: LinearLayoutManager.VERTICAL

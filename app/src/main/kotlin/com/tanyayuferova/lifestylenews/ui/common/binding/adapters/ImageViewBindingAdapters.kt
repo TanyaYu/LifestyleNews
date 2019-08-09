@@ -1,4 +1,4 @@
-package com.tanyayuferova.lifestylenews.ui.common.binding
+package com.tanyayuferova.lifestylenews.ui.common.binding.adapters
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
