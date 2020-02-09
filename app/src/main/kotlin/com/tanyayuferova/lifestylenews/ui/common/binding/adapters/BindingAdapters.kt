@@ -1,10 +1,9 @@
-package com.tanyayuferova.lifestylenews.ui.common.binding
+package com.tanyayuferova.lifestylenews.ui.common.binding.adapters
 
-import android.text.method.LinkMovementMethod
 import android.view.View
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
+import com.tanyayuferova.lifestylenews.ui.common.binding.mediators.ViewMediator
 
 /**
  * Author: Tanya Yuferova
@@ -21,9 +20,7 @@ fun View.isSelected(isSelected: Boolean) {
     this.isSelected = isSelected
 }
 
-@BindingAdapter("linkMovement")
-fun TextView.setLinkMovement(linkMovement: Boolean) {
-    if (linkMovement) {
-        movementMethod = LinkMovementMethod.getInstance()
-    }
+@BindingAdapter("mediator")
+fun <T : View> T.setViewMediator(mediator: ViewMediator<T>) {
+    mediator.setUp(this)
 }

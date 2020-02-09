@@ -6,6 +6,7 @@ import com.tanyayuferova.lifestylenews.data.articles.ArticlesRepository
 import com.tanyayuferova.lifestylenews.domain.common.SnackBarController
 import com.tanyayuferova.lifestylenews.domain.baseviewmodel.RxViewModel
 import com.tanyayuferova.lifestylenews.ui.list.ArticlesAdapter
+import com.tanyayuferova.lifestylenews.ui.main.MainFragmentDirections.Companion.actionMainToBrowse
 import com.tanyayuferova.lifestylenews.ui.main.MainFragmentDirections.Companion.actionMainToDetails
 import javax.inject.Inject
 
@@ -33,8 +34,12 @@ class ArticleItemsViewModel @Inject constructor(
         }
     }
 
-    override fun onReadClick(id: Int) {
-        navController.navigate(actionMainToDetails(id))
+    override fun onBrowseClick(id: Int) {
+        articlesRepository.getById(id)
+            .map { it.url ?: throw Exception("Url not found") }
+            .bindSubscribeBy({ url ->
+                navController.navigate(actionMainToBrowse(url))
+            })
     }
 
     private fun onUnFavoriteComplete(id: Int) {

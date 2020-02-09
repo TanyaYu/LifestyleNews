@@ -7,6 +7,7 @@ import com.tanyayuferova.lifestylenews.domain.main.FavoritesViewModel
 import com.tanyayuferova.lifestylenews.domain.main.ListViewModel
 import com.tanyayuferova.lifestylenews.domain.main.MainViewModel
 import com.tanyayuferova.lifestylenews.domain.baseviewmodel.ViewModelProviderFactory
+import com.tanyayuferova.lifestylenews.domain.details.BrowseViewModel
 import com.tanyayuferova.lifestylenews.domain.details.DetailsViewModel
 import dagger.Binds
 import dagger.Module
@@ -46,4 +47,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ArticleItemsViewModel::class)
     internal abstract fun bindArticleListInteractionViewModel(viewModel: ArticleItemsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BrowseViewModel::class)
+    internal abstract fun bindBrowseViewModel(viewModel: BrowseViewModel): ViewModel
 }

@@ -1,4 +1,4 @@
-package com.tanyayuferova.lifestylenews.ui.common.binding
+package com.tanyayuferova.lifestylenews.ui.common.binding.adapters
 
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -9,7 +9,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
  */
 
 @BindingAdapter("onRefreshListener")
-fun SwipeRefreshLayout.onRefreshListener(action: (() -> Unit)?) {
+fun SwipeRefreshLayout.setOnRefreshListener(action: (() -> Unit)?) {
     setOnRefreshListener {
         action?.invoke()
     }

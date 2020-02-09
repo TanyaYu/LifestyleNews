@@ -67,7 +67,7 @@ class ArticlesAdapter(
     interface ActionsHandler {
         fun onArticleClick(id: Int)
         fun onFavoriteClick(id: Int, isFavorite: Boolean)
-        fun onReadClick(id: Int)
+        fun onBrowseClick(id: Int)
     }
 
     companion object {

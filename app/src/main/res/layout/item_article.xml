@@ -133,12 +133,13 @@
                 android:layout_height="@dimen/icon_size_m"
                 android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@string/content_description_article_read"
-                android:onClick="@{() -> handler.onReadClick(item.id)}"
+                android:onClick="@{() -> handler.onBrowseClick(item.id)}"
                 android:padding="@dimen/spacing_l"
                 android:src="@drawable/ic_launch"
                 android:tint="@color/iconTintFocused"
                 app:layout_constraintEnd_toEndOf="@id/description"
-                app:layout_constraintTop_toTopOf="@id/publisher" />
+                app:layout_constraintTop_toTopOf="@id/publisher"
+                bind:isVisible="@{item.hasUrl}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
